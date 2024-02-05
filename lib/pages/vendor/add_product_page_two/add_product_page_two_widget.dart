@@ -685,14 +685,6 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   33.0, 4.0, 28.0, 4.0),
                                           hidesUnderline: true,
-                                          disabled: VerifiedAPIsGroup
-                                                  .productSubcategoriesCall
-                                                  .ids(
-                                                    containerProductSubcategoriesResponse
-                                                        .jsonBody,
-                                                  )!
-                                                  .length <
-                                              1,
                                           isOverButton: true,
                                           isSearchable: false,
                                           isMultiSelect: false,
