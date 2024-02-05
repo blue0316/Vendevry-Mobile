@@ -557,16 +557,24 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                     controller:
                                         _model.categoriesValueController ??=
                                             FormFieldController<int>(
-                                      _model.categoriesValue ??= FFAppState()
+                                      _model.categoriesValue ??= (FFAppState()
                                                   .productCategories
                                                   .where((e) =>
                                                       e.id ==
                                                       _model.productTemplate
                                                           ?.category)
                                                   .toList()
-                                                  .first
-                                                  .parentId <
-                                              0
+                                                  .isNotEmpty) &&
+                                              (FFAppState()
+                                                      .productCategories
+                                                      .where((e) =>
+                                                          e.id ==
+                                                          _model.productTemplate
+                                                              ?.category)
+                                                      .toList()
+                                                      .first
+                                                      .parentId <
+                                                  0)
                                           ? _model.productTemplate?.category
                                           : FFAppState()
                                               .productCategories
