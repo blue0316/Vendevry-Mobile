@@ -624,7 +624,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                         child: FlutterFlowDropDown<int>(
                                           controller: _model
                                                   .subcategoriesValueController ??=
-                                              FormFieldController<int>(null),
+                                              FormFieldController<int>(
+                                            _model.subcategoriesValue ??= -1,
+                                          ),
                                           options: List<
                                               int>.from(VerifiedAPIsGroup
                                                       .productSubcategoriesCall
