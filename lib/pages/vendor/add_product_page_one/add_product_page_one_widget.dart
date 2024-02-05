@@ -872,9 +872,12 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                                                               8.0),
                                                                   child: Image
                                                                       .network(
-                                                                    searchProductItem
-                                                                        .images
-                                                                        .first,
+                                                                    searchProductItem.images.length >
+                                                                            0
+                                                                        ? searchProductItem
+                                                                            .images
+                                                                            .first
+                                                                        : 'https://cdn.iconscout.com/icon/free/png-512/free-product-135-781070.png?f=webp&w=256',
                                                                     width: 50.0,
                                                                     height:
                                                                         50.0,
