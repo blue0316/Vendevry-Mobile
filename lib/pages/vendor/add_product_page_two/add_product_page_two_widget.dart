@@ -5367,6 +5367,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       }(),
                                       boostDeadline:
                                           FFAppState().productBoostOption,
+                                      token: FFAppState().accessToken,
+                                      stock: 0,
+                                      vendorId: FFAppState().loggedInUser.id,
                                     );
                                     if ((_model.newProduct?.succeeded ??
                                         true)) {

@@ -224,9 +224,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ProjectRejectPageWidget(),
         ),
         FFRoute(
-          name: 'CreateProjectPage',
-          path: '/createProjectPage',
-          builder: (context, params) => CreateProjectPageWidget(),
+          name: 'CreateFixedProjectPage',
+          path: '/createFixedProjectPage',
+          builder: (context, params) => CreateFixedProjectPageWidget(),
+        ),
+        FFRoute(
+          name: 'CreateHourlyProjectPage',
+          path: '/createHourlyProjectPage',
+          builder: (context, params) => CreateHourlyProjectPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

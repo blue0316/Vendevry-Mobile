@@ -4,6 +4,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,6 +12,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -3307,6 +3309,15 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                                                           ?.jsonBody ??
                                                       ''),
                                                 )!;
+                                                FFAppState().loggedInUser =
+                                                    UserModelStruct
+                                                        .maybeFromMap(AuthGroup
+                                                            .registerCall
+                                                            .authUser(
+                                                  (_model.signupResult
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ))!;
                                               });
 
                                               context.goNamedAuth(

@@ -42,5 +42,7 @@ export '/pages/vendor/services/project_request_view_page/project_request_view_pa
     show ProjectRequestViewPageWidget;
 export '/pages/vendor/services/project_reject_page/project_reject_page_widget.dart'
     show ProjectRejectPageWidget;
-export '/pages/vendor/services/create_project_page/create_project_page_widget.dart'
-    show CreateProjectPageWidget;
+export '/pages/vendor/services/create_fixed_project_page/create_fixed_project_page_widget.dart'
+    show CreateFixedProjectPageWidget;
+export '/pages/vendor/services/create_hourly_project_page/create_hourly_project_page_widget.dart'
+    show CreateHourlyProjectPageWidget;
