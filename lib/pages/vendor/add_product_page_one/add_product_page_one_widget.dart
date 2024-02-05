@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'add_product_page_one_model.dart';
 export 'add_product_page_one_model.dart';
@@ -274,33 +275,68 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                             ),
                             Align(
                               alignment: AlignmentDirectional(1.0, -1.0),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 4.0, 26.0, 0.0),
-                                child: FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 100.0,
-                                  borderWidth: 0.0,
-                                  buttonSize: 40.0,
-                                  fillColor: Color(0xFF40A5FE),
-                                  icon: Icon(
-                                    Icons.add,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    size: 22.0,
-                                  ),
-                                  onPressed: () async {
-                                    context.pushNamed(
-                                      'AddProductPageTwo',
-                                      queryParameters: {
-                                        'productId': serializeParam(
-                                          _model.selectedProductId,
-                                          ParamType.int,
+                              child: Builder(
+                                builder: (context) {
+                                  if (((_model.selectedProductId == null) &&
+                                          (_model.searchResult.length < 1)) &&
+                                      (_model.textController.text.length > 2)) {
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 4.0, 26.0, 0.0),
+                                      child: FlutterFlowIconButton(
+                                        borderColor: Colors.transparent,
+                                        borderRadius: 100.0,
+                                        borderWidth: 0.0,
+                                        buttonSize: 40.0,
+                                        fillColor: Color(0xFF40A5FE),
+                                        icon: Icon(
+                                          Icons.add,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          size: 22.0,
                                         ),
-                                      }.withoutNulls,
+                                        onPressed: () async {
+                                          context.pushNamed(
+                                            'AddProductPageTwo',
+                                            queryParameters: {
+                                              'productId': serializeParam(
+                                                _model.selectedProductId,
+                                                ParamType.int,
+                                              ),
+                                            }.withoutNulls,
+                                          );
+                                        },
+                                      ),
                                     );
-                                  },
-                                ),
+                                  } else {
+                                    return Align(
+                                      alignment:
+                                          AlignmentDirectional(1.0, -1.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 26.0, 0.0),
+                                        child: Container(
+                                          width: 40.0,
+                                          height: 40.0,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(4.0),
+                                            child: Lottie.network(
+                                              'https://lottie.host/2b86acb2-5f14-440c-8477-2ccd79f87a0d/bW3qgy20CA.json',
+                                              width: 32.0,
+                                              height: 32.0,
+                                              fit: BoxFit.cover,
+                                              animate: true,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
                               ),
                             ),
                             Padding(
