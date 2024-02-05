@@ -108,11 +108,13 @@ class _SearchClientPageWidgetState extends State<SearchClientPageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
-                width: 100.0,
-                height: 100.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(50.0, 0.0, 50.0, 20.0),
+                child: Container(
+                  width: MediaQuery.sizeOf(context).width * 1.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
                 ),
               ),
             ],
