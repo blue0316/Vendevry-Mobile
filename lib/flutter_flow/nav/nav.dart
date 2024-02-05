@@ -240,6 +240,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ProjectEndConfirmPage',
           path: '/projectEndConfirmPage',
           builder: (context, params) => ProjectEndConfirmPageWidget(),
+        ),
+        FFRoute(
+          name: 'HourlyProjectDetailPage',
+          path: '/hourlyProjectDetailPage',
+          builder: (context, params) => HourlyProjectDetailPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

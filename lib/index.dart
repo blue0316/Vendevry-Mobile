@@ -50,3 +50,5 @@ export '/pages/vendor/services/fixed_project_detail_page/fixed_project_detail_pa
     show FixedProjectDetailPageWidget;
 export '/pages/vendor/services/project_end_confirm_page/project_end_confirm_page_widget.dart'
     show ProjectEndConfirmPageWidget;
+export '/pages/vendor/services/hourly_project_detail_page/hourly_project_detail_page_widget.dart'
+    show HourlyProjectDetailPageWidget;
