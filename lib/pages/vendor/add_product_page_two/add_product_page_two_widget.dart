@@ -1331,6 +1331,14 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                         ],
                                       ),
                                     ),
+                                    Text(
+                                      getJsonField(
+                                        widget.singleProduct,
+                                        r'''$.custom_options''',
+                                      ).toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ),
                                   ],
                                 ),
                               ),
