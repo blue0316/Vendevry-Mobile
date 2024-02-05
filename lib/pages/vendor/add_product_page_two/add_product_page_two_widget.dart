@@ -477,16 +477,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       return FlutterFlowDropDown<int>(
                                         controller:
                                             _model.categoriesValueController ??=
-                                                FormFieldController<int>(
-                                          _model.categoriesValue ??=
-                                              VerifiedAPIsGroup
-                                                  .allProductParentCategoriesCall
-                                                  .ids(
-                                                    categoriesAllProductParentCategoriesResponse
-                                                        .jsonBody,
-                                                  )
-                                                  ?.first,
-                                        ),
+                                                FormFieldController<int>(null),
                                         options: List<int>.from(
                                             VerifiedAPIsGroup
                                                 .allProductParentCategoriesCall
@@ -503,24 +494,12 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                         onChanged: (val) async {
                                           setState(() =>
                                               _model.categoriesValue = val);
-                                          if (FFAppState()
-                                                  .productCategories
-                                                  .where((e) =>
-                                                      e.parentId ==
-                                                      _model.categoriesValue)
-                                                  .toList()
-                                                  .length >
-                                              0) {
-                                            setState(() {
-                                              _model.selectedParentCategoryId =
-                                                  _model.categoriesValue;
-                                            });
-                                          } else {
-                                            setState(() {
-                                              _model.productCategoryId =
-                                                  _model.categoriesValue;
-                                            });
-                                          }
+                                          setState(() {
+                                            _model.selectedParentCategoryId =
+                                                _model.categoriesValue;
+                                            _model.productCategoryId =
+                                                _model.categoriesValue;
+                                          });
                                         },
                                         width:
                                             MediaQuery.sizeOf(context).width *
@@ -566,152 +545,160 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                           ),
                         ],
                       ),
-                      FutureBuilder<ApiCallResponse>(
-                        future: VerifiedAPIsGroup.productSubcategoriesCall.call(
-                          pid: valueOrDefault<int>(
-                            _model.categoriesValue,
-                            1,
-                          ),
-                          token: FFAppState().accessToken,
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: SpinKitDualRing(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  size: 50.0,
-                                ),
-                              ),
-                            );
-                          }
-                          final containerProductSubcategoriesResponse =
-                              snapshot.data!;
-                          return Container(
-                            decoration: BoxDecoration(),
-                            child: Column(
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                28.0, 5.0, 28.0, 0.0),
+                            child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      28.0, 5.0, 28.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
-                                        child: Text(
-                                          'Sub Category',
-                                          textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Avenir',
-                                                color: Colors.black,
-                                                fontSize: 28.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
-                                                lineHeight: 1.33,
-                                              ),
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Text(
+                                    'Sub Category',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Avenir',
+                                          color: Colors.black,
+                                          fontSize: 28.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                          lineHeight: 1.33,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      19.0, 10.0, 19.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: FlutterFlowDropDown<int>(
-                                          controller: _model
-                                                  .subcategoriesValueController ??=
-                                              FormFieldController<int>(
-                                            _model.subcategoriesValue ??= -1,
-                                          ),
-                                          options: List<
-                                              int>.from(VerifiedAPIsGroup
-                                                      .productSubcategoriesCall
-                                                      .ids(
-                                                        containerProductSubcategoriesResponse
-                                                            .jsonBody,
-                                                      )!
-                                                      .length >
-                                                  0
-                                              ? VerifiedAPIsGroup
-                                                  .productSubcategoriesCall
-                                                  .ids(
-                                                  containerProductSubcategoriesResponse
-                                                      .jsonBody,
-                                                )!
-                                              : ([-1])),
-                                          optionLabels: [''],
-                                          onChanged: (val) async {
-                                            setState(() => _model
-                                                .subcategoriesValue = val);
-                                            if (_model.subcategoriesValue! >=
-                                                0) {
-                                              _model.productCategoryId =
-                                                  _model.subcategoriesValue;
-                                            }
-                                          },
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          height: 54.0,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily,
-                                                fontSize: 16.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
-                                              ),
-                                          icon: Icon(
-                                            Icons.arrow_drop_down,
-                                            color: Color(0xFF707070),
-                                            size: 28.0,
-                                          ),
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          elevation: 1.0,
-                                          borderColor: Color(0xFF707070),
-                                          borderWidth: 1.0,
-                                          borderRadius: 27.0,
-                                          margin:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  33.0, 4.0, 28.0, 4.0),
-                                          hidesUnderline: true,
-                                          isOverButton: true,
-                                          isSearchable: false,
-                                          isMultiSelect: false,
-                                        ),
-                                      ),
-                                    ],
                                   ),
                                 ),
                               ],
                             ),
-                          );
-                        },
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                19.0, 10.0, 19.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: FutureBuilder<ApiCallResponse>(
+                                    future: VerifiedAPIsGroup
+                                        .productSubcategoriesCall
+                                        .call(
+                                      pid: _model.productCategoryId,
+                                      token: FFAppState().accessToken,
+                                    ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(2.0),
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: SpinKitDualRing(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 50.0,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final subcategoriesProductSubcategoriesResponse =
+                                          snapshot.data!;
+                                      return FlutterFlowDropDown<int>(
+                                        controller: _model
+                                                .subcategoriesValueController ??=
+                                            FormFieldController<int>(
+                                          _model.subcategoriesValue ??= -1,
+                                        ),
+                                        options: List<
+                                            int>.from(VerifiedAPIsGroup
+                                                    .productSubcategoriesCall
+                                                    .ids(
+                                                      subcategoriesProductSubcategoriesResponse
+                                                          .jsonBody,
+                                                    )!
+                                                    .length >
+                                                0
+                                            ? VerifiedAPIsGroup
+                                                .productSubcategoriesCall
+                                                .ids(
+                                                subcategoriesProductSubcategoriesResponse
+                                                    .jsonBody,
+                                              )!
+                                            : ([-1])),
+                                        optionLabels: VerifiedAPIsGroup
+                                                    .productSubcategoriesCall
+                                                    .names(
+                                                      subcategoriesProductSubcategoriesResponse
+                                                          .jsonBody,
+                                                    )!
+                                                    .length >
+                                                0
+                                            ? VerifiedAPIsGroup
+                                                .productSubcategoriesCall
+                                                .names(
+                                                subcategoriesProductSubcategoriesResponse
+                                                    .jsonBody,
+                                              )!
+                                            : (["No subcategories"]),
+                                        onChanged: (val) async {
+                                          setState(() =>
+                                              _model.subcategoriesValue = val);
+                                          if (_model.subcategoriesValue! >= 0) {
+                                            _model.productCategoryId =
+                                                _model.subcategoriesValue;
+                                          }
+                                        },
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 54.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              fontSize: 16.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
+                                        icon: Icon(
+                                          Icons.arrow_drop_down,
+                                          color: Color(0xFF707070),
+                                          size: 28.0,
+                                        ),
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        elevation: 1.0,
+                                        borderColor: Color(0xFF707070),
+                                        borderWidth: 1.0,
+                                        borderRadius: 27.0,
+                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                            33.0, 4.0, 28.0, 4.0),
+                                        hidesUnderline: true,
+                                        isOverButton: true,
+                                        isSearchable: false,
+                                        isMultiSelect: false,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.max,
