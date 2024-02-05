@@ -1,4 +1,5 @@
 import '/components/client_info_card_widget.dart';
+import '/components/milestone_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -25,11 +26,14 @@ class CreateProjectPageModel extends FlutterFlowModel<CreateProjectPageWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // Model for MilestoneCard component.
+  late MilestoneCardModel milestoneCardModel;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
     clientInfoCardModel = createModel(context, () => ClientInfoCardModel());
+    milestoneCardModel = createModel(context, () => MilestoneCardModel());
   }
 
   void dispose() {
@@ -40,6 +44,8 @@ class CreateProjectPageModel extends FlutterFlowModel<CreateProjectPageWidget> {
 
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
+
+    milestoneCardModel.dispose();
   }
 
   /// Action blocks are added here.
