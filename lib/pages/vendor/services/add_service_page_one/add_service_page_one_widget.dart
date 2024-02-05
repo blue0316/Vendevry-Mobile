@@ -289,7 +289,15 @@ class _AddServicePageOneWidgetState extends State<AddServicePageOneWidget> {
                                     size: 22.0,
                                   ),
                                   onPressed: () async {
-                                    context.pushNamed('AddProductPageTwo');
+                                    context.pushNamed(
+                                      'AddProductPageTwo',
+                                      queryParameters: {
+                                        'productName': serializeParam(
+                                          _model.textController.text,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
                                   },
                                 ),
                               ),

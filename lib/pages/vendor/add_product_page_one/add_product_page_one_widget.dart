@@ -366,6 +366,10 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                                   ),
                                                   ParamType.JSON,
                                                 ),
+                                                'productName': serializeParam(
+                                                  _model.textController.text,
+                                                  ParamType.String,
+                                                ),
                                               }.withoutNulls,
                                             );
                                           } else {
@@ -373,7 +377,14 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                                     .length >
                                                 0) {
                                               context.pushNamed(
-                                                  'AddProductPageTwo');
+                                                'AddProductPageTwo',
+                                                queryParameters: {
+                                                  'productName': serializeParam(
+                                                    _model.textController.text,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
                                             }
                                           }
 

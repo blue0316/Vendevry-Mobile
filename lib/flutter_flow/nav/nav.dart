@@ -184,6 +184,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/addProductPageTwo',
           builder: (context, params) => AddProductPageTwoWidget(
             singleProduct: params.getParam('singleProduct', ParamType.JSON),
+            productName: params.getParam('productName', ParamType.String),
           ),
         ),
         FFRoute(

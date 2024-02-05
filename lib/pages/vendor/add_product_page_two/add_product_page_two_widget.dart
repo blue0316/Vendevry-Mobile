@@ -26,9 +26,11 @@ class AddProductPageTwoWidget extends StatefulWidget {
   const AddProductPageTwoWidget({
     super.key,
     this.singleProduct,
+    required this.productName,
   });
 
   final dynamic singleProduct;
+  final String? productName;
 
   @override
   State<AddProductPageTwoWidget> createState() =>
@@ -68,6 +70,10 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
           _model.productCategoryId = null;
         });
       }
+
+      setState(() {
+        _model.titleController?.text = widget.productName!;
+      });
     });
 
     _model.titleController ??= TextEditingController(
