@@ -661,7 +661,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                         containerProductSubcategoriesResponse
                                                             .jsonBody,
                                                       )!
-                                                    : ([])),
+                                                    : ([-1])),
                                                 optionLabels: VerifiedAPIsGroup
                                                             .productSubcategoriesCall
                                                             .ids(
@@ -676,13 +676,18 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                         containerProductSubcategoriesResponse
                                                             .jsonBody,
                                                       )!
-                                                    : ([]),
+                                                    : (["No subcategories"]),
                                                 onChanged: (val) async {
                                                   setState(() => _model
                                                           .subcategoriesValue =
                                                       val);
-                                                  _model.productCategoryId =
-                                                      _model.subcategoriesValue;
+                                                  if (_model
+                                                          .subcategoriesValue! >=
+                                                      0) {
+                                                    _model.productCategoryId =
+                                                        _model
+                                                            .subcategoriesValue;
+                                                  }
                                                 },
                                                 width:
                                                     MediaQuery.sizeOf(context)
