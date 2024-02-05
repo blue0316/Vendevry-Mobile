@@ -148,6 +148,9 @@ class _OptionPriceModalWidgetState extends State<OptionPriceModalWidget> {
                                                 .bodyMediumFamily),
                                     lineHeight: 1.0,
                                   ),
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true),
                               validator: _model.textControllerValidator
                                   .asValidator(context),
                             ),
@@ -229,6 +232,9 @@ class _OptionPriceModalWidgetState extends State<OptionPriceModalWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
+                setState(() {
+                  FFAppState().optionPrice = -1.0;
+                });
                 Navigator.pop(context);
               },
             ),

@@ -1757,32 +1757,61 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                       ).then((value) =>
                                                           setState(() {}));
 
-                                                      setState(() {
-                                                        _model.addToColorOptions(
-                                                            ProductColorOptionStruct(
-                                                          color: (String hex) {
-                                                            return Color(int.parse(
-                                                                hex
-                                                                    .toUpperCase()
-                                                                    .replaceAll(
-                                                                        "#",
-                                                                        ""),
-                                                                radix: 16));
-                                                          }(_model
-                                                              .colorController
-                                                              .text),
-                                                          price: FFAppState()
-                                                              .optionPrice,
-                                                        ));
-                                                      });
-                                                      setState(() {
-                                                        FFAppState()
-                                                            .optionPrice = 0.0;
-                                                      });
-                                                      setState(() {
-                                                        _model.colorController
-                                                            ?.clear();
-                                                      });
+                                                      if (FFAppState()
+                                                              .optionPrice >=
+                                                          0.0) {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              _model
+                                                                  .colorController
+                                                                  .text,
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                              ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                          ),
+                                                        );
+                                                        setState(() {
+                                                          _model.addToColorOptions(
+                                                              ProductColorOptionStruct(
+                                                            color: (String
+                                                                hex) {
+                                                              return Color(int.parse(
+                                                                  hex
+                                                                      .toUpperCase()
+                                                                      .replaceAll(
+                                                                          "#",
+                                                                          ""),
+                                                                  radix: 16));
+                                                            }(_model
+                                                                .colorController
+                                                                .text),
+                                                            price: FFAppState()
+                                                                .optionPrice,
+                                                          ));
+                                                        });
+                                                        setState(() {
+                                                          FFAppState()
+                                                                  .optionPrice =
+                                                              0.0;
+                                                        });
+                                                        setState(() {
+                                                          _model.colorController
+                                                              ?.clear();
+                                                        });
+                                                      }
                                                     }
                                                   },
                                                 ),
