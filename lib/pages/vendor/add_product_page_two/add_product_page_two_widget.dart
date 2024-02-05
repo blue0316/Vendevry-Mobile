@@ -635,9 +635,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       Expanded(
                                         child: FlutterFlowDropDown<int>(
                                           controller: _model
-                                                  .subcategoriesValueController1 ??=
+                                                  .subcategoriesValueController ??=
                                               FormFieldController<int>(
-                                            _model.subcategoriesValue1 ??= -1,
+                                            _model.subcategoriesValue ??= -1,
                                           ),
                                           options: List<
                                               int>.from(VerifiedAPIsGroup
@@ -672,11 +672,11 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               : (["No subcategories"]),
                                           onChanged: (val) async {
                                             setState(() => _model
-                                                .subcategoriesValue1 = val);
-                                            if (_model.subcategoriesValue1! >=
+                                                .subcategoriesValue = val);
+                                            if (_model.subcategoriesValue! >=
                                                 0) {
                                               _model.productCategoryId =
-                                                  _model.subcategoriesValue1;
+                                                  _model.subcategoriesValue;
                                             }
                                           },
                                           width:
@@ -714,101 +714,6 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   33.0, 4.0, 28.0, 4.0),
                                           hidesUnderline: true,
-                                          isOverButton: true,
-                                          isSearchable: false,
-                                          isMultiSelect: false,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: FlutterFlowDropDown<int>(
-                                          controller: _model
-                                                  .subcategoriesValueController2 ??=
-                                              FormFieldController<int>(
-                                            _model.subcategoriesValue2 ??= -1,
-                                          ),
-                                          options: List<
-                                              int>.from(VerifiedAPIsGroup
-                                                      .productSubcategoriesCall
-                                                      .ids(
-                                                        containerProductSubcategoriesResponse
-                                                            .jsonBody,
-                                                      )!
-                                                      .length >
-                                                  0
-                                              ? VerifiedAPIsGroup
-                                                  .productSubcategoriesCall
-                                                  .ids(
-                                                  containerProductSubcategoriesResponse
-                                                      .jsonBody,
-                                                )!
-                                              : ([-1])),
-                                          optionLabels: VerifiedAPIsGroup
-                                                      .productSubcategoriesCall
-                                                      .ids(
-                                                        containerProductSubcategoriesResponse
-                                                            .jsonBody,
-                                                      )!
-                                                      .length >
-                                                  0
-                                              ? VerifiedAPIsGroup
-                                                  .productSubcategoriesCall
-                                                  .names(
-                                                  containerProductSubcategoriesResponse
-                                                      .jsonBody,
-                                                )!
-                                              : (["No subcategories"]),
-                                          onChanged: (val) async {
-                                            setState(() => _model
-                                                .subcategoriesValue2 = val);
-                                            if (_model.subcategoriesValue2! >=
-                                                0) {
-                                              _model.productCategoryId =
-                                                  _model.subcategoriesValue2;
-                                            }
-                                          },
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          height: 54.0,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily,
-                                                fontSize: 16.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
-                                              ),
-                                          icon: Icon(
-                                            Icons.arrow_drop_down,
-                                            color: Color(0xFF707070),
-                                            size: 28.0,
-                                          ),
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          elevation: 1.0,
-                                          borderColor: Color(0xFF707070),
-                                          borderWidth: 1.0,
-                                          borderRadius: 27.0,
-                                          margin:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  33.0, 4.0, 28.0, 4.0),
-                                          hidesUnderline: true,
-                                          disabled: VerifiedAPIsGroup
-                                                  .productSubcategoriesCall
-                                                  .ids(
-                                                    containerProductSubcategoriesResponse
-                                                        .jsonBody,
-                                                  )!
-                                                  .length <
-                                              1,
                                           isOverButton: true,
                                           isSearchable: false,
                                           isMultiSelect: false,
