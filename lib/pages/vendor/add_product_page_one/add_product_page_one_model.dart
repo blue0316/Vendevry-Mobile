@@ -33,6 +33,8 @@ class AddProductPageOneModel extends FlutterFlowModel<AddProductPageOneWidget> {
 
   int? selectedProductId;
 
+  bool isEmpty = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
