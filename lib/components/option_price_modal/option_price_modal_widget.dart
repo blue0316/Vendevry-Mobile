@@ -214,9 +214,9 @@ class _OptionPriceModalWidgetState extends State<OptionPriceModalWidget> {
           ),
         ),
         Align(
-          alignment: AlignmentDirectional(1.0, -1.0),
+          alignment: AlignmentDirectional(0.95, -0.98),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 48.0, 16.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 16.0, 0.0),
             child: FlutterFlowIconButton(
               borderColor: Colors.transparent,
               borderRadius: 20.0,

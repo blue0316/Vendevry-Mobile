@@ -2707,13 +2707,14 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                           ],
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            28.0, 9.0, 28.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      28.0, 10.0, 28.0, 10.0),
                                               child: Builder(
                                                 builder: (context) {
                                                   final colorOptionList = _model
@@ -2859,8 +2860,8 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                 },
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -2883,7 +2884,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      28.0, 5.0, 28.0, 0.0),
+                                      28.0, 0.0, 28.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
