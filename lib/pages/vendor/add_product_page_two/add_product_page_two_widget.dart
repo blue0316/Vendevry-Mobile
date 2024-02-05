@@ -49,18 +49,37 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (widget.singleProduct != null) {
         setState(() {
-          _model.productTemplate =
-              ProductDefaultStruct.maybeFromMap(widget.singleProduct);
-        });
-        setState(() {
-          _model.customOptions = _model.productTemplate!.customOptions
+          _model.customOptions = (getJsonField(
+            widget.singleProduct,
+            r'''$["custom_options"]''',
+            true,
+          )!
+                  .toList()
+                  .map<ProductCustomOptionStruct?>(
+                      ProductCustomOptionStruct.maybeFromMap)
+                  .toList() as Iterable<ProductCustomOptionStruct?>)
+              .withoutNulls
               .toList()
               .cast<ProductCustomOptionStruct>();
-          _model.colorOptions = _model.productTemplate!.colorOption
+          _model.colorOptions = (getJsonField(
+            widget.singleProduct,
+            r'''$["colors"]''',
+            true,
+          )!
+                  .toList()
+                  .map<ProductColorOptionStruct?>(
+                      ProductColorOptionStruct.maybeFromMap)
+                  .toList() as Iterable<ProductColorOptionStruct?>)
+              .withoutNulls
               .toList()
               .cast<ProductColorOptionStruct>();
-          _model.images =
-              _model.productTemplate!.images.toList().cast<String>();
+          _model.images = getJsonField(
+            widget.singleProduct,
+            r'''$["images"]''',
+            true,
+          )!
+              .toList()
+              .cast<String>();
         });
       } else {
         setState(() {
@@ -2913,20 +2932,6 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       ),
                                     ],
                                   ),
-                                ),
-                                Text(
-                                  _model.images.length.toString(),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                                Text(
-                                  valueOrDefault<String>(
-                                    _model.productTemplate?.images?.length
-                                        ?.toString(),
-                                    '000',
-                                  ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
                                 ),
                               ],
                             ),
