@@ -5456,7 +5456,20 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                         .call(
                                       name: _model.titleController.text,
                                       condition: _model.conditionValue,
-                                      category: _model.productCategoryId,
+                                      category: _model.subcategoriesValue !=
+                                              null
+                                          ? _model.subcategoriesValue
+                                          : (_model.categoriesValue != null
+                                              ? _model.categoriesValue
+                                              : (widget.singleProduct != null
+                                                  ? getJsonField(
+                                                      widget.singleProduct,
+                                                      r'''$["category"]''',
+                                                    )
+                                                  : FFAppState()
+                                                      .productCategories
+                                                      .first
+                                                      .id)),
                                       brand: _model.brandController.text,
                                       customOptionsJson: _model.customOptions
                                           .map((e) => e.toMap())
