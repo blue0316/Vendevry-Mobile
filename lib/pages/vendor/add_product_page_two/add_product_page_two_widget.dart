@@ -12,6 +12,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -73,11 +74,14 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
               .withoutNulls
               .toList()
               .cast<ProductColorOptionStruct>();
-          _model.images = getJsonField(
-            widget.singleProduct,
-            r'''$.images''',
-            true,
-          )!
+          _model.images = functions
+              .toImagePath((getJsonField(
+                widget.singleProduct,
+                r'''$.images''',
+                true,
+              ) as List)
+                  .map<String>((s) => s.toString())
+                  .toList()!)
               .toList()
               .cast<String>();
         });
@@ -189,13 +193,6 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
         body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Text(
-              getJsonField(
-                widget.singleProduct,
-                r'''$.images''',
-              ).toString(),
-              style: FlutterFlowTheme.of(context).bodyMedium,
-            ),
             Stack(
               children: [
                 ClipRRect(
