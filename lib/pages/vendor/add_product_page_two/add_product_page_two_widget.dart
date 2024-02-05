@@ -659,10 +659,8 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                           onChanged: (val) async {
                                             setState(() => _model
                                                 .subcategoriesValue = val);
-                                            setState(() {
-                                              _model.productCategoryId =
-                                                  _model.subcategoriesValue;
-                                            });
+                                            _model.productCategoryId =
+                                                _model.subcategoriesValue;
                                           },
                                           width:
                                               MediaQuery.sizeOf(context).width *

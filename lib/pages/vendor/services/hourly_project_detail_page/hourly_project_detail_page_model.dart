@@ -22,9 +22,7 @@ class HourlyProjectDetailPageModel
   // Model for ClientInfoCard component.
   late ClientInfoCardModel clientInfoCardModel;
   // Model for FInishedMilestoneCard component.
-  late FInishedMilestoneCardModel fInishedMilestoneCardModel1;
-  // Model for FInishedMilestoneCard component.
-  late FInishedMilestoneCardModel fInishedMilestoneCardModel2;
+  late FInishedMilestoneCardModel fInishedMilestoneCardModel;
   // Model for UnFInishedMilestoneCard component.
   late UnFInishedMilestoneCardModel unFInishedMilestoneCardModel1;
   // Model for UnFInishedMilestoneCard component.
@@ -46,9 +44,7 @@ class HourlyProjectDetailPageModel
 
   void initState(BuildContext context) {
     clientInfoCardModel = createModel(context, () => ClientInfoCardModel());
-    fInishedMilestoneCardModel1 =
-        createModel(context, () => FInishedMilestoneCardModel());
-    fInishedMilestoneCardModel2 =
+    fInishedMilestoneCardModel =
         createModel(context, () => FInishedMilestoneCardModel());
     unFInishedMilestoneCardModel1 =
         createModel(context, () => UnFInishedMilestoneCardModel());
@@ -59,8 +55,7 @@ class HourlyProjectDetailPageModel
   void dispose() {
     unfocusNode.dispose();
     clientInfoCardModel.dispose();
-    fInishedMilestoneCardModel1.dispose();
-    fInishedMilestoneCardModel2.dispose();
+    fInishedMilestoneCardModel.dispose();
     unFInishedMilestoneCardModel1.dispose();
     unFInishedMilestoneCardModel2.dispose();
     textFieldFocusNode1?.dispose();

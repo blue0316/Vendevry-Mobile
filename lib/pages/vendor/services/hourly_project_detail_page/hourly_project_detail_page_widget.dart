@@ -383,17 +383,7 @@ class _HourlyProjectDetailPageWidgetState
                               ],
                             ),
                             wrapWithModel(
-                              model: _model.fInishedMilestoneCardModel1,
-                              updateCallback: () => setState(() {}),
-                              child: FInishedMilestoneCardWidget(
-                                indexString: 'A.',
-                                milestoneName: 'UI/UX Wireframe',
-                                priceString: '\$1,500.00 USD',
-                                finishedAt: '2/22/22 11:30PM',
-                              ),
-                            ),
-                            wrapWithModel(
-                              model: _model.fInishedMilestoneCardModel2,
+                              model: _model.fInishedMilestoneCardModel,
                               updateCallback: () => setState(() {}),
                               child: FInishedMilestoneCardWidget(
                                 indexString: 'B.',

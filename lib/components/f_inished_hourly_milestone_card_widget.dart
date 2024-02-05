@@ -98,7 +98,7 @@ class _FInishedHourlyMilestoneCardWidgetState
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        '',
+                        '\$',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -110,14 +110,25 @@ class _FInishedHourlyMilestoneCardWidgetState
                             ),
                       ),
                     ),
+                    Text(
+                      valueOrDefault<String>(
+                        widget.amount?.toString(),
+                        '0.00',
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            color: FlutterFlowTheme.of(context).primary,
+                            fontWeight: FontWeight.w900,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
+                          ),
+                    ),
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        valueOrDefault<String>(
-                          widget.hours?.toString(),
-                          'Milestone1',
-                        ),
+                        'Billed',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -133,49 +144,31 @@ class _FInishedHourlyMilestoneCardWidgetState
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                    child: Text(
-                      valueOrDefault<String>(
-                        widget.finishedAt,
-                        '2/22/22 11:30PM',
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            fontWeight: FontWeight.w300,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text(
+                  valueOrDefault<String>(
+                    widget.hours?.toString(),
+                    '0',
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
-                    child: Text(
-                      valueOrDefault<String>(
-                        widget.paidAt,
-                        '\$0.00 USD',
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            fontWeight: FontWeight.bold,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
+                  style: FlutterFlowTheme.of(context).bodySmall,
+                ),
+                Text(
+                  'hours - ',
+                  style: FlutterFlowTheme.of(context).bodySmall,
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                  child: Text(
+                    valueOrDefault<String>(
+                      widget.paidAt,
+                      '12/22/24',
                     ),
+                    style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),
