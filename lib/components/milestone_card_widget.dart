@@ -9,7 +9,16 @@ import 'milestone_card_model.dart';
 export 'milestone_card_model.dart';
 
 class MilestoneCardWidget extends StatefulWidget {
-  const MilestoneCardWidget({super.key});
+  const MilestoneCardWidget({
+    super.key,
+    required this.indexString,
+    required this.milestoneName,
+    required this.priceString,
+  });
+
+  final String? indexString;
+  final String? milestoneName;
+  final String? priceString;
 
   @override
   State<MilestoneCardWidget> createState() => _MilestoneCardWidgetState();
@@ -61,7 +70,10 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
                   Align(
                     alignment: AlignmentDirectional(0.0, 0.0),
                     child: Text(
-                      'A.',
+                      valueOrDefault<String>(
+                        widget.indexString,
+                        'A.',
+                      ),
                       style: FlutterFlowTheme.of(context)
                           .headlineSmall
                           .override(
@@ -78,7 +90,10 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'UX/UI Wireframe',
+                      valueOrDefault<String>(
+                        widget.milestoneName,
+                        'Milestone1',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -92,38 +107,42 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
                 ],
               ),
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                  child: Text(
-                    'To be billed',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: Color(0xFF3AC754),
-                          fontWeight: FontWeight.bold,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                        ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    child: Text(
+                      'To be billed',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            color: Color(0xFF3AC754),
+                            fontWeight: FontWeight.bold,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
+                          ),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
-                  child: Text(
-                    '\$1,500.00 USD',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          fontWeight: FontWeight.bold,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                        ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    child: Text(
+                      '\$1,500.00 USD',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            fontWeight: FontWeight.bold,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
+                          ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

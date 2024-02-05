@@ -448,7 +448,11 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                             wrapWithModel(
                               model: _model.milestoneCardModel,
                               updateCallback: () => setState(() {}),
-                              child: MilestoneCardWidget(),
+                              child: MilestoneCardWidget(
+                                indexString: 'A.',
+                                milestoneName: 'UX/UI Wireframe',
+                                priceString: '\$1,500.00 USD',
+                              ),
                             ),
                           ],
                         ),

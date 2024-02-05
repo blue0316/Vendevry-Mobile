@@ -2959,26 +2959,28 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
-                                        child: Text(
-                                          'Add up to 7 photos of your product! \nMake sure to take pictures of any \ndefects or issues with the product.',
-                                          textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Avenir',
-                                                color: Color(0xFF6C6C6C),
-                                                fontSize: 16.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
-                                                lineHeight: 1.4,
-                                              ),
+                                      Expanded(
+                                        child: Align(
+                                          alignment:
+                                              AlignmentDirectional(-1.0, 0.0),
+                                          child: Text(
+                                            'Add up to 7 photos of your product! Make sure to take pictures of any defects or issues with the product.',
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Avenir',
+                                                  color: Color(0xFF6C6C6C),
+                                                  fontSize: 16.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                  lineHeight: 1.4,
+                                                ),
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -4214,23 +4216,25 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    'Describe your listing in detail. \nMake sure to include anything \nyour buyer should know \nIncluding defects!',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Avenir',
-                                          color: Color(0xFF6C6C6C),
-                                          fontSize: 16.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
-                                          lineHeight: 1.4,
-                                        ),
+                                Expanded(
+                                  child: Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Text(
+                                      'Describe your listing in detail. Make sure to include anything your buyer should know Including defects!',
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Avenir',
+                                            color: Color(0xFF6C6C6C),
+                                            fontSize: 16.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                            lineHeight: 1.4,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -4378,26 +4382,28 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
-                                      child: Text(
-                                        'This is the minimum price \nresellers can resell your listing for.',
-                                        textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Avenir',
-                                              color: Color(0xFF6C6C6C),
-                                              fontSize: 16.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
-                                              lineHeight: 1.4,
-                                            ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
+                                        child: Text(
+                                          'This is the minimum price resellers can resell your listing for.',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Avenir',
+                                                color: Color(0xFF6C6C6C),
+                                                fontSize: 16.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                                lineHeight: 1.4,
+                                              ),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -4950,23 +4956,25 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    'Set your shipping price or let \nus handle the shipping for you!',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Avenir',
-                                          color: Color(0xFF6C6C6C),
-                                          fontSize: 16.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
-                                          lineHeight: 1.4,
-                                        ),
+                                Expanded(
+                                  child: Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Text(
+                                      'Set your shipping price or let us handle the shipping for you!',
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Avenir',
+                                            color: Color(0xFF6C6C6C),
+                                            fontSize: 16.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                            lineHeight: 1.4,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -5245,23 +5253,25 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    'Submit your listing or boost your \nAd and get seen up to 10x more!',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Avenir',
-                                          color: Color(0xFF6C6C6C),
-                                          fontSize: 16.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
-                                          lineHeight: 1.4,
-                                        ),
+                                Expanded(
+                                  child: Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Text(
+                                      'Submit your listing or boost your Ad and get seen up to 10x more!',
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Avenir',
+                                            color: Color(0xFF6C6C6C),
+                                            fontSize: 16.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                            lineHeight: 1.4,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ],
