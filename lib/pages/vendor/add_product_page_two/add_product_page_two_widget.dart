@@ -468,7 +468,20 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       return FlutterFlowDropDown<int>(
                                         controller:
                                             _model.categoriesValueController ??=
-                                                FormFieldController<int>(null),
+                                                FormFieldController<int>(
+                                          _model.categoriesValue ??=
+                                              FFAppState()
+                                                  .productCategories
+                                                  .where((e) =>
+                                                      e.id ==
+                                                      getJsonField(
+                                                        widget.singleProduct,
+                                                        r'''$["category"]''',
+                                                      ))
+                                                  .toList()
+                                                  .first
+                                                  .parentId,
+                                        ),
                                         options: List<int>.from(
                                             VerifiedAPIsGroup
                                                 .allProductParentCategoriesCall
