@@ -627,12 +627,21 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               FormFieldController<int>(
                                             _model.subcategoriesValue ??=
                                                 VerifiedAPIsGroup
-                                                    .productSubcategoriesCall
-                                                    .ids(
-                                                      subcategoriesProductSubcategoriesResponse
-                                                          .jsonBody,
-                                                    )
-                                                    ?.first,
+                                                            .productSubcategoriesCall
+                                                            .ids(
+                                                              subcategoriesProductSubcategoriesResponse
+                                                                  .jsonBody,
+                                                            )!
+                                                            .length >
+                                                        0
+                                                    ? VerifiedAPIsGroup
+                                                        .productSubcategoriesCall
+                                                        .ids(
+                                                          subcategoriesProductSubcategoriesResponse
+                                                              .jsonBody,
+                                                        )
+                                                        ?.first
+                                                    : 1,
                                           ),
                                           options: List<int>.from(
                                               VerifiedAPIsGroup
