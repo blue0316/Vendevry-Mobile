@@ -198,10 +198,6 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                 .first
                 .parentId;
           });
-          setState(() {
-            _model.subcategoriesValueController?.value =
-                _model.productTemplate!.category;
-          });
         }
 
         setState(() {
@@ -670,93 +666,6 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Expanded(
-                                    child: FlutterFlowDropDown<int>(
-                                      controller: _model
-                                              .subcategoriesValueController ??=
-                                          FormFieldController<int>(
-                                        _model.subcategoriesValue ??=
-                                            _model.productTemplate?.category,
-                                      ),
-                                      options: List<int>.from(FFAppState()
-                                          .productCategories
-                                          .where((e) =>
-                                              e.parentId ==
-                                              _model.selectedParentCategoryId)
-                                          .toList()
-                                          .map((e) => e.id)
-                                          .toList()),
-                                      optionLabels: FFAppState()
-                                          .productCategories
-                                          .where((e) =>
-                                              e.parentId ==
-                                              _model.selectedParentCategoryId)
-                                          .toList()
-                                          .map((e) => e.name)
-                                          .toList(),
-                                      onChanged: (val) async {
-                                        setState(() =>
-                                            _model.subcategoriesValue = val);
-                                        setState(() {
-                                          _model.productCategoryId =
-                                              _model.subcategoriesValue;
-                                        });
-                                      },
-                                      width: MediaQuery.sizeOf(context).width *
-                                          1.0,
-                                      height: 54.0,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily,
-                                            fontSize: 16.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily),
-                                          ),
-                                      icon: Icon(
-                                        Icons.arrow_drop_down,
-                                        color: Color(0xFF707070),
-                                        size: 28.0,
-                                      ),
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      elevation: 1.0,
-                                      borderColor: Color(0xFF707070),
-                                      borderWidth: 1.0,
-                                      borderRadius: 27.0,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
-                                          33.0, 4.0, 28.0, 4.0),
-                                      hidesUnderline: true,
-                                      disabled: (_model
-                                                  .selectedParentCategoryId !=
-                                              null) &&
-                                          (FFAppState()
-                                                  .productCategories
-                                                  .where((e) =>
-                                                      e.parentId ==
-                                                      _model
-                                                          .selectedParentCategoryId)
-                                                  .toList()
-                                                  .length >
-                                              0),
-                                      isOverButton: true,
-                                      isSearchable: false,
-                                      isMultiSelect: false,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  19.0, 10.0, 19.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
                                     child: Builder(
                                       builder: (context) {
                                         final parentCategories = FFAppState()
@@ -771,32 +680,47 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                             final parentCategoriesItem =
                                                 parentCategories[
                                                     parentCategoriesIndex];
-                                            return wrapWithModel(
-                                              model: _model
-                                                  .subCategoriesListModels
-                                                  .getModel(
-                                                parentCategoriesItem.id
-                                                    .toString(),
-                                                parentCategoriesIndex,
-                                              ),
-                                              updateCallback: () =>
-                                                  setState(() {}),
-                                              child: SubCategoriesListWidget(
-                                                key: Key(
-                                                  'Keygvw_${parentCategoriesItem.id.toString()}',
+                                            return Visibility(
+                                              visible: (_model
+                                                          .selectedParentCategoryId !=
+                                                      null) &&
+                                                  (FFAppState()
+                                                          .productCategories
+                                                          .where((e) =>
+                                                              e.parentId ==
+                                                              _model
+                                                                  .selectedParentCategoryId)
+                                                          .toList()
+                                                          .length >
+                                                      0),
+                                              child: wrapWithModel(
+                                                model: _model
+                                                    .subCategoriesListModels
+                                                    .getModel(
+                                                  parentCategoriesItem.id
+                                                      .toString(),
+                                                  parentCategoriesIndex,
                                                 ),
-                                                parameter1:
-                                                    parentCategoriesItem.id,
-                                                parameter2: _model
-                                                    .selectedParentCategoryId,
-                                                initialCategoryId: _model
-                                                    .productTemplate?.category,
-                                                setValue: (categoryId) async {
-                                                  setState(() {
-                                                    _model.productCategoryId =
-                                                        categoryId;
-                                                  });
-                                                },
+                                                updateCallback: () =>
+                                                    setState(() {}),
+                                                child: SubCategoriesListWidget(
+                                                  key: Key(
+                                                    'Keygvw_${parentCategoriesItem.id.toString()}',
+                                                  ),
+                                                  parameter1:
+                                                      parentCategoriesItem.id,
+                                                  parameter2: _model
+                                                      .selectedParentCategoryId,
+                                                  initialCategoryId: _model
+                                                      .productTemplate
+                                                      ?.category,
+                                                  setValue: (categoryId) async {
+                                                    setState(() {
+                                                      _model.productCategoryId =
+                                                          categoryId;
+                                                    });
+                                                  },
+                                                ),
                                               ),
                                             );
                                           }),

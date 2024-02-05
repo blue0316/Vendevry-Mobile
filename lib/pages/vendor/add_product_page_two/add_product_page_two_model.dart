@@ -81,9 +81,6 @@ class AddProductPageTwoModel extends FlutterFlowModel<AddProductPageTwoWidget> {
   // State field(s) for categories widget.
   int? categoriesValue;
   FormFieldController<int>? categoriesValueController;
-  // State field(s) for subcategories widget.
-  int? subcategoriesValue;
-  FormFieldController<int>? subcategoriesValueController;
   // Models for SubCategoriesList dynamic component.
   late FlutterFlowDynamicModels<SubCategoriesListModel> subCategoriesListModels;
   // State field(s) for condition widget.
