@@ -94,27 +94,39 @@ class _FInishedHourlyMilestoneCardWidgetState
                         checkColor: FlutterFlowTheme.of(context).info,
                       ),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          valueOrDefault<String>(
-                            widget.hours?.toString(),
-                            'Milestone1',
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                color: FlutterFlowTheme.of(context).primary,
-                                fontWeight: FontWeight.w900,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        '',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context).primary,
+                              fontWeight: FontWeight.w900,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget.hours?.toString(),
+                          'Milestone1',
                         ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context).primary,
+                              fontWeight: FontWeight.w900,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
                       ),
                     ),
                   ],
