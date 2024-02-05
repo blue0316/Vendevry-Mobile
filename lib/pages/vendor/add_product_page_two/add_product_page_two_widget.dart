@@ -1767,9 +1767,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                             content: Text(
                                                               (String hex) {
                                                                 return Color(int.parse(
-                                                                        hex.toUpperCase().replaceAll(
-                                                                            "#",
-                                                                            ""),
+                                                                        'FF' +
+                                                                            hex.toUpperCase().replaceAll("#",
+                                                                                ""),
                                                                         radix:
                                                                             16))
                                                                     .toString();

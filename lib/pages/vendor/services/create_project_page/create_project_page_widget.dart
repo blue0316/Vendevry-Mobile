@@ -213,7 +213,7 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Project Deadline',
+                                  'Estimated Delivery Date',
                                   style: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
@@ -251,38 +251,26 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                             .secondaryText,
                                         size: 24.0,
                                       ),
-                                      Expanded(
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Text(
-                                                '2/22/24',
-                                                style:
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          '2/22/24',
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .titleLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleLargeFamily,
-                                                          fontSize: 20.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleLargeFamily),
-                                                        ),
+                                                        .titleLargeFamily,
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.w500,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleLargeFamily),
                                               ),
-                                            ),
-                                          ],
                                         ),
                                       ),
                                     ],
