@@ -637,39 +637,10 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                           controller: _model
                                                   .subcategoriesValueController ??=
                                               FormFieldController<int>(
-                                            _model.subcategoriesValue ??= -1,
+                                            _model.subcategoriesValue ??= 1,
                                           ),
-                                          options: List<
-                                              int>.from(VerifiedAPIsGroup
-                                                      .productSubcategoriesCall
-                                                      .ids(
-                                                        containerProductSubcategoriesResponse
-                                                            .jsonBody,
-                                                      )!
-                                                      .length >
-                                                  0
-                                              ? VerifiedAPIsGroup
-                                                  .productSubcategoriesCall
-                                                  .ids(
-                                                  containerProductSubcategoriesResponse
-                                                      .jsonBody,
-                                                )!
-                                              : ([-1])),
-                                          optionLabels: VerifiedAPIsGroup
-                                                      .productSubcategoriesCall
-                                                      .ids(
-                                                        containerProductSubcategoriesResponse
-                                                            .jsonBody,
-                                                      )!
-                                                      .length >
-                                                  0
-                                              ? VerifiedAPIsGroup
-                                                  .productSubcategoriesCall
-                                                  .names(
-                                                  containerProductSubcategoriesResponse
-                                                      .jsonBody,
-                                                )!
-                                              : (["No subcategories"]),
+                                          options: List<int>.from([1]),
+                                          optionLabels: ['1'],
                                           onChanged: (val) async {
                                             setState(() => _model
                                                 .subcategoriesValue = val);
