@@ -655,21 +655,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                       .jsonBody,
                                                 )!
                                               : ([-1])),
-                                          optionLabels: VerifiedAPIsGroup
-                                                      .productSubcategoriesCall
-                                                      .ids(
-                                                        containerProductSubcategoriesResponse
-                                                            .jsonBody,
-                                                      )!
-                                                      .length >
-                                                  0
-                                              ? VerifiedAPIsGroup
-                                                  .productSubcategoriesCall
-                                                  .names(
-                                                  containerProductSubcategoriesResponse
-                                                      .jsonBody,
-                                                )!
-                                              : (["No subcategories"]),
+                                          optionLabels: [''],
                                           onChanged: (val) async {
                                             setState(() => _model
                                                 .subcategoriesValue = val);
