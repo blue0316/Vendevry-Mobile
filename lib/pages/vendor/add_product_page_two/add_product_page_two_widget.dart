@@ -725,6 +725,40 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       },
                                     ),
                                   ),
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (context) {
+                                        final parentCategories = FFAppState()
+                                            .serviceCategories
+                                            .where((e) => e.parentId < 0)
+                                            .toList();
+                                        return Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: List.generate(
+                                              parentCategories.length,
+                                              (parentCategoriesIndex) {
+                                            final parentCategoriesItem =
+                                                parentCategories[
+                                                    parentCategoriesIndex];
+                                            return Text(
+                                              FFAppState()
+                                                  .productCategories
+                                                  .where((e) =>
+                                                      e.parentId ==
+                                                      _model
+                                                          .selectedParentCategoryId)
+                                                  .toList()
+                                                  .length
+                                                  .toString(),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            );
+                                          }),
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
