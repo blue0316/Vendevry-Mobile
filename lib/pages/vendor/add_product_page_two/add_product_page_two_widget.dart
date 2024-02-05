@@ -469,8 +469,25 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                         controller:
                                             _model.categoriesValueController ??=
                                                 FormFieldController<int>(
-                                          _model.categoriesValue ??=
-                                              FFAppState()
+                                          _model
+                                              .categoriesValue ??= FFAppState()
+                                                      .productCategories
+                                                      .where((e) =>
+                                                          e.id ==
+                                                          getJsonField(
+                                                            widget
+                                                                .singleProduct,
+                                                            r'''$["category"]''',
+                                                          ))
+                                                      .toList()
+                                                      .first
+                                                      .parentId <
+                                                  0
+                                              ? getJsonField(
+                                                  widget.singleProduct,
+                                                  r'''$["category"]''',
+                                                )
+                                              : FFAppState()
                                                   .productCategories
                                                   .where((e) =>
                                                       e.id ==
@@ -597,7 +614,13 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                     child: FlutterFlowDropDown<int>(
                                       controller: _model
                                               .subcategoriesValueController ??=
-                                          FormFieldController<int>(null),
+                                          FormFieldController<int>(
+                                        _model.subcategoriesValue ??=
+                                            getJsonField(
+                                          widget.singleProduct,
+                                          r'''$["category"]''',
+                                        ),
+                                      ),
                                       options: List<int>.from(FFAppState()
                                           .productCategories
                                           .where((e) =>

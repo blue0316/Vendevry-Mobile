@@ -48,15 +48,21 @@ class AddProductPageOneModel extends FlutterFlowModel<AddProductPageOneWidget> {
   ApiCallResponse? searchApiResult;
   // Stores action output result for [Backend Call - API (SingleProduct)] action in IconButton widget.
   ApiCallResponse? productTemplateApiResult;
+  // Model for NoContent component.
+  late NoContentModel noContentModel;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    noContentModel = createModel(context, () => NoContentModel());
+  }
 
   void dispose() {
     unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
+
+    noContentModel.dispose();
   }
 
   /// Action blocks are added here.

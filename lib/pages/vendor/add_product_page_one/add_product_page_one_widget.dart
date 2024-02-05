@@ -776,68 +776,70 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                     ],
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 12.0, 0.0, 12.0),
-                                    child: Builder(
-                                      builder: (context) {
-                                        final searchProduct = _model
-                                            .searchResult
-                                            .toList()
-                                            .take(5)
-                                            .toList();
-                                        if (searchProduct.isEmpty) {
-                                          return Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 100.0,
-                                            child: NoContentWidget(
-                                              content: 'No matched products...',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 18,
-                                            ),
-                                          );
-                                        }
-                                        return ListView.builder(
-                                          padding: EdgeInsets.zero,
-                                          primary: false,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: searchProduct.length,
-                                          itemBuilder:
-                                              (context, searchProductIndex) {
-                                            final searchProductItem =
-                                                searchProduct[
-                                                    searchProductIndex];
-                                            return InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                setState(() {
-                                                  _model.selectedProductId =
-                                                      searchProductItem
-                                                          .productId;
-                                                });
-                                                setState(() {
-                                                  _model.textController?.text =
-                                                      searchProductItem
-                                                          .productName;
-                                                });
-                                              },
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(12.0, 8.0,
-                                                                12.0, 8.0),
-                                                    child: Row(
+                                  child: Builder(
+                                    builder: (context) {
+                                      if (_model.searchResult.length > 0) {
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 12.0, 0.0, 12.0),
+                                          child: Builder(
+                                            builder: (context) {
+                                              final searchProduct = _model
+                                                  .searchResult
+                                                  .toList()
+                                                  .take(5)
+                                                  .toList();
+                                              if (searchProduct.isEmpty) {
+                                                return Container(
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
+                                                  height: 100.0,
+                                                  child: NoContentWidget(
+                                                    content:
+                                                        'No matched products...',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    size: 18,
+                                                  ),
+                                                );
+                                              }
+                                              return ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                primary: false,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount: searchProduct.length,
+                                                itemBuilder: (context,
+                                                    searchProductIndex) {
+                                                  final searchProductItem =
+                                                      searchProduct[
+                                                          searchProductIndex];
+                                                  return InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      setState(() {
+                                                        _model.selectedProductId =
+                                                            searchProductItem
+                                                                .productId;
+                                                      });
+                                                      setState(() {
+                                                        _model.textController
+                                                                ?.text =
+                                                            searchProductItem
+                                                                .productName;
+                                                      });
+                                                    },
+                                                    child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
@@ -845,50 +847,81 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
+                                                                      12.0,
                                                                       8.0,
-                                                                      0.0),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                            child:
-                                                                Image.network(
-                                                              searchProductItem
-                                                                  .images.first,
-                                                              width: 50.0,
-                                                              height: 50.0,
-                                                              fit: BoxFit.cover,
-                                                            ),
+                                                                      12.0,
+                                                                      8.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            8.0,
+                                                                            0.0),
+                                                                child:
+                                                                    ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                  child: Image
+                                                                      .network(
+                                                                    searchProductItem
+                                                                        .images
+                                                                        .first,
+                                                                    width: 50.0,
+                                                                    height:
+                                                                        50.0,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                child: Text(
+                                                                  searchProductItem
+                                                                      .productName,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium,
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            searchProductItem
-                                                                .productName,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium,
-                                                          ),
+                                                        Divider(
+                                                          thickness: 1.0,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate,
                                                         ),
                                                       ],
                                                     ),
-                                                  ),
-                                                  Divider(
-                                                    thickness: 1.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
+                                                  );
+                                                },
+                                              );
+                                            },
+                                          ),
                                         );
-                                      },
-                                    ),
+                                      } else {
+                                        return wrapWithModel(
+                                          model: _model.noContentModel,
+                                          updateCallback: () => setState(() {}),
+                                          child: NoContentWidget(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 18,
+                                            content: 'No result...',
+                                          ),
+                                        );
+                                      }
+                                    },
                                   ),
                                 ),
                               ),
