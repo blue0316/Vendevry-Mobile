@@ -2635,7 +2635,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                               Container(
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                      .primaryBackground,
                                 ),
                                 child: Visibility(
                                   visible: _model.colorOptions.length > 0,
@@ -2873,57 +2873,74 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                28.0, 5.0, 28.0, 0.0),
-                            child: Row(
+                          Container(
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                            ),
+                            child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    'Add Pictures',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Avenir',
-                                          color: Colors.black,
-                                          fontSize: 29.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
-                                          lineHeight: 1.2,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      28.0, 5.0, 28.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
+                                        child: Text(
+                                          'Add Pictures',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Avenir',
+                                                color: Colors.black,
+                                                fontSize: 29.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                                lineHeight: 1.2,
+                                              ),
                                         ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                28.0, 0.0, 28.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    'Add up to 12 photos of your product! \nMake sure to take pictures of any \ndefects or issues with the product.',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Avenir',
-                                          color: Color(0xFF6C6C6C),
-                                          fontSize: 16.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
-                                          lineHeight: 1.4,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      28.0, 0.0, 28.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
+                                        child: Text(
+                                          'Add up to 12 photos of your product! \nMake sure to take pictures of any \ndefects or issues with the product.',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Avenir',
+                                                color: Color(0xFF6C6C6C),
+                                                fontSize: 16.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                                lineHeight: 1.4,
+                                              ),
                                         ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],

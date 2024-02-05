@@ -119,6 +119,7 @@ class _ProjectRequestViewPageWidgetState
                     width: MediaQuery.sizeOf(context).width * 1.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(14.0),
@@ -135,8 +136,34 @@ class _ProjectRequestViewPageWidgetState
                               width: 60.0,
                               height: 60.0,
                               decoration: BoxDecoration(
-                                color: Color(0xFF744BE5),
+                                color: Color(0xFFF2EDFF),
                                 borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(0.0),
+                                  child: Image.asset(
+                                    'assets/images/icon2.png',
+                                    width: 30.0,
+                                    height: 30.0,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    'Joseph',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                ],
                               ),
                             ),
                           ],
