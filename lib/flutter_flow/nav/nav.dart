@@ -217,6 +217,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ProjectRequestViewPage',
           path: '/projectRequestViewPage',
           builder: (context, params) => ProjectRequestViewPageWidget(),
+        ),
+        FFRoute(
+          name: 'ProjectRequestViewPageCopy',
+          path: '/projectRequestViewPageCopy',
+          builder: (context, params) => ProjectRequestViewPageCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

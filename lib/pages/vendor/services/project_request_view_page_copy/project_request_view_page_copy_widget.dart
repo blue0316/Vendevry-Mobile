@@ -9,27 +9,27 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'project_request_view_page_model.dart';
-export 'project_request_view_page_model.dart';
+import 'project_request_view_page_copy_model.dart';
+export 'project_request_view_page_copy_model.dart';
 
-class ProjectRequestViewPageWidget extends StatefulWidget {
-  const ProjectRequestViewPageWidget({super.key});
+class ProjectRequestViewPageCopyWidget extends StatefulWidget {
+  const ProjectRequestViewPageCopyWidget({super.key});
 
   @override
-  State<ProjectRequestViewPageWidget> createState() =>
-      _ProjectRequestViewPageWidgetState();
+  State<ProjectRequestViewPageCopyWidget> createState() =>
+      _ProjectRequestViewPageCopyWidgetState();
 }
 
-class _ProjectRequestViewPageWidgetState
-    extends State<ProjectRequestViewPageWidget> {
-  late ProjectRequestViewPageModel _model;
+class _ProjectRequestViewPageCopyWidgetState
+    extends State<ProjectRequestViewPageCopyWidget> {
+  late ProjectRequestViewPageCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProjectRequestViewPageModel());
+    _model = createModel(context, () => ProjectRequestViewPageCopyModel());
   }
 
   @override
