@@ -5388,6 +5388,8 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                   .secondary,
                                         ),
                                       );
+
+                                      context.goNamed('AddProductPageOne');
                                     } else {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -5408,8 +5410,6 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                         ),
                                       );
                                     }
-
-                                    context.goNamed('AddProductPageOne');
 
                                     setState(() {});
                                   },
