@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "724173439313",
+    "project_id": "vendevry",
+    "storage_bucket": "vendevry.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724173439313:android:6bb9f90f974b43fd929370",
+        "android_client_info": {
+          "package_name": "com.dreamvizapps.vendevry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724173439313-hbe4rqd8iun5vle5flhjg9bsia6ma7od.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dreamvizapps.vendevry",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "724173439313-rvivlgpqff6m293abf450ara8tcbhtaa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dreamvizapps.vendevry",
+            "certificate_hash": "fdec75de7a087d911e094720269b8208303eceb6"
+          }
+        },
+        {
+          "client_id": "724173439313-tv198n898ld773c79t0qr3l4jf57k75a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm7Aapb_EWUG9ipezaPPWId4oESLh5xo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724173439313-tv198n898ld773c79t0qr3l4jf57k75a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "724173439313-14b1du1pctociadda7mp63738n2ov29q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dreamvizapps.vendevry"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
