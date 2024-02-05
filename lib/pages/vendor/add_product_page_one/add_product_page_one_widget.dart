@@ -177,6 +177,9 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                       _model.searchResult = [];
                                     });
                                     if (_model.textController.text.length > 2) {
+                                      setState(() {
+                                        _model.isLoading = true;
+                                      });
                                       _model.searchApiResult =
                                           await VerifiedAPIsGroup
                                               .searchProductsCall
@@ -201,6 +204,7 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                               .withoutNulls
                                               .toList()
                                               .cast<SearchProductTypeStruct>();
+                                          _model.isLoading = false;
                                         });
                                         if (VerifiedAPIsGroup.searchProductsCall
                                                 .data(
@@ -289,8 +293,34 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                               alignment: AlignmentDirectional(1.0, -1.0),
                               child: Builder(
                                 builder: (context) {
-                                  if ((_model.selectedProductId == null) &&
-                                      (_model.searchResult.length < 1)) {
+                                  if (_model.isLoading) {
+                                    return Align(
+                                      alignment:
+                                          AlignmentDirectional(1.0, -1.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 26.0, 0.0),
+                                        child: Container(
+                                          width: 40.0,
+                                          height: 40.0,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(4.0),
+                                            child: Lottie.network(
+                                              'https://lottie.host/2b86acb2-5f14-440c-8477-2ccd79f87a0d/bW3qgy20CA.json',
+                                              width: 32.0,
+                                              height: 32.0,
+                                              fit: BoxFit.cover,
+                                              animate: true,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  } else {
                                     return Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 26.0, 0.0),
@@ -319,33 +349,6 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                         },
                                       ),
                                     );
-                                  } else {
-                                    return Align(
-                                      alignment:
-                                          AlignmentDirectional(1.0, -1.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 4.0, 26.0, 0.0),
-                                        child: Container(
-                                          width: 40.0,
-                                          height: 40.0,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0),
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(4.0),
-                                            child: Lottie.network(
-                                              'https://lottie.host/2b86acb2-5f14-440c-8477-2ccd79f87a0d/bW3qgy20CA.json',
-                                              width: 32.0,
-                                              height: 32.0,
-                                              fit: BoxFit.cover,
-                                              animate: true,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
                                   }
                                 },
                               ),
@@ -358,7 +361,7 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                 children: [
                                   Builder(
                                     builder: (context) {
-                                      if (_model.isEmpty) {
+                                      if (_model.isLoading) {
                                         return Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
