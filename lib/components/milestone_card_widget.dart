@@ -14,11 +14,13 @@ class MilestoneCardWidget extends StatefulWidget {
     required this.indexString,
     required this.milestoneName,
     required this.priceString,
+    required this.isFunded,
   });
 
   final String? indexString;
   final String? milestoneName;
   final String? priceString;
+  final bool? isFunded;
 
   @override
   State<MilestoneCardWidget> createState() => _MilestoneCardWidgetState();
@@ -118,21 +120,50 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                    child: Text(
-                      'To be billed',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: Color(0xFF3AC754),
-                            fontWeight: FontWeight.bold,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
+                  Builder(
+                    builder: (context) {
+                      if (widget.isFunded ?? false) {
+                        return Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: Text(
+                            'Funded',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: Color(0xFF3AC754),
+                                  fontWeight: FontWeight.bold,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                           ),
-                    ),
+                        );
+                      } else {
+                        return Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: Text(
+                            'To be billed',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: Color(0xFF3AC754),
+                                  fontWeight: FontWeight.bold,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                          ),
+                        );
+                      }
+                    },
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),

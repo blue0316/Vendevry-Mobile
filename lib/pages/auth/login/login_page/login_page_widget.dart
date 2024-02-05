@@ -546,7 +546,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                 24.0, 16.0, 24.0, 16.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .titleMedium,
+                                          .titleMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMediumFamily),
+                                          ),
                                       keyboardType: TextInputType.emailAddress,
                                       validator: _model
                                           .emailAddressControllerValidator
@@ -641,7 +652,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                         ),
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .titleMedium,
+                                          .titleMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMediumFamily),
+                                          ),
                                       validator: _model
                                           .passwordControllerValidator
                                           .asValidator(context),

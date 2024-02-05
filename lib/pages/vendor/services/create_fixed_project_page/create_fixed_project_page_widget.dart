@@ -467,6 +467,7 @@ class _CreateFixedProjectPageWidgetState
                                 indexString: 'A.',
                                 milestoneName: 'UX/UI Wireframe',
                                 priceString: '\$1,500.00 USD',
+                                isFunded: true,
                               ),
                             ),
                             wrapWithModel(
@@ -476,6 +477,7 @@ class _CreateFixedProjectPageWidgetState
                                 indexString: 'B.',
                                 milestoneName: 'UX/UI Wireframe',
                                 priceString: '\$1,500.00 USD',
+                                isFunded: true,
                               ),
                             ),
                             wrapWithModel(
@@ -485,6 +487,7 @@ class _CreateFixedProjectPageWidgetState
                                 indexString: 'C.',
                                 milestoneName: 'UX/UI Wireframe',
                                 priceString: '\$1,500.00 USD',
+                                isFunded: true,
                               ),
                             ),
                             Padding(
