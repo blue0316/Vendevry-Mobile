@@ -250,6 +250,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'FixedMilestoneConfirmPage',
           path: '/fixedMilestoneConfirmPage',
           builder: (context, params) => FixedMilestoneConfirmPageWidget(),
+        ),
+        FFRoute(
+          name: 'HourlyMilestoneConfirmPage',
+          path: '/hourlyMilestoneConfirmPage',
+          builder: (context, params) => HourlyMilestoneConfirmPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

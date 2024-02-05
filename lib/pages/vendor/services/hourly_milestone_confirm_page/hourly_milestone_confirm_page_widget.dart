@@ -1,4 +1,3 @@
-import '/components/milestone_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,27 +8,27 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'fixed_milestone_confirm_page_model.dart';
-export 'fixed_milestone_confirm_page_model.dart';
+import 'hourly_milestone_confirm_page_model.dart';
+export 'hourly_milestone_confirm_page_model.dart';
 
-class FixedMilestoneConfirmPageWidget extends StatefulWidget {
-  const FixedMilestoneConfirmPageWidget({super.key});
+class HourlyMilestoneConfirmPageWidget extends StatefulWidget {
+  const HourlyMilestoneConfirmPageWidget({super.key});
 
   @override
-  State<FixedMilestoneConfirmPageWidget> createState() =>
-      _FixedMilestoneConfirmPageWidgetState();
+  State<HourlyMilestoneConfirmPageWidget> createState() =>
+      _HourlyMilestoneConfirmPageWidgetState();
 }
 
-class _FixedMilestoneConfirmPageWidgetState
-    extends State<FixedMilestoneConfirmPageWidget> {
-  late FixedMilestoneConfirmPageModel _model;
+class _HourlyMilestoneConfirmPageWidgetState
+    extends State<HourlyMilestoneConfirmPageWidget> {
+  late HourlyMilestoneConfirmPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FixedMilestoneConfirmPageModel());
+    _model = createModel(context, () => HourlyMilestoneConfirmPageModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -186,7 +185,7 @@ class _FixedMilestoneConfirmPageWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'Milestones',
+                                    'Hours to be submitted',
                                     textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .titleSmall
@@ -205,15 +204,107 @@ class _FixedMilestoneConfirmPageWidgetState
                                 ],
                               ),
                             ),
-                            wrapWithModel(
-                              model: _model.milestoneCardModel,
-                              updateCallback: () => setState(() {}),
-                              child: MilestoneCardWidget(
-                                indexString: 'A.',
-                                milestoneName: 'UI/UX Wireframe',
-                                priceString: '\$1,500.00 USD',
-                                isFunded: true,
-                              ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    width: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(12.0),
+                                      child: Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              '60 Hours',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleLargeFamily,
+                                                        fontSize: 20.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLargeFamily),
+                                                      ),
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'To be billed',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmallFamily,
+                                                        color:
+                                                            Color(0xFF3AC754),
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmallFamily),
+                                                      ),
+                                                ),
+                                                Text(
+                                                  '\$1500.00 USD',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmallFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmallFamily),
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
