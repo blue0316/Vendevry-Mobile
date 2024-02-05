@@ -597,7 +597,10 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       future: VerifiedAPIsGroup
                                           .productSubcategoriesCall
                                           .call(
-                                        pid: _model.categoriesValue,
+                                        pid: valueOrDefault<int>(
+                                          _model.categoriesValue,
+                                          1,
+                                        ),
                                         token: FFAppState().accessToken,
                                       ),
                                       builder: (context, snapshot) {

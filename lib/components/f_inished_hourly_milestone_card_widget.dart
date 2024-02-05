@@ -11,16 +11,14 @@ export 'f_inished_hourly_milestone_card_model.dart';
 class FInishedHourlyMilestoneCardWidget extends StatefulWidget {
   const FInishedHourlyMilestoneCardWidget({
     super.key,
-    required this.amount,
+    String? amount,
     required this.hours,
     required this.paidAt,
-    required this.finishedAt,
-  });
+  }) : this.amount = amount ?? '0.00';
 
-  final double? amount;
+  final String amount;
   final double? hours;
   final String? paidAt;
-  final String? finishedAt;
 
   @override
   State<FInishedHourlyMilestoneCardWidget> createState() =>
@@ -112,7 +110,7 @@ class _FInishedHourlyMilestoneCardWidgetState
                     ),
                     Text(
                       valueOrDefault<String>(
-                        widget.amount?.toString(),
+                        widget.amount,
                         '0.00',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -165,7 +163,13 @@ class _FInishedHourlyMilestoneCardWidgetState
                       widget.paidAt,
                       '12/22/24',
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          fontSize: 12.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                        ),
                   ),
                 ),
               ],

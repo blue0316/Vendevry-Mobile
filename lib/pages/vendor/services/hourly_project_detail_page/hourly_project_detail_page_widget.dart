@@ -1,5 +1,5 @@
 import '/components/client_info_card_widget.dart';
-import '/components/f_inished_milestone_card_widget.dart';
+import '/components/f_inished_hourly_milestone_card_widget.dart';
 import '/components/un_f_inished_milestone_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -382,16 +382,6 @@ class _HourlyProjectDetailPageWidgetState
                                 ),
                               ],
                             ),
-                            wrapWithModel(
-                              model: _model.fInishedMilestoneCardModel,
-                              updateCallback: () => setState(() {}),
-                              child: FInishedMilestoneCardWidget(
-                                indexString: 'B.',
-                                milestoneName: 'First App Part',
-                                priceString: '\$1,500.00 USD',
-                                finishedAt: '2/22/22 11:30PM',
-                              ),
-                            ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -421,13 +411,13 @@ class _HourlyProjectDetailPageWidgetState
                                     Expanded(
                                       child: wrapWithModel(
                                         model: _model
-                                            .unFInishedMilestoneCardModel1,
+                                            .fInishedHourlyMilestoneCardModel,
                                         updateCallback: () => setState(() {}),
-                                        child: UnFInishedMilestoneCardWidget(
-                                          indexString: 'C.',
-                                          milestoneName: 'UI/UX Framework',
-                                          priceString: '\$1,500.00 USD',
-                                          isFund: true,
+                                        child:
+                                            FInishedHourlyMilestoneCardWidget(
+                                          amount: '850',
+                                          hours: 23.0,
+                                          paidAt: '12/22/24',
                                         ),
                                       ),
                                     ),
@@ -438,8 +428,8 @@ class _HourlyProjectDetailPageWidgetState
                                   children: [
                                     Expanded(
                                       child: wrapWithModel(
-                                        model: _model
-                                            .unFInishedMilestoneCardModel2,
+                                        model:
+                                            _model.unFInishedMilestoneCardModel,
                                         updateCallback: () => setState(() {}),
                                         child: UnFInishedMilestoneCardWidget(
                                           indexString: 'D.',

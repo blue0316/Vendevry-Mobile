@@ -1,5 +1,5 @@
 import '/components/client_info_card_widget.dart';
-import '/components/f_inished_milestone_card_widget.dart';
+import '/components/f_inished_hourly_milestone_card_widget.dart';
 import '/components/un_f_inished_milestone_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -21,12 +21,10 @@ class HourlyProjectDetailPageModel
   final unfocusNode = FocusNode();
   // Model for ClientInfoCard component.
   late ClientInfoCardModel clientInfoCardModel;
-  // Model for FInishedMilestoneCard component.
-  late FInishedMilestoneCardModel fInishedMilestoneCardModel;
+  // Model for FInishedHourlyMilestoneCard component.
+  late FInishedHourlyMilestoneCardModel fInishedHourlyMilestoneCardModel;
   // Model for UnFInishedMilestoneCard component.
-  late UnFInishedMilestoneCardModel unFInishedMilestoneCardModel1;
-  // Model for UnFInishedMilestoneCard component.
-  late UnFInishedMilestoneCardModel unFInishedMilestoneCardModel2;
+  late UnFInishedMilestoneCardModel unFInishedMilestoneCardModel;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -44,20 +42,17 @@ class HourlyProjectDetailPageModel
 
   void initState(BuildContext context) {
     clientInfoCardModel = createModel(context, () => ClientInfoCardModel());
-    fInishedMilestoneCardModel =
-        createModel(context, () => FInishedMilestoneCardModel());
-    unFInishedMilestoneCardModel1 =
-        createModel(context, () => UnFInishedMilestoneCardModel());
-    unFInishedMilestoneCardModel2 =
+    fInishedHourlyMilestoneCardModel =
+        createModel(context, () => FInishedHourlyMilestoneCardModel());
+    unFInishedMilestoneCardModel =
         createModel(context, () => UnFInishedMilestoneCardModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
     clientInfoCardModel.dispose();
-    fInishedMilestoneCardModel.dispose();
-    unFInishedMilestoneCardModel1.dispose();
-    unFInishedMilestoneCardModel2.dispose();
+    fInishedHourlyMilestoneCardModel.dispose();
+    unFInishedMilestoneCardModel.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 
