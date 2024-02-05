@@ -1797,11 +1797,12 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                             color: (String
                                                                 hex) {
                                                               return Color(int.parse(
-                                                                  hex
-                                                                      .toUpperCase()
-                                                                      .replaceAll(
-                                                                          "#",
-                                                                          ""),
+                                                                  'FF' +
+                                                                      hex
+                                                                          .toUpperCase()
+                                                                          .replaceAll(
+                                                                              "#",
+                                                                              ""),
                                                                   radix: 16));
                                                             }(_model
                                                                 .colorController
