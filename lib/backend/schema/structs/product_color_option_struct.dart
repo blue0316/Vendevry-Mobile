@@ -11,18 +11,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class ProductColorOptionStruct extends FFFirebaseStruct {
   ProductColorOptionStruct({
-    Color? color,
     double? price,
+    Color? value,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
-  })  : _color = color,
-        _price = price,
+  })  : _price = price,
+        _value = value,
         super(firestoreUtilData);
-
-  // "color" field.
-  Color? _color;
-  Color? get color => _color;
-  set color(Color? val) => _color = val;
-  bool hasColor() => _color != null;
 
   // "price" field.
   double? _price;
@@ -31,10 +25,16 @@ class ProductColorOptionStruct extends FFFirebaseStruct {
   void incrementPrice(double amount) => _price = price + amount;
   bool hasPrice() => _price != null;
 
+  // "value" field.
+  Color? _value;
+  Color? get value => _value;
+  set value(Color? val) => _value = val;
+  bool hasValue() => _value != null;
+
   static ProductColorOptionStruct fromMap(Map<String, dynamic> data) =>
       ProductColorOptionStruct(
-        color: getSchemaColor(data['color']),
         price: castToType<double>(data['price']),
+        value: getSchemaColor(data['value']),
       );
 
   static ProductColorOptionStruct? maybeFromMap(dynamic data) => data is Map
@@ -42,33 +42,33 @@ class ProductColorOptionStruct extends FFFirebaseStruct {
       : null;
 
   Map<String, dynamic> toMap() => {
-        'color': _color,
         'price': _price,
+        'value': _value,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'color': serializeParam(
-          _color,
-          ParamType.Color,
-        ),
         'price': serializeParam(
           _price,
           ParamType.double,
+        ),
+        'value': serializeParam(
+          _value,
+          ParamType.Color,
         ),
       }.withoutNulls;
 
   static ProductColorOptionStruct fromSerializableMap(
           Map<String, dynamic> data) =>
       ProductColorOptionStruct(
-        color: deserializeParam(
-          data['color'],
-          ParamType.Color,
-          false,
-        ),
         price: deserializeParam(
           data['price'],
           ParamType.double,
+          false,
+        ),
+        value: deserializeParam(
+          data['value'],
+          ParamType.Color,
           false,
         ),
       );
@@ -79,25 +79,25 @@ class ProductColorOptionStruct extends FFFirebaseStruct {
   @override
   bool operator ==(Object other) {
     return other is ProductColorOptionStruct &&
-        color == other.color &&
-        price == other.price;
+        price == other.price &&
+        value == other.value;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([color, price]);
+  int get hashCode => const ListEquality().hash([price, value]);
 }
 
 ProductColorOptionStruct createProductColorOptionStruct({
-  Color? color,
   double? price,
+  Color? value,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
   bool delete = false,
 }) =>
     ProductColorOptionStruct(
-      color: color,
       price: price,
+      value: value,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

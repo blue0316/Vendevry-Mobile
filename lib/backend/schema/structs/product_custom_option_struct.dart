@@ -11,18 +11,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class ProductCustomOptionStruct extends FFFirebaseStruct {
   ProductCustomOptionStruct({
-    String? content,
     double? price,
+    String? value,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
-  })  : _content = content,
-        _price = price,
+  })  : _price = price,
+        _value = value,
         super(firestoreUtilData);
-
-  // "content" field.
-  String? _content;
-  String get content => _content ?? '';
-  set content(String? val) => _content = val;
-  bool hasContent() => _content != null;
 
   // "price" field.
   double? _price;
@@ -31,10 +25,16 @@ class ProductCustomOptionStruct extends FFFirebaseStruct {
   void incrementPrice(double amount) => _price = price + amount;
   bool hasPrice() => _price != null;
 
+  // "value" field.
+  String? _value;
+  String get value => _value ?? '';
+  set value(String? val) => _value = val;
+  bool hasValue() => _value != null;
+
   static ProductCustomOptionStruct fromMap(Map<String, dynamic> data) =>
       ProductCustomOptionStruct(
-        content: data['content'] as String?,
         price: castToType<double>(data['price']),
+        value: data['value'] as String?,
       );
 
   static ProductCustomOptionStruct? maybeFromMap(dynamic data) => data is Map
@@ -42,33 +42,33 @@ class ProductCustomOptionStruct extends FFFirebaseStruct {
       : null;
 
   Map<String, dynamic> toMap() => {
-        'content': _content,
         'price': _price,
+        'value': _value,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'content': serializeParam(
-          _content,
-          ParamType.String,
-        ),
         'price': serializeParam(
           _price,
           ParamType.double,
+        ),
+        'value': serializeParam(
+          _value,
+          ParamType.String,
         ),
       }.withoutNulls;
 
   static ProductCustomOptionStruct fromSerializableMap(
           Map<String, dynamic> data) =>
       ProductCustomOptionStruct(
-        content: deserializeParam(
-          data['content'],
-          ParamType.String,
-          false,
-        ),
         price: deserializeParam(
           data['price'],
           ParamType.double,
+          false,
+        ),
+        value: deserializeParam(
+          data['value'],
+          ParamType.String,
           false,
         ),
       );
@@ -79,25 +79,25 @@ class ProductCustomOptionStruct extends FFFirebaseStruct {
   @override
   bool operator ==(Object other) {
     return other is ProductCustomOptionStruct &&
-        content == other.content &&
-        price == other.price;
+        price == other.price &&
+        value == other.value;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([content, price]);
+  int get hashCode => const ListEquality().hash([price, value]);
 }
 
 ProductCustomOptionStruct createProductCustomOptionStruct({
-  String? content,
   double? price,
+  String? value,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
   bool delete = false,
 }) =>
     ProductCustomOptionStruct(
-      content: content,
       price: price,
+      value: value,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

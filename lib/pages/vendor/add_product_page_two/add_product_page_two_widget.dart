@@ -1359,11 +1359,11 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                       setState(() {
                                                         _model.addToCustomOptions(
                                                             ProductCustomOptionStruct(
-                                                          content: _model
-                                                              .optionController
-                                                              .text,
                                                           price: FFAppState()
                                                               .optionPrice,
+                                                          value: _model
+                                                              .optionController
+                                                              .text,
                                                         ));
                                                       });
                                                       setState(() {
@@ -1465,7 +1465,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                     print('Button pressed ...');
                                                   },
                                                   text: customOptionListItem
-                                                      .content,
+                                                      .value,
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
@@ -1789,21 +1789,21 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                         setState(() {
                                                           _model.addToColorOptions(
                                                               ProductColorOptionStruct(
-                                                            color: (String
+                                                            price: FFAppState()
+                                                                .optionPrice,
+                                                            value: (String
                                                                 hex) {
                                                               return Color(int.parse(
                                                                   'FF' +
                                                                       hex
                                                                           .toUpperCase()
                                                                           .replaceAll(
-                                                                              "#",
-                                                                              ""),
+                                                                              '#',
+                                                                              ''),
                                                                   radix: 16));
                                                             }(_model
                                                                 .colorController
                                                                 .text),
-                                                            price: FFAppState()
-                                                                .optionPrice,
                                                           ));
                                                         });
                                                         setState(() {
@@ -1901,9 +1901,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               setState(() {
                                                 _model.addToColorOptions(
                                                     ProductColorOptionStruct(
-                                                  color: Color(0xFFFD4242),
                                                   price:
                                                       FFAppState().optionPrice,
+                                                  value: Color(0xFFFD4242),
                                                 ));
                                               });
                                               setState(() {
@@ -1999,9 +1999,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               setState(() {
                                                 _model.addToColorOptions(
                                                     ProductColorOptionStruct(
-                                                  color: Color(0xFFD242FD),
                                                   price:
                                                       FFAppState().optionPrice,
+                                                  value: Color(0xFFD242FD),
                                                 ));
                                               });
                                               setState(() {
@@ -2097,9 +2097,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               setState(() {
                                                 _model.addToColorOptions(
                                                     ProductColorOptionStruct(
-                                                  color: Color(0xFF4258FD),
                                                   price:
                                                       FFAppState().optionPrice,
+                                                  value: Color(0xFF4258FD),
                                                 ));
                                               });
                                               setState(() {
@@ -2195,9 +2195,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               setState(() {
                                                 _model.addToColorOptions(
                                                     ProductColorOptionStruct(
-                                                  color: Color(0xFF42FDF6),
                                                   price:
                                                       FFAppState().optionPrice,
+                                                  value: Color(0xFF42FDF6),
                                                 ));
                                               });
                                               setState(() {
@@ -2293,9 +2293,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               setState(() {
                                                 _model.addToColorOptions(
                                                     ProductColorOptionStruct(
-                                                  color: Color(0xFF5FFD42),
                                                   price:
                                                       FFAppState().optionPrice,
+                                                  value: Color(0xFF5FFD42),
                                                 ));
                                               });
                                               setState(() {
@@ -2391,9 +2391,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               setState(() {
                                                 _model.addToColorOptions(
                                                     ProductColorOptionStruct(
-                                                  color: Color(0xFFFDE042),
                                                   price:
                                                       FFAppState().optionPrice,
+                                                  value: Color(0xFF5FFD42),
                                                 ));
                                               });
                                               setState(() {
@@ -2489,9 +2489,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               setState(() {
                                                 _model.addToColorOptions(
                                                     ProductColorOptionStruct(
-                                                  color: Color(0xFFFD9F42),
                                                   price:
                                                       FFAppState().optionPrice,
+                                                  value: Color(0xFFFD9F42),
                                                 ));
                                               });
                                               setState(() {
@@ -2587,9 +2587,11 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                               setState(() {
                                                 _model.addToColorOptions(
                                                     ProductColorOptionStruct(
-                                                  color: Color(0xFFFD4242),
                                                   price:
                                                       FFAppState().optionPrice,
+                                                  value: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
                                                 ));
                                               });
                                               setState(() {
@@ -2846,7 +2848,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                                         0.0),
                                                             color:
                                                                 colorOptionListItem
-                                                                    .color,
+                                                                    .value,
                                                             textStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -2874,7 +2876,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                                   valueOrDefault<
                                                                       Color>(
                                                                 colorOptionListItem
-                                                                    .color,
+                                                                    .value,
                                                                 FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryBackground,
