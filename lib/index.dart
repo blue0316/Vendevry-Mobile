@@ -42,3 +42,5 @@ export '/pages/vendor/services/project_request_view_page/project_request_view_pa
     show ProjectRequestViewPageWidget;
 export '/pages/vendor/services/project_reject_page/project_reject_page_widget.dart'
     show ProjectRejectPageWidget;
+export '/pages/vendor/services/create_project_page/create_project_page_widget.dart'
+    show CreateProjectPageWidget;

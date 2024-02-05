@@ -1765,9 +1765,17 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                             .showSnackBar(
                                                           SnackBar(
                                                             content: Text(
-                                                              _model
+                                                              (String hex) {
+                                                                return Color(int.parse(
+                                                                        hex.toUpperCase().replaceAll(
+                                                                            "#",
+                                                                            ""),
+                                                                        radix:
+                                                                            16))
+                                                                    .toString();
+                                                              }(_model
                                                                   .colorController
-                                                                  .text,
+                                                                  .text),
                                                               style: TextStyle(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)

@@ -222,6 +222,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ProjectRejectPage',
           path: '/projectRejectPage',
           builder: (context, params) => ProjectRejectPageWidget(),
+        ),
+        FFRoute(
+          name: 'CreateProjectPage',
+          path: '/createProjectPage',
+          builder: (context, params) => CreateProjectPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

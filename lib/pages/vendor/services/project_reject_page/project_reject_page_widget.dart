@@ -28,6 +28,9 @@ class _ProjectRejectPageWidgetState extends State<ProjectRejectPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProjectRejectPageModel());
+
+    _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -159,11 +162,31 @@ class _ProjectRejectPageWidgetState extends State<ProjectRejectPageWidget> {
                                 ),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 15.0, 20.0, 15.0),
-                                  child: Text(
-                                    'Nam venenatis dui non commodo aliquet. Quisque eu gravida justo. Phasellus auctor, eros qui luctus, purus mauris eleifend est, in rutrum orci nibh et sapien.Nam venenatis dui non commodo aliquet. Quisque eu gravida justo. Phasellus auctor, eros qui luctus, purus mauris eleifend est, in rutrum orci nibh et sapien.',
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: TextFormField(
+                                    controller: _model.textController,
+                                    focusNode: _model.textFieldFocusNode,
+                                    autofocus: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      hintText: 'Please enter here...',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      enabledBorder: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                      errorBorder: InputBorder.none,
+                                      focusedErrorBorder: InputBorder.none,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              15.0, 15.0, 15.0, 15.0),
+                                    ),
                                     style:
-                                        FlutterFlowTheme.of(context).bodySmall,
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    maxLines: 10,
+                                    validator: _model.textControllerValidator
+                                        .asValidator(context),
                                   ),
                                 ),
                               ),
@@ -180,68 +203,14 @@ class _ProjectRejectPageWidgetState extends State<ProjectRejectPageWidget> {
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).customColor1,
                         ),
-                        child: Column(
+                        child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'Client\'s Budget',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily),
-                                      ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 15.0, 0.0, 0.0),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 15.0, 20.0, 15.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Text(
-                                          '\$ 1,500.00 USD',
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleLarge
-                                              .override(
-                                                fontFamily: 'Avenir Bold',
-                                                fontSize: 20.0,
-                                                fontWeight: FontWeight.w900,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleLargeFamily),
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Text(
+                                'Rejecting this request is permanent and can not be undone.\nclient’s will have to submit a new request if they would\nlike to continue working with you.',
+                                style: FlutterFlowTheme.of(context).labelSmall,
                               ),
                             ),
                           ],
@@ -250,7 +219,7 @@ class _ProjectRejectPageWidgetState extends State<ProjectRejectPageWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 0.0),
                       child: Container(
                         width: 160.0,
                         decoration: BoxDecoration(
@@ -274,56 +243,7 @@ class _ProjectRejectPageWidgetState extends State<ProjectRejectPageWidget> {
                                             onPressed: () {
                                               print('Button pressed ...');
                                             },
-                                            text: 'Contact Client',
-                                            options: FFButtonOptions(
-                                              height: 40.0,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color: Color(0xFF40A5FE),
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: Colors.white,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
-                                              elevation: 3.0,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(100.0),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 10.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: FFButtonWidget(
-                                            onPressed: () {
-                                              print('Button pressed ...');
-                                            },
-                                            text: 'Accept',
+                                            text: 'Yes, Confirm',
                                             options: FFButtonOptions(
                                               height: 40.0,
                                               padding: EdgeInsetsDirectional
@@ -372,7 +292,7 @@ class _ProjectRejectPageWidgetState extends State<ProjectRejectPageWidget> {
                                             onPressed: () {
                                               print('Button pressed ...');
                                             },
-                                            text: 'Reject',
+                                            text: 'Cancel',
                                             options: FFButtonOptions(
                                               height: 40.0,
                                               padding: EdgeInsetsDirectional
@@ -415,21 +335,6 @@ class _ProjectRejectPageWidgetState extends State<ProjectRejectPageWidget> {
                             ),
                           ],
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 30.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Project requests will expire automatically after 3 days.',
-                              style: FlutterFlowTheme.of(context).bodyMedium,
-                            ),
-                          ),
-                        ],
                       ),
                     ),
                   ],
