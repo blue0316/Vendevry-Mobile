@@ -2919,6 +2919,15 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ),
+                                Text(
+                                  valueOrDefault<String>(
+                                    _model.productTemplate?.images?.length
+                                        ?.toString(),
+                                    '000',
+                                  ),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
                               ],
                             ),
                           ),
