@@ -503,12 +503,24 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                         onChanged: (val) async {
                                           setState(() =>
                                               _model.categoriesValue = val);
-                                          setState(() {
-                                            _model.selectedParentCategoryId =
-                                                _model.categoriesValue;
-                                            _model.productCategoryId =
-                                                _model.categoriesValue;
-                                          });
+                                          if (FFAppState()
+                                                  .productCategories
+                                                  .where((e) =>
+                                                      e.parentId ==
+                                                      _model.categoriesValue)
+                                                  .toList()
+                                                  .length >
+                                              0) {
+                                            setState(() {
+                                              _model.selectedParentCategoryId =
+                                                  _model.categoriesValue;
+                                            });
+                                          } else {
+                                            setState(() {
+                                              _model.productCategoryId =
+                                                  _model.categoriesValue;
+                                            });
+                                          }
                                         },
                                         width:
                                             MediaQuery.sizeOf(context).width *
