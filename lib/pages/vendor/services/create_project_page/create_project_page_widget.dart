@@ -36,6 +36,15 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    _model.textController3 ??= TextEditingController();
+    _model.textFieldFocusNode3 ??= FocusNode();
+
+    _model.textController4 ??= TextEditingController();
+    _model.textFieldFocusNode4 ??= FocusNode();
+
+    _model.textController5 ??= TextEditingController();
+    _model.textFieldFocusNode5 ??= FocusNode();
   }
 
   @override
@@ -428,30 +437,378 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Text(
-                                  'Create Milestones',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily),
-                                      ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 15.0),
+                                  child: Text(
+                                    'Create Milestones',
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily),
+                                        ),
+                                  ),
                                 ),
                               ],
                             ),
                             wrapWithModel(
-                              model: _model.milestoneCardModel,
+                              model: _model.milestoneCardModel1,
                               updateCallback: () => setState(() {}),
                               child: MilestoneCardWidget(
                                 indexString: 'A.',
                                 milestoneName: 'UX/UI Wireframe',
                                 priceString: '\$1,500.00 USD',
+                              ),
+                            ),
+                            wrapWithModel(
+                              model: _model.milestoneCardModel2,
+                              updateCallback: () => setState(() {}),
+                              child: MilestoneCardWidget(
+                                indexString: 'B.',
+                                milestoneName: 'UX/UI Wireframe',
+                                priceString: '\$1,500.00 USD',
+                              ),
+                            ),
+                            wrapWithModel(
+                              model: _model.milestoneCardModel3,
+                              updateCallback: () => setState(() {}),
+                              child: MilestoneCardWidget(
+                                indexString: 'C.',
+                                milestoneName: 'UX/UI Wireframe',
+                                priceString: '\$1,500.00 USD',
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 10.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  FlutterFlowIconButton(
+                                    borderRadius: 20.0,
+                                    borderWidth: 0.0,
+                                    buttonSize: 40.0,
+                                    fillColor: Color(0xFF744BE5),
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'D.',
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineSmallFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineSmallFamily),
+                                          ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 0.0, 8.0, 0.0),
+                                        child: TextFormField(
+                                          controller: _model.textController3,
+                                          focusNode: _model.textFieldFocusNode3,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium,
+                                            hintText: 'Milestone Name',
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium,
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(3.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(3.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(3.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(3.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                          validator: _model
+                                              .textController3Validator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 8.0, 0.0),
+                                      child: Container(
+                                        width: 100.0,
+                                        child: TextFormField(
+                                          controller: _model.textController4,
+                                          focusNode: _model.textFieldFocusNode4,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium,
+                                            hintText: 'Enter Amount',
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium,
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(3.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(3.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(3.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(3.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                          validator: _model
+                                              .textController4Validator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).customColor1,
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Contract Terms',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily),
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'How much you’re willing to pay resellers for selling your \nService ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelSmall,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 15.0, 0.0, 0.0),
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: TextFormField(
+                                    controller: _model.textController5,
+                                    focusNode: _model.textFieldFocusNode5,
+                                    autofocus: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              15.0, 10.0, 15.0, 10.0),
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    textAlign: TextAlign.start,
+                                    maxLines: 6,
+                                    validator: _model.textController5Validator
+                                        .asValidator(context),
+                                  ),
+                                ),
                               ),
                             ),
                           ],

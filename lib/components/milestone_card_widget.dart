@@ -51,7 +51,7 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -62,49 +62,56 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 15.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Text(
-                      valueOrDefault<String>(
-                        widget.indexString,
-                        'A.',
+            Expanded(
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 15.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget.indexString,
+                          'A.',
+                        ),
+                        style: FlutterFlowTheme.of(context)
+                            .headlineSmall
+                            .override(
+                              fontFamily: FlutterFlowTheme.of(context)
+                                  .headlineSmallFamily,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .headlineSmallFamily),
+                            ),
                       ),
-                      style: FlutterFlowTheme.of(context)
-                          .headlineSmall
-                          .override(
-                            fontFamily: FlutterFlowTheme.of(context)
-                                .headlineSmallFamily,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context)
-                                    .headlineSmallFamily),
-                          ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      valueOrDefault<String>(
-                        widget.milestoneName,
-                        'Milestone1',
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          valueOrDefault<String>(
+                            widget.milestoneName,
+                            'Milestone1',
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).primary,
+                                fontWeight: FontWeight.w900,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).primary,
-                            fontWeight: FontWeight.w900,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -130,7 +137,10 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                     child: Text(
-                      '\$1,500.00 USD',
+                      valueOrDefault<String>(
+                        widget.priceString,
+                        '\$0.00 USD',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,

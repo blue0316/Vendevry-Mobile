@@ -27,13 +27,31 @@ class CreateProjectPageModel extends FlutterFlowModel<CreateProjectPageWidget> {
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
   // Model for MilestoneCard component.
-  late MilestoneCardModel milestoneCardModel;
+  late MilestoneCardModel milestoneCardModel1;
+  // Model for MilestoneCard component.
+  late MilestoneCardModel milestoneCardModel2;
+  // Model for MilestoneCard component.
+  late MilestoneCardModel milestoneCardModel3;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode3;
+  TextEditingController? textController3;
+  String? Function(BuildContext, String?)? textController3Validator;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode4;
+  TextEditingController? textController4;
+  String? Function(BuildContext, String?)? textController4Validator;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode5;
+  TextEditingController? textController5;
+  String? Function(BuildContext, String?)? textController5Validator;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
     clientInfoCardModel = createModel(context, () => ClientInfoCardModel());
-    milestoneCardModel = createModel(context, () => MilestoneCardModel());
+    milestoneCardModel1 = createModel(context, () => MilestoneCardModel());
+    milestoneCardModel2 = createModel(context, () => MilestoneCardModel());
+    milestoneCardModel3 = createModel(context, () => MilestoneCardModel());
   }
 
   void dispose() {
@@ -45,7 +63,17 @@ class CreateProjectPageModel extends FlutterFlowModel<CreateProjectPageWidget> {
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
 
-    milestoneCardModel.dispose();
+    milestoneCardModel1.dispose();
+    milestoneCardModel2.dispose();
+    milestoneCardModel3.dispose();
+    textFieldFocusNode3?.dispose();
+    textController3?.dispose();
+
+    textFieldFocusNode4?.dispose();
+    textController4?.dispose();
+
+    textFieldFocusNode5?.dispose();
+    textController5?.dispose();
   }
 
   /// Action blocks are added here.

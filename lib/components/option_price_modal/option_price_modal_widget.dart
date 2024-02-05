@@ -33,6 +33,10 @@ class _OptionPriceModalWidgetState extends State<OptionPriceModalWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+          _model.textController?.text = '0';
+        }));
   }
 
   @override
@@ -176,7 +180,7 @@ class _OptionPriceModalWidgetState extends State<OptionPriceModalWidget> {
                                   double.parse(_model.textController.text);
                             });
                             setState(() {
-                              _model.textController?.clear();
+                              _model.textController?.text = '0';
                             });
                             Navigator.pop(context);
                           } else {
