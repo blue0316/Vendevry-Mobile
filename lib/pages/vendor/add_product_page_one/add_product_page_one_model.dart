@@ -46,6 +46,8 @@ class AddProductPageOneModel extends FlutterFlowModel<AddProductPageOneWidget> {
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Backend Call - API (SearchProducts)] action in TextField widget.
   ApiCallResponse? searchApiResult;
+  // Stores action output result for [Backend Call - API (SingleProduct)] action in IconButton widget.
+  ApiCallResponse? productTemplateApiResult;
 
   /// Initialization and disposal methods.
 

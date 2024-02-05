@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -10,7 +9,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,12 +17,7 @@ import 'add_servcie_page_two_model.dart';
 export 'add_servcie_page_two_model.dart';
 
 class AddServciePageTwoWidget extends StatefulWidget {
-  const AddServciePageTwoWidget({
-    super.key,
-    this.productId,
-  });
-
-  final int? productId;
+  const AddServciePageTwoWidget({super.key});
 
   @override
   State<AddServciePageTwoWidget> createState() =>
@@ -40,133 +33,6 @@ class _AddServciePageTwoWidgetState extends State<AddServciePageTwoWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AddServciePageTwoModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.templateProductApiResult =
-          await VerifiedAPIsGroup.singleProductCall.call(
-        token: FFAppState().accessToken,
-        productId: widget.productId,
-      );
-      setState(() {
-        _model.updateProductTemplateStruct(
-          (e) => e
-            ..productId = VerifiedAPIsGroup.singleProductCall.productId(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-            )
-            ..vendorId = VerifiedAPIsGroup.singleProductCall.vendorId(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-            )
-            ..productName = VerifiedAPIsGroup.singleProductCall.productName(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-            )
-            ..productPrice = VerifiedAPIsGroup.singleProductCall
-                .productPrice(
-                  (_model.templateProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble()
-            ..discountPrice = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.discount_price''',
-            )
-            ..images = VerifiedAPIsGroup.singleProductCall
-                .images(
-                  (_model.templateProductApiResult?.jsonBody ?? ''),
-                )!
-                .toList()
-            ..category = VerifiedAPIsGroup.singleProductCall.category(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-            )
-            ..description = VerifiedAPIsGroup.singleProductCall.description(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-            )
-            ..condition = VerifiedAPIsGroup.singleProductCall.condition(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-            )
-            ..brand = VerifiedAPIsGroup.singleProductCall.brand(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-            )
-            ..takeMin = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.take_min''',
-            )
-            ..flatRate = VerifiedAPIsGroup.singleProductCall
-                .flatRate(
-                  (_model.templateProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble()
-            ..boost = VerifiedAPIsGroup.singleProductCall.boost(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-            )
-            ..shippingFromCompany = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.shipping_from_company''',
-            ).toString().toString()
-            ..shippingFromCity = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.shipping_from_city''',
-            ).toString().toString()
-            ..commission = VerifiedAPIsGroup.singleProductCall
-                .commission(
-                  (_model.templateProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble()
-            ..type = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.type''',
-            ).toString().toString()
-            ..payoutType = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.payout_type''',
-            ).toString().toString()
-            ..location = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.location''',
-            ).toString().toString()
-            ..state = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.state''',
-            ).toString().toString()
-            ..stockAvailable = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.stock_available''',
-            ).toString().toString()
-            ..itemType = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.item_type''',
-            ).toString().toString()
-            ..weight = VerifiedAPIsGroup.singleProductCall
-                .weight(
-                  (_model.templateProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble()
-            ..length = VerifiedAPIsGroup.singleProductCall
-                .length(
-                  (_model.templateProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble()
-            ..height = VerifiedAPIsGroup.singleProductCall
-                .height(
-                  (_model.templateProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble()
-            ..width = VerifiedAPIsGroup.singleProductCall
-                .width(
-                  (_model.templateProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble()
-            ..status = getJsonField(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-              r'''$.data.status''',
-            ).toString().toString()
-            ..createdAt = getCurrentTimestamp
-            ..updatedAt = getCurrentTimestamp
-            ..stock = VerifiedAPIsGroup.singleProductCall.stock(
-              (_model.templateProductApiResult?.jsonBody ?? ''),
-            ),
-        );
-      });
-    });
 
     _model.textController1 ??=
         TextEditingController(text: _model.productTemplate?.productName);

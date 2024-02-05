@@ -340,16 +340,40 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                               .primaryBackground,
                                           size: 22.0,
                                         ),
+                                        showLoadingIndicator: true,
                                         onPressed: () async {
-                                          context.pushNamed(
-                                            'AddProductPageTwo',
-                                            queryParameters: {
-                                              'productId': serializeParam(
-                                                _model.selectedProductId,
-                                                ParamType.int,
-                                              ),
-                                            }.withoutNulls,
-                                          );
+                                          if (_model.selectedProductId !=
+                                              null) {
+                                            _model.productTemplateApiResult =
+                                                await VerifiedAPIsGroup
+                                                    .singleProductCall
+                                                    .call(
+                                              token: FFAppState().accessToken,
+                                              productId:
+                                                  _model.selectedProductId,
+                                            );
+
+                                            context.pushNamed(
+                                              'AddProductPageTwo',
+                                              queryParameters: {
+                                                'singleProduct': serializeParam(
+                                                  VerifiedAPIsGroup
+                                                      .singleProductCall
+                                                      .data(
+                                                    (_model.productTemplateApiResult
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  ),
+                                                  ParamType.JSON,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          } else {
+                                            context
+                                                .pushNamed('AddProductPageTwo');
+                                          }
+
+                                          setState(() {});
                                         },
                                       ),
                                     );

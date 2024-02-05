@@ -13,7 +13,6 @@ import '/flutter_flow/upload_data.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,10 +23,10 @@ export 'add_product_page_two_model.dart';
 class AddProductPageTwoWidget extends StatefulWidget {
   const AddProductPageTwoWidget({
     super.key,
-    this.productId,
+    this.singleProduct,
   });
 
-  final int? productId;
+  final dynamic singleProduct;
 
   @override
   State<AddProductPageTwoWidget> createState() =>
@@ -44,196 +43,13 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
     super.initState();
     _model = createModel(context, () => AddProductPageTwoModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        FFAppState().optionPrice = 0.0;
-        FFAppState().productBoostOption = 0;
-      });
-      _model.singleProductApiResult =
-          await VerifiedAPIsGroup.singleProductCall.call(
-        token: FFAppState().accessToken,
-        productId: widget.productId,
-      );
-      if ((_model.singleProductApiResult?.succeeded ?? true)) {
-        setState(() {
-          _model.productTemplate = ProductDefaultStruct(
-            productId: VerifiedAPIsGroup.singleProductCall.productId(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-            ),
-            vendorId: VerifiedAPIsGroup.singleProductCall.vendorId(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-            ),
-            productName: VerifiedAPIsGroup.singleProductCall.productName(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-            ),
-            productPrice: VerifiedAPIsGroup.singleProductCall
-                .productPrice(
-                  (_model.singleProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble(),
-            discountPrice: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.discount_price''',
-            ),
-            images: VerifiedAPIsGroup.singleProductCall.images(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-            ),
-            category: VerifiedAPIsGroup.singleProductCall.category(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-            ),
-            description: VerifiedAPIsGroup.singleProductCall.description(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-            ),
-            condition: VerifiedAPIsGroup.singleProductCall.condition(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-            ),
-            brand: VerifiedAPIsGroup.singleProductCall.brand(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-            ),
-            takeMin: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.take_min''',
-            ),
-            flatRate: VerifiedAPIsGroup.singleProductCall
-                .flatRate(
-                  (_model.singleProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble(),
-            boost: VerifiedAPIsGroup.singleProductCall.boost(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-            ),
-            shippingFromCompany: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.shipping_from_company''',
-            ).toString().toString(),
-            shippingFromCity: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.shipping_from_city''',
-            ).toString().toString(),
-            commission: VerifiedAPIsGroup.singleProductCall
-                .commission(
-                  (_model.singleProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble(),
-            type: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.type''',
-            ).toString().toString(),
-            payoutType: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.payout_type''',
-            ).toString().toString(),
-            location: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.location''',
-            ).toString().toString(),
-            state: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.state''',
-            ).toString().toString(),
-            stockAvailable: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.stock_available''',
-            ).toString().toString(),
-            itemType: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.item_type''',
-            ).toString().toString(),
-            weight: VerifiedAPIsGroup.singleProductCall
-                .weight(
-                  (_model.singleProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble(),
-            length: VerifiedAPIsGroup.singleProductCall
-                .length(
-                  (_model.singleProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble(),
-            height: VerifiedAPIsGroup.singleProductCall
-                .height(
-                  (_model.singleProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble(),
-            width: VerifiedAPIsGroup.singleProductCall
-                .width(
-                  (_model.singleProductApiResult?.jsonBody ?? ''),
-                )
-                ?.toDouble(),
-            status: getJsonField(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-              r'''$.data.status''',
-            ).toString().toString(),
-            stock: VerifiedAPIsGroup.singleProductCall.stock(
-              (_model.singleProductApiResult?.jsonBody ?? ''),
-            ),
-            createdAt: getCurrentTimestamp,
-            updatedAt: getCurrentTimestamp,
-          );
-        });
-        setState(() {
-          _model.titleController?.text = _model.productTemplate!.productName;
-        });
-        setState(() {
-          _model.productCategoryId = _model.productTemplate?.category;
-        });
-        if (FFAppState()
-                .productCategories
-                .where((e) => e.id == _model.productTemplate?.category)
-                .toList()
-                .first
-                .parentId <
-            0) {
-          setState(() {
-            _model.categoriesValueController?.value =
-                _model.productTemplate!.category;
-          });
-        } else {
-          setState(() {
-            _model.categoriesValueController?.value = FFAppState()
-                .productCategories
-                .where((e) => e.id == _model.productTemplate?.category)
-                .toList()
-                .first
-                .parentId;
-          });
-        }
-
-        setState(() {
-          _model.conditionValueController?.value =
-              _model.productTemplate!.condition;
-        });
-        setState(() {
-          _model.brandController?.text = _model.productTemplate!.brand;
-        });
-        setState(() {
-          _model.images =
-              _model.productTemplate!.images.toList().cast<String>();
-        });
-        setState(() {
-          _model.descriptionController?.text =
-              _model.productTemplate!.description;
-        });
-        setState(() {
-          _model.minPriceController?.text =
-              _model.productTemplate!.productPrice.toString();
-        });
-        setState(() {
-          _model.commissionController?.text =
-              _model.productTemplate!.commission.toString();
-        });
-        setState(() {
-          _model.minTakeController?.text =
-              _model.productTemplate!.takeMin.toString();
-        });
-        setState(() {
-          _model.shippingRateController?.text =
-              _model.productTemplate!.flatRate.toString();
-        });
-      }
-    });
-
-    _model.titleController ??= TextEditingController();
+    _model.titleController ??= TextEditingController(
+        text: widget.singleProduct != null
+            ? getJsonField(
+                widget.singleProduct,
+                r'''$.product_name''',
+              ).toString().toString()
+            : '');
     _model.titleFocusNode ??= FocusNode();
 
     _model.brandController ??= TextEditingController();
@@ -492,22 +308,24 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    'Try to use words people would use to search \nfor your listing.',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Avenir',
-                                          color: Color(0xFF6C6C6C),
-                                          fontSize: 15.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
-                                        ),
+                                Expanded(
+                                  child: Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Text(
+                                      'Try to use words people would use to search for your listing.',
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Avenir',
+                                            color: Color(0xFF6C6C6C),
+                                            fontSize: 15.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ],

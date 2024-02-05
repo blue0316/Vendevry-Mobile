@@ -5,27 +5,31 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'milestone_card_model.dart';
-export 'milestone_card_model.dart';
+import 'f_inished_milestone_card_model.dart';
+export 'f_inished_milestone_card_model.dart';
 
-class MilestoneCardWidget extends StatefulWidget {
-  const MilestoneCardWidget({
+class FInishedMilestoneCardWidget extends StatefulWidget {
+  const FInishedMilestoneCardWidget({
     super.key,
     required this.indexString,
     required this.milestoneName,
     required this.priceString,
+    required this.finishedAt,
   });
 
   final String? indexString;
   final String? milestoneName;
   final String? priceString;
+  final String? finishedAt;
 
   @override
-  State<MilestoneCardWidget> createState() => _MilestoneCardWidgetState();
+  State<FInishedMilestoneCardWidget> createState() =>
+      _FInishedMilestoneCardWidgetState();
 }
 
-class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
-  late MilestoneCardModel _model;
+class _FInishedMilestoneCardWidgetState
+    extends State<FInishedMilestoneCardWidget> {
+  late FInishedMilestoneCardModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -36,7 +40,7 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MilestoneCardModel());
+    _model = createModel(context, () => FInishedMilestoneCardModel());
   }
 
   @override
@@ -64,10 +68,32 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 10.0, 15.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 15.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    Theme(
+                      data: ThemeData(
+                        checkboxTheme: CheckboxThemeData(
+                          visualDensity: VisualDensity.compact,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                          ),
+                        ),
+                        unselectedWidgetColor:
+                            FlutterFlowTheme.of(context).secondaryText,
+                      ),
+                      child: Checkbox(
+                        value: _model.checkboxValue ??= true,
+                        onChanged: (newValue) async {
+                          setState(() => _model.checkboxValue = newValue!);
+                        },
+                        activeColor: Color(0xFF67CCC7),
+                        checkColor: FlutterFlowTheme.of(context).info,
+                      ),
+                    ),
                     Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Text(
@@ -90,7 +116,7 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                         child: Text(
                           valueOrDefault<String>(
                             widget.milestoneName,
@@ -118,17 +144,21 @@ class _MilestoneCardWidgetState extends State<MilestoneCardWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: Text(
-                      'To be billed',
+                      valueOrDefault<String>(
+                        widget.finishedAt,
+                        '2/22/22 11:30PM',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: Color(0xFF3AC754),
-                            fontWeight: FontWeight.bold,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontWeight: FontWeight.w300,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),

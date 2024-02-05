@@ -46,3 +46,5 @@ export '/pages/vendor/services/create_fixed_project_page/create_fixed_project_pa
     show CreateFixedProjectPageWidget;
 export '/pages/vendor/services/create_hourly_project_page/create_hourly_project_page_widget.dart'
     show CreateHourlyProjectPageWidget;
+export '/pages/vendor/services/fixed_project_detail_page/fixed_project_detail_page_widget.dart'
+    show FixedProjectDetailPageWidget;

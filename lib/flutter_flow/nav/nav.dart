@@ -183,7 +183,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'AddProductPageTwo',
           path: '/addProductPageTwo',
           builder: (context, params) => AddProductPageTwoWidget(
-            productId: params.getParam('productId', ParamType.int),
+            singleProduct: params.getParam('singleProduct', ParamType.JSON),
           ),
         ),
         FFRoute(
@@ -194,9 +194,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AddServciePageTwo',
           path: '/addServciePageTwo',
-          builder: (context, params) => AddServciePageTwoWidget(
-            productId: params.getParam('productId', ParamType.int),
-          ),
+          builder: (context, params) => AddServciePageTwoWidget(),
         ),
         FFRoute(
           name: 'ProductBoostPage',
@@ -232,6 +230,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'CreateHourlyProjectPage',
           path: '/createHourlyProjectPage',
           builder: (context, params) => CreateHourlyProjectPageWidget(),
+        ),
+        FFRoute(
+          name: 'FixedProjectDetailPage',
+          path: '/fixedProjectDetailPage',
+          builder: (context, params) => FixedProjectDetailPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

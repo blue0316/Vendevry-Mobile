@@ -14,7 +14,6 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'add_product_page_two_widget.dart' show AddProductPageTwoWidget;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -71,8 +70,6 @@ class AddProductPageTwoModel extends FlutterFlowModel<AddProductPageTwoWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (SingleProduct)] action in AddProductPageTwo widget.
-  ApiCallResponse? singleProductApiResult;
   // State field(s) for title widget.
   FocusNode? titleFocusNode;
   TextEditingController? titleController;
