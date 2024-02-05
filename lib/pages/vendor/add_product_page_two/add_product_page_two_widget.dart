@@ -73,7 +73,13 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
               .withoutNulls
               .toList()
               .cast<ProductColorOptionStruct>();
-          _model.images = widget.singleProduct!.toList().cast<String>();
+          _model.images = getJsonField(
+            widget.singleProduct,
+            r'''$.images''',
+            true,
+          )!
+              .toList()
+              .cast<String>();
         });
       } else {
         setState(() {
