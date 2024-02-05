@@ -12,7 +12,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -50,40 +49,18 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (widget.singleProduct != null) {
         setState(() {
-          _model.customOptions = (getJsonField(
-            widget.singleProduct,
-            r'''$.custom_options''',
-            true,
-          )!
-                  .toList()
-                  .map<ProductCustomOptionStruct?>(
-                      ProductCustomOptionStruct.maybeFromMap)
-                  .toList() as Iterable<ProductCustomOptionStruct?>)
-              .withoutNulls
+          _model.productTemplate =
+              ProductDefaultStruct.maybeFromMap(widget.singleProduct);
+        });
+        setState(() {
+          _model.customOptions = _model.productTemplate!.customOptions
               .toList()
               .cast<ProductCustomOptionStruct>();
-          _model.colorOptions = (getJsonField(
-            widget.singleProduct,
-            r'''$.colors''',
-            true,
-          )!
-                  .toList()
-                  .map<ProductColorOptionStruct?>(
-                      ProductColorOptionStruct.maybeFromMap)
-                  .toList() as Iterable<ProductColorOptionStruct?>)
-              .withoutNulls
+          _model.colorOptions = _model.productTemplate!.colorOption
               .toList()
               .cast<ProductColorOptionStruct>();
-          _model.images = functions
-              .toImagePath((getJsonField(
-                widget.singleProduct,
-                r'''$.images''',
-                true,
-              ) as List)
-                  .map<String>((s) => s.toString())
-                  .toList()!)
-              .toList()
-              .cast<String>();
+          _model.images =
+              _model.productTemplate!.images.toList().cast<String>();
         });
       } else {
         setState(() {
