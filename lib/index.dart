@@ -40,5 +40,5 @@ export '/pages/vendor/services/search_client_page/search_client_page_widget.dart
     show SearchClientPageWidget;
 export '/pages/vendor/services/project_request_view_page/project_request_view_page_widget.dart'
     show ProjectRequestViewPageWidget;
-export '/pages/vendor/services/project_request_view_page_copy/project_request_view_page_copy_widget.dart'
-    show ProjectRequestViewPageCopyWidget;
+export '/pages/vendor/services/project_reject_page/project_reject_page_widget.dart'
+    show ProjectRejectPageWidget;
