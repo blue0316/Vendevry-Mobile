@@ -28,11 +28,11 @@ export '/pages/product_pages/single_product_page/single_product_page_widget.dart
     show SingleProductPageWidget;
 export '/pages/vendor/add_product_page_two/add_product_page_two_widget.dart'
     show AddProductPageTwoWidget;
-export '/pages/vendor/add_service_page_one/add_service_page_one_widget.dart'
+export '/pages/vendor/services/add_service_page_one/add_service_page_one_widget.dart'
     show AddServicePageOneWidget;
-export '/pages/vendor/add_servcie_page_two/add_servcie_page_two_widget.dart'
+export '/pages/vendor/services/add_servcie_page_two/add_servcie_page_two_widget.dart'
     show AddServciePageTwoWidget;
 export '/pages/vendor/product_boost_page/product_boost_page_widget.dart'
     show ProductBoostPageWidget;
-export '/service_dashboard/service_dashboard_widget.dart'
+export '/pages/vendor/services/service_dashboard/service_dashboard_widget.dart'
     show ServiceDashboardWidget;

@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/option_price_modal/option_price_modal_widget.dart';
+import '/components/sub_categories_list_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -673,7 +674,8 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       controller: _model
                                               .subcategoriesValueController ??=
                                           FormFieldController<int>(
-                                        _model.subcategoriesValue ??= 0,
+                                        _model.subcategoriesValue ??=
+                                            _model.productTemplate?.category,
                                       ),
                                       options: List<int>.from(FFAppState()
                                           .productCategories
@@ -743,6 +745,63 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       isOverButton: true,
                                       isSearchable: false,
                                       isMultiSelect: false,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  19.0, 10.0, 19.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (context) {
+                                        final parentCategories = FFAppState()
+                                            .serviceCategories
+                                            .where((e) => e.parentId < 0)
+                                            .toList();
+                                        return Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: List.generate(
+                                              parentCategories.length,
+                                              (parentCategoriesIndex) {
+                                            final parentCategoriesItem =
+                                                parentCategories[
+                                                    parentCategoriesIndex];
+                                            return wrapWithModel(
+                                              model: _model
+                                                  .subCategoriesListModels
+                                                  .getModel(
+                                                parentCategoriesItem.id
+                                                    .toString(),
+                                                parentCategoriesIndex,
+                                              ),
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child: SubCategoriesListWidget(
+                                                key: Key(
+                                                  'Keygvw_${parentCategoriesItem.id.toString()}',
+                                                ),
+                                                parameter1:
+                                                    parentCategoriesItem.id,
+                                                parameter2: _model
+                                                    .selectedParentCategoryId,
+                                                initialCategoryId: _model
+                                                    .productTemplate?.category,
+                                                setValue: (categoryId) async {
+                                                  setState(() {
+                                                    _model.productCategoryId =
+                                                        categoryId;
+                                                  });
+                                                },
+                                              ),
+                                            );
+                                          }),
+                                        );
+                                      },
                                     ),
                                   ),
                                 ],
