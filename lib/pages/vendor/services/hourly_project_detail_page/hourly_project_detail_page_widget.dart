@@ -1,6 +1,5 @@
 import '/components/client_info_card_widget.dart';
 import '/components/f_inished_hourly_milestone_card_widget.dart';
-import '/components/un_f_inished_milestone_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -411,7 +410,7 @@ class _HourlyProjectDetailPageWidgetState
                                     Expanded(
                                       child: wrapWithModel(
                                         model: _model
-                                            .fInishedHourlyMilestoneCardModel,
+                                            .fInishedHourlyMilestoneCardModel1,
                                         updateCallback: () => setState(() {}),
                                         child:
                                             FInishedHourlyMilestoneCardWidget(
@@ -428,14 +427,67 @@ class _HourlyProjectDetailPageWidgetState
                                   children: [
                                     Expanded(
                                       child: wrapWithModel(
-                                        model:
-                                            _model.unFInishedMilestoneCardModel,
+                                        model: _model
+                                            .fInishedHourlyMilestoneCardModel2,
                                         updateCallback: () => setState(() {}),
-                                        child: UnFInishedMilestoneCardWidget(
-                                          indexString: 'D.',
-                                          milestoneName: 'Second App Part',
-                                          priceString: '\$1,500.00 USD',
-                                          isFund: false,
+                                        child:
+                                            FInishedHourlyMilestoneCardWidget(
+                                          amount: '850',
+                                          hours: 23.0,
+                                          paidAt: '12/22/24',
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Theme(
+                                              data: ThemeData(
+                                                checkboxTheme:
+                                                    CheckboxThemeData(
+                                                  visualDensity:
+                                                      VisualDensity.compact,
+                                                  materialTapTargetSize:
+                                                      MaterialTapTargetSize
+                                                          .shrinkWrap,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4.0),
+                                                  ),
+                                                ),
+                                                unselectedWidgetColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
+                                              child: Checkbox(
+                                                value: _model.checkboxValue ??=
+                                                    true,
+                                                onChanged: (newValue) async {
+                                                  setState(() =>
+                                                      _model.checkboxValue =
+                                                          newValue!);
+                                                },
+                                                activeColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                checkColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),

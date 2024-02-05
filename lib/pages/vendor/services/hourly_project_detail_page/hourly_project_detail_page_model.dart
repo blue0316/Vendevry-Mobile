@@ -1,6 +1,5 @@
 import '/components/client_info_card_widget.dart';
 import '/components/f_inished_hourly_milestone_card_widget.dart';
-import '/components/un_f_inished_milestone_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -22,9 +21,11 @@ class HourlyProjectDetailPageModel
   // Model for ClientInfoCard component.
   late ClientInfoCardModel clientInfoCardModel;
   // Model for FInishedHourlyMilestoneCard component.
-  late FInishedHourlyMilestoneCardModel fInishedHourlyMilestoneCardModel;
-  // Model for UnFInishedMilestoneCard component.
-  late UnFInishedMilestoneCardModel unFInishedMilestoneCardModel;
+  late FInishedHourlyMilestoneCardModel fInishedHourlyMilestoneCardModel1;
+  // Model for FInishedHourlyMilestoneCard component.
+  late FInishedHourlyMilestoneCardModel fInishedHourlyMilestoneCardModel2;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -42,17 +43,17 @@ class HourlyProjectDetailPageModel
 
   void initState(BuildContext context) {
     clientInfoCardModel = createModel(context, () => ClientInfoCardModel());
-    fInishedHourlyMilestoneCardModel =
+    fInishedHourlyMilestoneCardModel1 =
         createModel(context, () => FInishedHourlyMilestoneCardModel());
-    unFInishedMilestoneCardModel =
-        createModel(context, () => UnFInishedMilestoneCardModel());
+    fInishedHourlyMilestoneCardModel2 =
+        createModel(context, () => FInishedHourlyMilestoneCardModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
     clientInfoCardModel.dispose();
-    fInishedHourlyMilestoneCardModel.dispose();
-    unFInishedMilestoneCardModel.dispose();
+    fInishedHourlyMilestoneCardModel1.dispose();
+    fInishedHourlyMilestoneCardModel2.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 
