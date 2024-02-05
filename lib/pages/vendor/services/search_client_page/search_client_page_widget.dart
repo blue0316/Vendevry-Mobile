@@ -195,10 +195,25 @@ class _SearchClientPageWidgetState extends State<SearchClientPageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Hello World',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            'Recent Contacts',
+                            style: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontWeight: FontWeight.w600,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleMediumFamily),
+                                ),
                           ),
                         ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [],
                       ),
                     ],
                   ),

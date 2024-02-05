@@ -1505,7 +1505,6 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                         ),
                                                     elevation: 3.0,
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFF0875F4),
                                                       width: 1.0,
                                                     ),
                                                     borderRadius:
