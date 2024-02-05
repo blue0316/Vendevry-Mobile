@@ -217,6 +217,10 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                           setState(() {
                                             _model.isEmpty = true;
                                           });
+                                        } else {
+                                          setState(() {
+                                            _model.isEmpty = false;
+                                          });
                                         }
                                       }
                                     }
