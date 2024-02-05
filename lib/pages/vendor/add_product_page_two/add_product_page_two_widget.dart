@@ -474,15 +474,17 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       if (!snapshot.hasData) {
                                         return Center(
                                           child: Padding(
-                                            padding: EdgeInsets.all(2.0),
+                                            padding: EdgeInsets.all(14.0),
                                             child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: SpinKitDualRing(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 50.0,
+                                              width: 26.0,
+                                              height: 26.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -833,14 +835,21 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                           // Customize what your widget looks like when it's loading.
                                           if (!snapshot.hasData) {
                                             return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child: SpinKitDualRing(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  size: 50.0,
+                                              child: Padding(
+                                                padding: EdgeInsets.all(12.0),
+                                                child: SizedBox(
+                                                  width: 26.0,
+                                                  height: 26.0,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    valueColor:
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             );
