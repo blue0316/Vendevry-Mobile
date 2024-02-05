@@ -494,8 +494,27 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                         controller:
                                             _model.categoriesValueController ??=
                                                 FormFieldController<int>(
-                                          _model
-                                              .categoriesValue ??= FFAppState()
+                                          _model.categoriesValue ??= widget
+                                                      .singleProduct !=
+                                                  null
+                                              ? (FFAppState()
+                                                          .productCategories
+                                                          .where((e) =>
+                                                              e.id ==
+                                                              getJsonField(
+                                                                widget
+                                                                    .singleProduct,
+                                                                r'''$["category"]''',
+                                                              ))
+                                                          .toList()
+                                                          .first
+                                                          .parentId <
+                                                      0
+                                                  ? getJsonField(
+                                                      widget.singleProduct,
+                                                      r'''$["category"]''',
+                                                    )
+                                                  : FFAppState()
                                                       .productCategories
                                                       .where((e) =>
                                                           e.id ==
@@ -506,23 +525,14 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                           ))
                                                       .toList()
                                                       .first
-                                                      .parentId <
-                                                  0
-                                              ? getJsonField(
-                                                  widget.singleProduct,
-                                                  r'''$["category"]''',
-                                                )
-                                              : FFAppState()
-                                                  .productCategories
-                                                  .where((e) =>
-                                                      e.id ==
-                                                      getJsonField(
-                                                        widget.singleProduct,
-                                                        r'''$["category"]''',
-                                                      ))
-                                                  .toList()
-                                                  .first
-                                                  .parentId,
+                                                      .parentId)
+                                              : VerifiedAPIsGroup
+                                                  .allProductParentCategoriesCall
+                                                  .ids(
+                                                    categoriesAllProductParentCategoriesResponse
+                                                        .jsonBody,
+                                                  )
+                                                  ?.first,
                                         ),
                                         options: List<int>.from(
                                             VerifiedAPIsGroup
