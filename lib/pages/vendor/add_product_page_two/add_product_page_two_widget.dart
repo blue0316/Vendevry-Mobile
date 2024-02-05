@@ -681,18 +681,15 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                 parentCategories[
                                                     parentCategoriesIndex];
                                             return Visibility(
-                                              visible: (_model
-                                                          .selectedParentCategoryId !=
-                                                      null) &&
-                                                  (FFAppState()
-                                                          .productCategories
-                                                          .where((e) =>
-                                                              e.parentId ==
-                                                              _model
-                                                                  .selectedParentCategoryId)
-                                                          .toList()
-                                                          .length >
-                                                      0),
+                                              visible: FFAppState()
+                                                      .productCategories
+                                                      .where((e) =>
+                                                          e.parentId ==
+                                                          _model
+                                                              .selectedParentCategoryId)
+                                                      .toList()
+                                                      .length >
+                                                  0,
                                               child: wrapWithModel(
                                                 model: _model
                                                     .subCategoriesListModels

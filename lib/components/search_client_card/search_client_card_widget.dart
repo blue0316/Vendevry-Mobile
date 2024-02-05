@@ -1,3 +1,4 @@
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -84,8 +85,8 @@ class _SearchClientCardWidgetState extends State<SearchClientCardWidget> {
                       width: MediaQuery.sizeOf(context).width * 0.6,
                       decoration: BoxDecoration(),
                       child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 0.0, 10.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -152,6 +153,21 @@ class _SearchClientCardWidgetState extends State<SearchClientCardWidget> {
                           ],
                         ),
                       ),
+                    ),
+                    FlutterFlowIconButton(
+                      borderColor: FlutterFlowTheme.of(context).primary,
+                      borderRadius: 20.0,
+                      borderWidth: 1.0,
+                      buttonSize: 40.0,
+                      fillColor: FlutterFlowTheme.of(context).accent1,
+                      icon: Icon(
+                        Icons.add,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 24.0,
+                      ),
+                      onPressed: () {
+                        print('IconButton pressed ...');
+                      },
                     ),
                   ],
                 ),
