@@ -361,7 +361,7 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                 children: [
                                   Builder(
                                     builder: (context) {
-                                      if (_model.isLoading) {
+                                      if (_model.isEmpty) {
                                         return Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
