@@ -110,6 +110,7 @@ class _SearchClientPageWidgetState extends State<SearchClientPageWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(50.0, 0.0, 50.0, 20.0),
@@ -179,6 +180,25 @@ class _SearchClientPageWidgetState extends State<SearchClientPageWidget> {
                             print('IconButton pressed ...');
                           },
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'Hello World',
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          ),
+                        ],
                       ),
                     ],
                   ),
