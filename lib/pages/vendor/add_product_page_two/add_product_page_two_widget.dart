@@ -2934,7 +2934,14 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                   ),
                                 ),
                                 Text(
-                                  (widget.singleProduct!).toString(),
+                                  ((getJsonField(
+                                    widget.singleProduct,
+                                    r'''$.images''',
+                                    true,
+                                  ) as List)
+                                          .map<String>((s) => s.toString())
+                                          .toList()!)
+                                      .toString(),
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ),
