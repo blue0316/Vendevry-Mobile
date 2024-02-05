@@ -37,24 +37,54 @@ class _CircleColorPaletteState extends State<CircleColorPalette> {
     // If callback is provided, call it
     widget.onColorChanged(color);
     widget.setColorField(color);
+    setState(() {
+      currentColor = color;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: widget.width ?? 120,
-      height: widget.height ?? 120,
-      child: ColorPicker(
-        pickerColor: currentColor,
-        onColorChanged: changeColor,
-        paletteType: PaletteType.hueWheel,
-        enableAlpha: false, // Set to true to enable alpha slider
-        displayThumbColor: false,
-        pickerAreaBorderRadius: const BorderRadius.all(Radius.zero),
-        pickerAreaHeightPercent: 1,
-        colorPickerWidth: 120,
-        labelTypes: [],
-      ),
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Container(
+          width: 120,
+          height: 120,
+          decoration: BoxDecoration(),
+          child: Container(
+            width: 120,
+            height: 120,
+            child: Container(
+              width: widget.width ?? 120,
+              height: widget.height ?? 120,
+              child: ColorPicker(
+                pickerColor: currentColor,
+                onColorChanged: changeColor,
+                paletteType: PaletteType.hueWheel,
+                enableAlpha: false, // Set to true to enable alpha slider
+                displayThumbColor: false,
+                pickerAreaBorderRadius: const BorderRadius.all(Radius.zero),
+                pickerAreaHeightPercent: 1,
+                colorPickerWidth: 120,
+                labelTypes: [],
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            height: 100,
+            decoration: BoxDecoration(
+              color: currentColor,
+            ),
+          ),
+        ),
+        Icon(
+          Icons.add,
+          color: Colors.black,
+          size: 32,
+        ),
+      ].divide(SizedBox(width: 16)),
     );
   }
 }

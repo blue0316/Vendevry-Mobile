@@ -38,3 +38,5 @@ export '/pages/vendor/services/service_dashboard/service_dashboard_widget.dart'
     show ServiceDashboardWidget;
 export '/pages/vendor/services/search_client_page/search_client_page_widget.dart'
     show SearchClientPageWidget;
+export '/pages/vendor/services/project_request_view_page/project_request_view_page_widget.dart'
+    show ProjectRequestViewPageWidget;

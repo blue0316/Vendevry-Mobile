@@ -212,6 +212,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SearchClientPage',
           path: '/searchClientPage',
           builder: (context, params) => SearchClientPageWidget(),
+        ),
+        FFRoute(
+          name: 'ProjectRequestViewPage',
+          path: '/projectRequestViewPage',
+          builder: (context, params) => ProjectRequestViewPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

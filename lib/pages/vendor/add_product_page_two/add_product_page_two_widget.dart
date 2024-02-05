@@ -2606,54 +2606,30 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    28.0, 14.0, 28.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 120.0,
-                                      height: 200.0,
-                                      decoration: BoxDecoration(),
-                                      child: Container(
-                                        width: 120.0,
-                                        height: 200.0,
-                                        child:
-                                            custom_widgets.CircleColorPalette(
-                                          width: 120.0,
-                                          height: 200.0,
-                                          onColorChanged: (color) async {
-                                            _model.pickedColor =
-                                                Color(0x00000000);
-                                          },
-                                          setColorField: (color) async {
-                                            setState(() {
-                                              _model.colorController?.text =
-                                                  ((Color color) {
-                                                return '#' +
-                                                    color
-                                                        .toString()
-                                                        .substring(10, 16)
-                                                        .toUpperCase();
-                                              }(color));
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        height: 100.0,
-                                        decoration: BoxDecoration(
-                                          color: _model.pickedColor,
-                                        ),
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.add,
-                                      color: Colors.black,
-                                      size: 32.0,
-                                    ),
-                                  ].divide(SizedBox(width: 16.0)),
+                                    28.0, 8.0, 28.0, 0.0),
+                                child: Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  height: 120.0,
+                                  child: custom_widgets.CircleColorPalette(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height: 120.0,
+                                    onColorChanged: (color) async {
+                                      _model.pickedColor = Color(0x00000000);
+                                    },
+                                    setColorField: (color) async {
+                                      setState(() {
+                                        _model.colorController?.text =
+                                            ((Color color) {
+                                          return '#' +
+                                              color
+                                                  .toString()
+                                                  .substring(10, 16)
+                                                  .toUpperCase();
+                                        }(color));
+                                      });
+                                    },
+                                  ),
                                 ),
                               ),
                               Container(
@@ -2668,7 +2644,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            28.0, 5.0, 28.0, 0.0),
+                                            28.0, 8.0, 28.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
