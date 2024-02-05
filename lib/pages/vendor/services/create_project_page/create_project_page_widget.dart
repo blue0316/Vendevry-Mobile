@@ -30,8 +30,11 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
     super.initState();
     _model = createModel(context, () => CreateProjectPageModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.textController1 ??= TextEditingController();
+    _model.textFieldFocusNode1 ??= FocusNode();
+
+    _model.textController2 ??= TextEditingController();
+    _model.textFieldFocusNode2 ??= FocusNode();
   }
 
   @override
@@ -169,8 +172,8 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
-                                    controller: _model.textController,
-                                    focusNode: _model.textFieldFocusNode,
+                                    controller: _model.textController1,
+                                    focusNode: _model.textFieldFocusNode1,
                                     autofocus: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -188,7 +191,7 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                     ),
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
-                                    validator: _model.textControllerValidator
+                                    validator: _model.textController1Validator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -311,6 +314,7 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                               children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       'Project Description',
@@ -344,11 +348,63 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                 ),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 15.0, 20.0, 15.0),
-                                  child: Text(
-                                    'Nam venenatis dui non commodo aliquet. Quisque eu gravida justo. Phasellus auctor, eros qui luctus, purus mauris eleifend est, in rutrum orci nibh et sapien.Nam venenatis dui non commodo aliquet. Quisque eu gravida justo. Phasellus auctor, eros qui luctus, purus mauris eleifend est, in rutrum orci nibh et sapien.',
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: TextFormField(
+                                    controller: _model.textController2,
+                                    focusNode: _model.textFieldFocusNode2,
+                                    autofocus: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              15.0, 10.0, 15.0, 10.0),
+                                    ),
                                     style:
-                                        FlutterFlowTheme.of(context).bodySmall,
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    textAlign: TextAlign.start,
+                                    maxLines: 6,
+                                    validator: _model.textController2Validator
+                                        .asValidator(context),
                                   ),
                                 ),
                               ),
@@ -372,7 +428,7 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Client\'s Budget',
+                                  'Create Milestones',
                                   style: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
@@ -408,7 +464,7 @@ class _CreateProjectPageWidgetState extends State<CreateProjectPageWidget> {
                                         alignment:
                                             AlignmentDirectional(0.0, 0.0),
                                         child: Text(
-                                          '\$ 1,500.00 USD',
+                                          'A',
                                           style: FlutterFlowTheme.of(context)
                                               .titleLarge
                                               .override(

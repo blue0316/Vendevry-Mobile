@@ -1507,7 +1507,9 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                         ),
                                                     elevation: 3.0,
                                                     borderSide: BorderSide(
-                                                      width: 1.0,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -2961,7 +2963,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                         alignment:
                                             AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
-                                          'Add up to 12 photos of your product! \nMake sure to take pictures of any \ndefects or issues with the product.',
+                                          'Add up to 7 photos of your product! \nMake sure to take pictures of any \ndefects or issues with the product.',
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
