@@ -1,3 +1,4 @@
+import '/components/client_info_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -16,13 +17,18 @@ class ProjectRequestViewPageModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Model for ClientInfoCard component.
+  late ClientInfoCardModel clientInfoCardModel;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    clientInfoCardModel = createModel(context, () => ClientInfoCardModel());
+  }
 
   void dispose() {
     unfocusNode.dispose();
+    clientInfoCardModel.dispose();
   }
 
   /// Action blocks are added here.

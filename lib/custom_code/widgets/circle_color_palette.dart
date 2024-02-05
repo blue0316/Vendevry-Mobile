@@ -48,15 +48,15 @@ class _CircleColorPaletteState extends State<CircleColorPalette> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Container(
-          width: 120,
-          height: 120,
+          width: 160,
+          height: 160,
           decoration: BoxDecoration(),
           child: Container(
-            width: 120,
-            height: 120,
+            width: 160,
+            height: 160,
             child: Container(
-              width: widget.width ?? 120,
-              height: widget.height ?? 120,
+              width: 160,
+              height: 160,
               child: ColorPicker(
                 pickerColor: currentColor,
                 onColorChanged: changeColor,
@@ -65,7 +65,7 @@ class _CircleColorPaletteState extends State<CircleColorPalette> {
                 displayThumbColor: false,
                 pickerAreaBorderRadius: const BorderRadius.all(Radius.zero),
                 pickerAreaHeightPercent: 1,
-                colorPickerWidth: 120,
+                colorPickerWidth: 160,
                 labelTypes: [],
               ),
             ),

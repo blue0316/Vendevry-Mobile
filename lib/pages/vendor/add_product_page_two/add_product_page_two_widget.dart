@@ -2609,11 +2609,11 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                     28.0, 8.0, 28.0, 0.0),
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 120.0,
+                                  height: 160.0,
                                   child: custom_widgets.CircleColorPalette(
                                     width:
                                         MediaQuery.sizeOf(context).width * 1.0,
-                                    height: 120.0,
+                                    height: 160.0,
                                     onColorChanged: (color) async {
                                       _model.pickedColor = Color(0x00000000);
                                     },
