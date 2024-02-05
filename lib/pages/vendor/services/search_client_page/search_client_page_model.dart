@@ -1,30 +1,26 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'search_client_card_widget.dart' show SearchClientCardWidget;
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'search_client_page_widget.dart' show SearchClientPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class SearchClientCardModel extends FlutterFlowModel<SearchClientCardWidget> {
-  ///  Local state fields for this component.
+class SearchClientPageModel extends FlutterFlowModel<SearchClientPageWidget> {
+  ///  State fields for stateful widgets in this page.
 
-  String avatar = 'https://picsum.photos/seed/321/600';
-
-  String name = 'Walmart';
-
-  String title =
-      'Explore the world of Walmart where the shopping never ends and the aisles are always stocked!';
-
-  String? budget = '';
+  final unfocusNode = FocusNode();
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
 
-  void dispose() {}
+  void dispose() {
+    unfocusNode.dispose();
+  }
 
   /// Action blocks are added here.
 

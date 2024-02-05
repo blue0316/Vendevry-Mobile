@@ -3,7 +3,6 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/option_price_modal/option_price_modal_widget.dart';
-import '/components/sub_categories_list_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -81,8 +80,9 @@ class AddProductPageTwoModel extends FlutterFlowModel<AddProductPageTwoWidget> {
   // State field(s) for categories widget.
   int? categoriesValue;
   FormFieldController<int>? categoriesValueController;
-  // Models for SubCategoriesList dynamic component.
-  late FlutterFlowDynamicModels<SubCategoriesListModel> subCategoriesListModels;
+  // State field(s) for subcategories widget.
+  int? subcategoriesValue;
+  FormFieldController<int>? subcategoriesValueController;
   // State field(s) for condition widget.
   String? conditionValue;
   FormFieldController<String>? conditionValueController;
@@ -138,17 +138,13 @@ class AddProductPageTwoModel extends FlutterFlowModel<AddProductPageTwoWidget> {
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {
-    subCategoriesListModels =
-        FlutterFlowDynamicModels(() => SubCategoriesListModel());
-  }
+  void initState(BuildContext context) {}
 
   void dispose() {
     unfocusNode.dispose();
     titleFocusNode?.dispose();
     titleController?.dispose();
 
-    subCategoriesListModels.dispose();
     brandFocusNode?.dispose();
     brandController?.dispose();
 

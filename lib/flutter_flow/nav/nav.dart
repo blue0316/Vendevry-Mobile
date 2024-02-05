@@ -207,6 +207,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ServiceDashboard',
           path: '/serviceDashboard',
           builder: (context, params) => ServiceDashboardWidget(),
+        ),
+        FFRoute(
+          name: 'SearchClientPage',
+          path: '/searchClientPage',
+          builder: (context, params) => SearchClientPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

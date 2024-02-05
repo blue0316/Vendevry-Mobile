@@ -12,16 +12,19 @@ export 'search_client_card_model.dart';
 class SearchClientCardWidget extends StatefulWidget {
   const SearchClientCardWidget({
     super.key,
-    String? shopLogo,
-    String? shopName,
-    String? shopDesc,
-  })  : this.shopLogo = shopLogo ?? 'https://picsum.photos/seed/321/600',
-        this.shopName = shopName ?? 'Shop Name',
-        this.shopDesc = shopDesc ?? 'Shop Description';
+    String? avatar,
+    String? clientName,
+    String? projectTitle,
+    String? budget,
+  })  : this.avatar = avatar ?? 'https://picsum.photos/seed/321/600',
+        this.clientName = clientName ?? 'Joshep',
+        this.projectTitle = projectTitle ?? 'Mobile Design',
+        this.budget = budget ?? '\$ 5000 Budget';
 
-  final String shopLogo;
-  final String shopName;
-  final String shopDesc;
+  final String avatar;
+  final String clientName;
+  final String projectTitle;
+  final String budget;
 
   @override
   State<SearchClientCardWidget> createState() => _SearchClientCardWidgetState();
@@ -100,7 +103,7 @@ class _SearchClientCardWidgetState extends State<SearchClientCardWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 0.0),
                                   child: Text(
-                                    widget.shopName,
+                                    widget.clientName,
                                     textAlign: TextAlign.start,
                                     maxLines: 1,
                                     style: FlutterFlowTheme.of(context)
@@ -122,27 +125,27 @@ class _SearchClientCardWidgetState extends State<SearchClientCardWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 12.0, 0.0),
                                   child: Text(
-                                    widget.shopDesc,
+                                    widget.projectTitle,
                                     textAlign: TextAlign.start,
                                     maxLines: 5,
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                        .labelMedium
                                         .override(
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily,
-                                          color: Color(0xFF9B9B9B),
-                                          fontSize: 12.0,
+                                                  .labelMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
+                                                      .labelMediumFamily),
                                           lineHeight: 1.1,
                                         ),
                                   ),
                                 ),
                                 Text(
-                                  'Hello World',
+                                  widget.budget,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -167,10 +170,10 @@ class _SearchClientCardWidgetState extends State<SearchClientCardWidget> {
                         borderRadius: 20.0,
                         borderWidth: 0.0,
                         buttonSize: 40.0,
-                        fillColor: FlutterFlowTheme.of(context).primary,
+                        fillColor: Color(0xFF744BE5),
                         icon: Icon(
                           Icons.add,
-                          color: FlutterFlowTheme.of(context).primaryText,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           size: 24.0,
                         ),
                         onPressed: () {
@@ -187,7 +190,7 @@ class _SearchClientCardWidgetState extends State<SearchClientCardWidget> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4.0),
                 child: Image.network(
-                  widget.shopLogo,
+                  widget.avatar,
                   width: 98.0,
                   height: 122.0,
                   fit: BoxFit.cover,
