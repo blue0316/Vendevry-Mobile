@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'search_client_page_model.dart';
@@ -74,15 +75,31 @@ class _SearchClientPageWidgetState extends State<SearchClientPageWidget> {
           ),
           title: Text(
             'Submit a Proposal',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
+            style: FlutterFlowTheme.of(context).labelLarge.override(
+                  fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                   color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 22.0,
+                  fontWeight: FontWeight.w500,
                   useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).headlineMediumFamily),
+                      FlutterFlowTheme.of(context).labelLargeFamily),
                 ),
           ),
-          actions: [],
+          actions: [
+            FlutterFlowIconButton(
+              borderColor: FlutterFlowTheme.of(context).customColor1,
+              borderRadius: 20.0,
+              borderWidth: 0.0,
+              buttonSize: 40.0,
+              fillColor: FlutterFlowTheme.of(context).customColor1,
+              icon: FaIcon(
+                FontAwesomeIcons.bell,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 24.0,
+              ),
+              onPressed: () {
+                print('IconButton pressed ...');
+              },
+            ),
+          ],
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -90,7 +107,15 @@ class _SearchClientPageWidgetState extends State<SearchClientPageWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            children: [],
+            children: [
+              Container(
+                width: 100.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+              ),
+            ],
           ),
         ),
       ),

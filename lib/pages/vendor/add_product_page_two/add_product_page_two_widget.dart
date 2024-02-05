@@ -711,8 +711,6 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                         setState(() =>
                                             _model.subcategoriesValue = val);
                                         setState(() {
-                                          _model.selectedParentCategoryId =
-                                              _model.subcategoriesValue;
                                           _model.productCategoryId =
                                               _model.subcategoriesValue;
                                         });
