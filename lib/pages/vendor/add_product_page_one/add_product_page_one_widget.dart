@@ -369,8 +369,12 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                               }.withoutNulls,
                                             );
                                           } else {
-                                            context
-                                                .pushNamed('AddProductPageTwo');
+                                            if (_model.textController.text
+                                                    .length >
+                                                0) {
+                                              context.pushNamed(
+                                                  'AddProductPageTwo');
+                                            }
                                           }
 
                                           setState(() {});
