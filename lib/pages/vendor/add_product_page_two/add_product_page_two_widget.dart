@@ -1461,8 +1461,10 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                           ) ??
                                                           false;
                                                   if (confirmDialogResponse) {
-                                                    _model.removeAtIndexFromCustomOptions(
-                                                        customOptionListIndex);
+                                                    setState(() {
+                                                      _model.removeAtIndexFromCustomOptions(
+                                                          customOptionListIndex);
+                                                    });
                                                   }
                                                 },
                                                 child: FFButtonWidget(

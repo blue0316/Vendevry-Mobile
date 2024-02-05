@@ -1,3 +1,4 @@
+import '/components/search_client_card/search_client_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -211,9 +212,39 @@ class _SearchClientPageWidgetState extends State<SearchClientPageWidget> {
                           ),
                         ],
                       ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [],
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              wrapWithModel(
+                                model: _model.searchClientCardModel1,
+                                updateCallback: () => setState(() {}),
+                                child: SearchClientCardWidget(),
+                              ),
+                              wrapWithModel(
+                                model: _model.searchClientCardModel2,
+                                updateCallback: () => setState(() {}),
+                                child: SearchClientCardWidget(),
+                              ),
+                              wrapWithModel(
+                                model: _model.searchClientCardModel3,
+                                updateCallback: () => setState(() {}),
+                                child: SearchClientCardWidget(),
+                              ),
+                              wrapWithModel(
+                                model: _model.searchClientCardModel4,
+                                updateCallback: () => setState(() {}),
+                                child: SearchClientCardWidget(),
+                              ),
+                              wrapWithModel(
+                                model: _model.searchClientCardModel5,
+                                updateCallback: () => setState(() {}),
+                                child: SearchClientCardWidget(),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),

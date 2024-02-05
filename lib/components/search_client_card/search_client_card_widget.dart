@@ -57,7 +57,7 @@ class _SearchClientCardWidgetState extends State<SearchClientCardWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 4.0),
+      padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 15.0),
       child: Container(
         width: MediaQuery.sizeOf(context).width * 1.0,
         height: 136.0,
