@@ -311,9 +311,31 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                 children: [
                                   Builder(
                                     builder: (context) {
-                                      if ((_model.searchResult.length < 1) &&
-                                          (_model.textController.text.length >
-                                              2)) {
+                                      if ((_model.searchResult.length > 0) &&
+                                          (_model.selectedProductId == null)) {
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 12.0, 0.0, 0.0),
+                                          child: Text(
+                                            'It’s as easy as 1,2,3',
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineLarge
+                                                .override(
+                                                  fontFamily: 'HelveticaBold',
+                                                  color: Color(0xFF606060),
+                                                  fontSize: 28.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(FlutterFlowTheme
+                                                              .of(context)
+                                                          .headlineLargeFamily),
+                                                  lineHeight: 1.0,
+                                                ),
+                                          ),
+                                        );
+                                      } else {
                                         return Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -335,29 +357,6 @@ class _AddProductPageOneWidgetState extends State<AddProductPageOneWidget> {
                                                               .of(context)
                                                           .headlineLargeFamily),
                                                   lineHeight: 1.4,
-                                                ),
-                                          ),
-                                        );
-                                      } else {
-                                        return Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 0.0),
-                                          child: Text(
-                                            'It’s as easy as 1,2,3',
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineLarge
-                                                .override(
-                                                  fontFamily: 'HelveticaBold',
-                                                  color: Color(0xFF606060),
-                                                  fontSize: 28.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(FlutterFlowTheme
-                                                              .of(context)
-                                                          .headlineLargeFamily),
-                                                  lineHeight: 1.0,
                                                 ),
                                           ),
                                         );
