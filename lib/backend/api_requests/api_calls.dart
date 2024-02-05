@@ -190,6 +190,10 @@ class VerifiedAPIsGroup {
   static AllProductConditionsCall allProductConditionsCall =
       AllProductConditionsCall();
   static AddVendorProductCall addVendorProductCall = AddVendorProductCall();
+  static AllProductParentCategoriesCall allProductParentCategoriesCall =
+      AllProductParentCategoriesCall();
+  static ProductSubcategoriesCall productSubcategoriesCall =
+      ProductSubcategoriesCall();
 }
 
 class SearchProductsCall {
@@ -690,6 +694,161 @@ class AddVendorProductCall {
         response,
         r'''$.data.product_id''',
       ));
+  String? message(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.message''',
+      ));
+}
+
+class AllProductParentCategoriesCall {
+  Future<ApiCallResponse> call({
+    String? token = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'AllProductParentCategories',
+      apiUrl: '${VerifiedAPIsGroup.baseUrl}/category/product/parentCategories',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? data(dynamic response) => getJsonField(
+        response,
+        r'''$.data''',
+        true,
+      ) as List?;
+  List<int>? ids(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  List<String>? names(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].name''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? descriptions(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].description''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List? logo(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].logo''',
+        true,
+      ) as List?;
+  List<String>? banner(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].banner''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<int>? status(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].status''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+}
+
+class ProductSubcategoriesCall {
+  Future<ApiCallResponse> call({
+    int? pid,
+    String? token = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'ProductSubcategories',
+      apiUrl:
+          '${VerifiedAPIsGroup.baseUrl}/category/product/subCategories/${pid}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? data(dynamic response) => getJsonField(
+        response,
+        r'''$.data''',
+        true,
+      ) as List?;
+  List<int>? ids(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  List<String>? names(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].name''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? descriptions(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].description''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? banner(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].banner''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<int>? status(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].status''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
 }
 
 /// End VerifiedAPIs Group Code

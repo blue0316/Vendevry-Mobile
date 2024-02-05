@@ -10,9 +10,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,6 +45,46 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
     super.initState();
     _model = createModel(context, () => AddProductPageTwoModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (widget.singleProduct != null) {
+        setState(() {
+          _model.customOptions = (getJsonField(
+            widget.singleProduct,
+            r'''$.custom_options''',
+            true,
+          )!
+                  .toList()
+                  .map<ProductCustomOptionStruct?>(
+                      ProductCustomOptionStruct.maybeFromMap)
+                  .toList() as Iterable<ProductCustomOptionStruct?>)
+              .withoutNulls
+              .toList()
+              .cast<ProductCustomOptionStruct>();
+          _model.colorOptions = (getJsonField(
+            widget.singleProduct,
+            r'''$.colors''',
+            true,
+          )!
+                  .toList()
+                  .map<ProductColorOptionStruct?>(
+                      ProductColorOptionStruct.maybeFromMap)
+                  .toList() as Iterable<ProductColorOptionStruct?>)
+              .withoutNulls
+              .toList()
+              .cast<ProductColorOptionStruct>();
+          _model.images = widget.singleProduct!.toList().cast<String>();
+        });
+      } else {
+        setState(() {
+          _model.customOptions = [];
+          _model.colorOptions = [];
+          _model.images = [];
+          _model.productCategoryId = null;
+        });
+      }
+    });
+
     _model.titleController ??= TextEditingController(
         text: widget.singleProduct != null
             ? getJsonField(
@@ -52,7 +94,13 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
             : '');
     _model.titleFocusNode ??= FocusNode();
 
-    _model.brandController ??= TextEditingController();
+    _model.brandController ??= TextEditingController(
+        text: widget.singleProduct != null
+            ? getJsonField(
+                widget.singleProduct,
+                r'''$.brand''',
+              ).toString().toString()
+            : '');
     _model.brandFocusNode ??= FocusNode();
 
     _model.optionController ??= TextEditingController();
@@ -61,20 +109,48 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
     _model.colorController ??= TextEditingController();
     _model.colorFocusNode ??= FocusNode();
 
-    _model.descriptionController ??= TextEditingController();
+    _model.descriptionController ??= TextEditingController(
+        text: widget.singleProduct != null
+            ? getJsonField(
+                widget.singleProduct,
+                r'''$.description''',
+              ).toString().toString()
+            : '');
     _model.descriptionFocusNode ??= FocusNode();
 
-    _model.minPriceController ??= TextEditingController();
+    _model.minPriceController ??= TextEditingController(
+        text: widget.singleProduct != null
+            ? getJsonField(
+                widget.singleProduct,
+                r'''$.product_price''',
+              ).toString().toString()
+            : '0');
     _model.minPriceFocusNode ??= FocusNode();
 
-    _model.commissionController ??= TextEditingController();
+    _model.commissionController ??= TextEditingController(
+        text: widget.singleProduct != null
+            ? getJsonField(
+                widget.singleProduct,
+                r'''$.commission''',
+              ).toString().toString()
+            : '0');
     _model.commissionFocusNode ??= FocusNode();
 
-    _model.minTakeController ??= TextEditingController();
-    _model.minTakeFocusNode ??= FocusNode();
+    _model.stockController ??= TextEditingController();
+    _model.stockFocusNode ??= FocusNode();
 
-    _model.shippingRateController ??= TextEditingController();
+    _model.shippingRateController ??= TextEditingController(
+        text: widget.singleProduct != null
+            ? getJsonField(
+                widget.singleProduct,
+                r'''$.flat_rate''',
+              ).toString().toString()
+            : '0');
     _model.shippingRateFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+          _model.stockController?.text = '0';
+        }));
   }
 
   @override
@@ -371,93 +447,106 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Expanded(
-                                  child: FlutterFlowDropDown<int>(
-                                    controller:
-                                        _model.categoriesValueController ??=
-                                            FormFieldController<int>(
-                                      _model.categoriesValue ??= (FFAppState()
-                                                  .productCategories
-                                                  .where((e) =>
-                                                      e.id ==
-                                                      _model.productTemplate
-                                                          ?.category)
-                                                  .toList()
-                                                  .isNotEmpty) &&
-                                              (FFAppState()
-                                                      .productCategories
-                                                      .where((e) =>
-                                                          e.id ==
-                                                          _model.productTemplate
-                                                              ?.category)
-                                                      .toList()
-                                                      .first
-                                                      .parentId <
-                                                  0)
-                                          ? _model.productTemplate?.category
-                                          : FFAppState()
-                                              .productCategories
-                                              .where((e) =>
-                                                  e.id ==
-                                                  _model.productTemplate
-                                                      ?.category)
-                                              .toList()
-                                              .first
-                                              .parentId,
+                                  child: FutureBuilder<ApiCallResponse>(
+                                    future: VerifiedAPIsGroup
+                                        .allProductParentCategoriesCall
+                                        .call(
+                                      token: FFAppState().accessToken,
                                     ),
-                                    options: List<int>.from(FFAppState()
-                                        .productCategories
-                                        .where((e) => e.parentId < 0)
-                                        .toList()
-                                        .map((e) => e.id)
-                                        .toList()),
-                                    optionLabels: FFAppState()
-                                        .productCategories
-                                        .where((e) => e.parentId < 0)
-                                        .toList()
-                                        .map((e) => e.name)
-                                        .toList(),
-                                    onChanged: (val) async {
-                                      setState(
-                                          () => _model.categoriesValue = val);
-                                      setState(() {
-                                        _model.selectedParentCategoryId =
-                                            _model.categoriesValue;
-                                        _model.productCategoryId =
-                                            _model.categoriesValue;
-                                      });
-                                    },
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 1.0,
-                                    height: 54.0,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily,
-                                          fontSize: 16.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(2.0),
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: SpinKitDualRing(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 50.0,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final categoriesAllProductParentCategoriesResponse =
+                                          snapshot.data!;
+                                      return FlutterFlowDropDown<int>(
+                                        controller:
+                                            _model.categoriesValueController ??=
+                                                FormFieldController<int>(
+                                          _model.categoriesValue ??=
+                                              VerifiedAPIsGroup
+                                                  .allProductParentCategoriesCall
+                                                  .ids(
+                                                    categoriesAllProductParentCategoriesResponse
+                                                        .jsonBody,
+                                                  )
+                                                  ?.first,
                                         ),
-                                    icon: Icon(
-                                      Icons.arrow_drop_down,
-                                      color: Color(0xFF707070),
-                                      size: 28.0,
-                                    ),
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    elevation: 1.0,
-                                    borderColor: Color(0xFF707070),
-                                    borderWidth: 1.0,
-                                    borderRadius: 27.0,
-                                    margin: EdgeInsetsDirectional.fromSTEB(
-                                        33.0, 4.0, 28.0, 4.0),
-                                    hidesUnderline: true,
-                                    isOverButton: true,
-                                    isSearchable: false,
-                                    isMultiSelect: false,
+                                        options: List<int>.from(
+                                            VerifiedAPIsGroup
+                                                .allProductParentCategoriesCall
+                                                .ids(
+                                          categoriesAllProductParentCategoriesResponse
+                                              .jsonBody,
+                                        )!),
+                                        optionLabels: VerifiedAPIsGroup
+                                            .allProductParentCategoriesCall
+                                            .names(
+                                          categoriesAllProductParentCategoriesResponse
+                                              .jsonBody,
+                                        )!,
+                                        onChanged: (val) async {
+                                          setState(() =>
+                                              _model.categoriesValue = val);
+                                          setState(() {
+                                            _model.selectedParentCategoryId =
+                                                _model.categoriesValue;
+                                            _model.productCategoryId =
+                                                _model.categoriesValue;
+                                          });
+                                        },
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 54.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              fontSize: 16.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
+                                        icon: Icon(
+                                          Icons.arrow_drop_down,
+                                          color: Color(0xFF707070),
+                                          size: 28.0,
+                                        ),
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        elevation: 1.0,
+                                        borderColor: Color(0xFF707070),
+                                        borderWidth: 1.0,
+                                        borderRadius: 27.0,
+                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                            33.0, 4.0, 28.0, 4.0),
+                                        hidesUnderline: true,
+                                        isOverButton: true,
+                                        isSearchable: false,
+                                        isMultiSelect: false,
+                                      );
+                                    },
                                   ),
                                 ),
                               ],
@@ -465,121 +554,158 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                           ),
                         ],
                       ),
-                      if (FFAppState()
-                              .productCategories
-                              .where((e) =>
-                                  e.parentId == _model.selectedParentCategoryId)
-                              .toList()
-                              .length >
-                          0)
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  28.0, 5.0, 28.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
-                                    child: Text(
-                                      'Sub Category',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Avenir',
-                                            color: Colors.black,
-                                            fontSize: 28.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily),
-                                            lineHeight: 1.33,
-                                          ),
-                                    ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                28.0, 5.0, 28.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Text(
+                                    'Sub Category',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Avenir',
+                                          color: Colors.black,
+                                          fontSize: 28.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                          lineHeight: 1.33,
+                                        ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  19.0, 10.0, 19.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: FlutterFlowDropDown<int>(
-                                      controller: _model
-                                              .subcategoriesValueController ??=
-                                          FormFieldController<int>(
-                                        _model.subcategoriesValue ??=
-                                            _model.productTemplate?.category,
-                                      ),
-                                      options: List<int>.from(FFAppState()
-                                          .productCategories
-                                          .where((e) =>
-                                              e.parentId ==
-                                              _model.selectedParentCategoryId)
-                                          .toList()
-                                          .map((e) => e.id)
-                                          .toList()),
-                                      optionLabels: FFAppState()
-                                          .productCategories
-                                          .where((e) =>
-                                              e.parentId ==
-                                              _model.selectedParentCategoryId)
-                                          .toList()
-                                          .map((e) => e.name)
-                                          .toList(),
-                                      onChanged: (val) async {
-                                        setState(() =>
-                                            _model.subcategoriesValue = val);
-                                        setState(() {
-                                          _model.productCategoryId =
-                                              _model.subcategoriesValue;
-                                        });
-                                      },
-                                      width: MediaQuery.sizeOf(context).width *
-                                          1.0,
-                                      height: 54.0,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily,
-                                            fontSize: 16.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily),
-                                          ),
-                                      icon: Icon(
-                                        Icons.arrow_drop_down,
-                                        color: Color(0xFF707070),
-                                        size: 28.0,
-                                      ),
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      elevation: 1.0,
-                                      borderColor: Color(0xFF707070),
-                                      borderWidth: 1.0,
-                                      borderRadius: 27.0,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
-                                          33.0, 4.0, 28.0, 4.0),
-                                      hidesUnderline: true,
-                                      isOverButton: true,
-                                      isSearchable: false,
-                                      isMultiSelect: false,
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                19.0, 10.0, 19.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: FutureBuilder<ApiCallResponse>(
+                                    future: VerifiedAPIsGroup
+                                        .productSubcategoriesCall
+                                        .call(
+                                      pid: _model.categoriesValue,
+                                      token: FFAppState().accessToken,
                                     ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(2.0),
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: SpinKitDualRing(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 50.0,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final subcategoriesProductSubcategoriesResponse =
+                                          snapshot.data!;
+                                      return FlutterFlowDropDown<int>(
+                                        controller: _model
+                                                .subcategoriesValueController ??=
+                                            FormFieldController<int>(
+                                          _model.subcategoriesValue ??=
+                                              VerifiedAPIsGroup
+                                                  .productSubcategoriesCall
+                                                  .ids(
+                                                    subcategoriesProductSubcategoriesResponse
+                                                        .jsonBody,
+                                                  )
+                                                  ?.first,
+                                        ),
+                                        options: List<int>.from(
+                                            VerifiedAPIsGroup
+                                                .productSubcategoriesCall
+                                                .ids(
+                                          subcategoriesProductSubcategoriesResponse
+                                              .jsonBody,
+                                        )!),
+                                        optionLabels: VerifiedAPIsGroup
+                                            .productSubcategoriesCall
+                                            .names(
+                                          subcategoriesProductSubcategoriesResponse
+                                              .jsonBody,
+                                        )!,
+                                        onChanged: (val) async {
+                                          setState(() =>
+                                              _model.subcategoriesValue = val);
+                                          setState(() {
+                                            _model.productCategoryId =
+                                                _model.subcategoriesValue;
+                                          });
+                                        },
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 54.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              fontSize: 16.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
+                                        icon: Icon(
+                                          Icons.arrow_drop_down,
+                                          color: Color(0xFF707070),
+                                          size: 28.0,
+                                        ),
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        elevation: 1.0,
+                                        borderColor: Color(0xFF707070),
+                                        borderWidth: 1.0,
+                                        borderRadius: 27.0,
+                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                            33.0, 4.0, 28.0, 4.0),
+                                        hidesUnderline: true,
+                                        disabled: VerifiedAPIsGroup
+                                                .productSubcategoriesCall
+                                                .ids(
+                                                  subcategoriesProductSubcategoriesResponse
+                                                      .jsonBody,
+                                                )!
+                                                .length <
+                                            1,
+                                        isOverButton: true,
+                                        isSearchable: false,
+                                        isMultiSelect: false,
+                                      );
+                                    },
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -686,51 +812,99 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           28.0, 8.0, 28.0, 0.0),
-                                      child: FlutterFlowDropDown<String>(
-                                        controller:
-                                            _model.conditionValueController ??=
+                                      child: FutureBuilder<ApiCallResponse>(
+                                        future: VerifiedAPIsGroup
+                                            .allProductConditionsCall
+                                            .call(
+                                          token: FFAppState().accessToken,
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child: SpinKitDualRing(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 50.0,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          final conditionAllProductConditionsResponse =
+                                              snapshot.data!;
+                                          return FlutterFlowDropDown<String>(
+                                            controller: _model
+                                                    .conditionValueController ??=
                                                 FormFieldController<String>(
-                                          _model.conditionValue ??= 'New',
-                                        ),
-                                        options: ['New', 'Old', 'Normal'],
-                                        onChanged: (val) => setState(
-                                            () => _model.conditionValue = val),
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                1.0,
-                                        height: 45.0,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'HelveticaBold',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 18.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
+                                              _model.conditionValue ??= widget
+                                                          .singleProduct !=
+                                                      null
+                                                  ? getJsonField(
+                                                      widget.singleProduct,
+                                                      r'''$.condition''',
+                                                    ).toString()
+                                                  : VerifiedAPIsGroup
+                                                      .allProductConditionsCall
+                                                      .names(
+                                                        conditionAllProductConditionsResponse
+                                                            .jsonBody,
+                                                      )
+                                                      ?.first,
                                             ),
-                                        icon: Icon(
-                                          Icons.arrow_drop_down,
-                                          color: Color(0xFF707070),
-                                          size: 28.0,
-                                        ),
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        elevation: 1.0,
-                                        borderColor: Color(0xFF707070),
-                                        borderWidth: 1.0,
-                                        borderRadius: 27.0,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 4.0, 16.0, 4.0),
-                                        hidesUnderline: true,
-                                        isOverButton: true,
-                                        isSearchable: false,
-                                        isMultiSelect: false,
+                                            options: VerifiedAPIsGroup
+                                                .allProductConditionsCall
+                                                .names(
+                                              conditionAllProductConditionsResponse
+                                                  .jsonBody,
+                                            )!,
+                                            onChanged: (val) => setState(() =>
+                                                _model.conditionValue = val),
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            height: 50.0,
+                                            textStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'HelveticaBold',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 18.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                ),
+                                            hintText: 'New',
+                                            icon: Icon(
+                                              Icons.arrow_drop_down,
+                                              color: Color(0xFF707070),
+                                              size: 28.0,
+                                            ),
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            elevation: 1.0,
+                                            borderColor: Color(0xFF707070),
+                                            borderWidth: 1.0,
+                                            borderRadius: 27.0,
+                                            margin:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 4.0, 16.0, 4.0),
+                                            hidesUnderline: true,
+                                            isOverButton: true,
+                                            isSearchable: false,
+                                            isMultiSelect: false,
+                                          );
+                                        },
                                       ),
                                     ),
                                   ),
@@ -4309,9 +4483,18 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
+                                                    keyboardType:
+                                                        const TextInputType
+                                                            .numberWithOptions(
+                                                            decimal: true),
                                                     validator: _model
                                                         .minPriceControllerValidator
                                                         .asValidator(context),
+                                                    inputFormatters: [
+                                                      FilteringTextInputFormatter
+                                                          .allow(
+                                                              RegExp('[0-9]'))
+                                                    ],
                                                   ),
                                                 ),
                                               ),
@@ -4497,9 +4680,18 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
+                                                    keyboardType:
+                                                        const TextInputType
+                                                            .numberWithOptions(
+                                                            decimal: true),
                                                     validator: _model
                                                         .commissionControllerValidator
                                                         .asValidator(context),
+                                                    inputFormatters: [
+                                                      FilteringTextInputFormatter
+                                                          .allow(RegExp(
+                                                              '[a-zA-Z0-9]'))
+                                                    ],
                                                   ),
                                                 ),
                                               ),
@@ -4654,11 +4846,138 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 24.0, 0.0),
+                                                  child: Text(
+                                                    (double.parse(_model
+                                                                .minPriceController
+                                                                .text) *
+                                                            double.parse(_model
+                                                                .commissionController
+                                                                .text) /
+                                                            100)
+                                                        .toString(),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          fontSize: 18.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                28.0, 12.0, 28.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Text(
+                                    'Stock',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Avenir',
+                                          color: Colors.black,
+                                          fontSize: 25.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                          lineHeight: 1.0,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    26.0, 12.0, 26.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        height: 50.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                          border: Border.all(
+                                            color: Color(0xFF707070),
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '0',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 18.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                              ),
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 24.0, 0.0),
                                                   child: TextFormField(
-                                                    controller: _model
-                                                        .minTakeController,
+                                                    controller:
+                                                        _model.stockController,
                                                     focusNode:
-                                                        _model.minTakeFocusNode,
+                                                        _model.stockFocusNode,
                                                     obscureText: false,
                                                     decoration: InputDecoration(
                                                       enabledBorder:
@@ -4686,9 +5005,16 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
+                                                    keyboardType:
+                                                        TextInputType.number,
                                                     validator: _model
-                                                        .minTakeControllerValidator
+                                                        .stockControllerValidator
                                                         .asValidator(context),
+                                                    inputFormatters: [
+                                                      FilteringTextInputFormatter
+                                                          .allow(
+                                                              RegExp('[0-9]'))
+                                                    ],
                                                   ),
                                                 ),
                                               ),
@@ -5186,7 +5512,8 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                       boostDeadline:
                                           FFAppState().productBoostOption,
                                       token: FFAppState().accessToken,
-                                      stock: 0,
+                                      stock: int.tryParse(
+                                          _model.stockController.text),
                                       vendorId: FFAppState().loggedInUser.id,
                                     );
                                     if ((_model.newProduct?.succeeded ??
@@ -5195,7 +5522,12 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                           .showSnackBar(
                                         SnackBar(
                                           content: Text(
-                                            'The product has been successfully created.',
+                                            VerifiedAPIsGroup
+                                                .addVendorProductCall
+                                                .message(
+                                              (_model.newProduct?.jsonBody ??
+                                                  ''),
+                                            )!,
                                             style: TextStyle(
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -5216,7 +5548,12 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
                                           .showSnackBar(
                                         SnackBar(
                                           content: Text(
-                                            'The product creation failed.',
+                                            VerifiedAPIsGroup
+                                                .addVendorProductCall
+                                                .message(
+                                              (_model.newProduct?.jsonBody ??
+                                                  ''),
+                                            )!,
                                             style: TextStyle(
                                               color:
                                                   FlutterFlowTheme.of(context)

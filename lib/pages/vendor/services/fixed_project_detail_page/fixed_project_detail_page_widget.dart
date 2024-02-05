@@ -811,38 +811,28 @@ class _FixedProjectDetailPageWidgetState
                                   0.0, 15.0, 0.0, 0.0),
                               child: Container(
                                 width: double.infinity,
+                                height: 150.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 8.0, 0.0),
-                                  child: TextFormField(
-                                    controller: _model.textController4,
-                                    focusNode: _model.textFieldFocusNode4,
-                                    autofocus: true,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium,
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium,
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      errorBorder: InputBorder.none,
-                                      focusedErrorBorder: InputBorder.none,
-                                      contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              15.0, 10.0, 15.0, 10.0),
+                                child: Align(
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: FlutterFlowIconButton(
+                                    borderRadius: 100.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 60.0,
+                                    fillColor: Color(0xFF744BE5),
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      size: 32.0,
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                    textAlign: TextAlign.start,
-                                    maxLines: 6,
-                                    validator: _model.textController4Validator
-                                        .asValidator(context),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
                                   ),
                                 ),
                               ),
@@ -851,25 +841,109 @@ class _FixedProjectDetailPageWidgetState
                         ),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              15.0, 10.0, 15.0, 10.0),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(0.0),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 10.0, 0.0, 10.0),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(
-                                'TOTAL AMOUNT PRIOR TO FEES CALCULATED',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 20.0, 0.0),
+                                child: Container(
+                                  width: 63.0,
+                                  height: 58.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF744BE5),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Icon(
+                                    Icons.folder_zip,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    size: 40.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 20.0, 0.0),
+                                child: Container(
+                                  width: 63.0,
+                                  height: 58.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF744BE5),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Icon(
+                                    Icons.folder_zip,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    size: 40.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 20.0, 0.0),
+                                child: Container(
+                                  width: 63.0,
+                                  height: 58.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF744BE5),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Icon(
+                                    Icons.folder_zip,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    size: 40.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 20.0, 0.0),
+                                child: Container(
+                                  width: 63.0,
+                                  height: 58.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF744BE5),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Icon(
+                                    Icons.folder_zip,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    size: 40.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 20.0, 0.0),
+                                child: Container(
+                                  width: 63.0,
+                                  height: 58.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF744BE5),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Icon(
+                                    Icons.folder_zip,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    size: 40.0,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -891,29 +965,9 @@ class _FixedProjectDetailPageWidgetState
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Commission Rate',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily),
-                                      ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'How much you’re willing to pay resellers for selling your \nService ',
+                                  'Submit a written update* (Mandatory)',
                                   style:
-                                      FlutterFlowTheme.of(context).labelSmall,
+                                      FlutterFlowTheme.of(context).labelMedium,
                                 ),
                               ],
                             ),
@@ -927,73 +981,32 @@ class _FixedProjectDetailPageWidgetState
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
-                                child: Text(
-                                  '10%',
-                                  textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineMedium,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).customColor1,
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'You will be paid',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily),
-                                      ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 15.0, 0.0, 0.0),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                child: Text(
-                                  'TOTAL AMOUNT MINUS COMMISSION & 8% FEE',
-                                  textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .labelMediumFamily,
-                                        color: Color(0xFFA50000),
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMediumFamily),
-                                      ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: TextFormField(
+                                    controller: _model.textController4,
+                                    focusNode: _model.textFieldFocusNode4,
+                                    autofocus: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      hintText:
+                                          'Loerum ipsum has loreum your project..',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      enabledBorder: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                      errorBorder: InputBorder.none,
+                                      focusedErrorBorder: InputBorder.none,
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    maxLines: 6,
+                                    validator: _model.textController4Validator
+                                        .asValidator(context),
+                                  ),
                                 ),
                               ),
                             ),
@@ -1016,7 +1029,7 @@ class _FixedProjectDetailPageWidgetState
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Submit Contract Proposal ',
+                                  'Request Milestone Release',
                                   style: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
@@ -1024,6 +1037,8 @@ class _FixedProjectDetailPageWidgetState
                                             .titleSmallFamily,
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.normal,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
                                                 FlutterFlowTheme.of(context)
@@ -1038,7 +1053,7 @@ class _FixedProjectDetailPageWidgetState
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: Text(
-                                'If everything looks good you can submit your proposal to\nThe client.',
+                                'Ready to get paid? Submit your request to have your \nMilestone released.',
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
@@ -1060,7 +1075,7 @@ class _FixedProjectDetailPageWidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 30.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
                       child: Container(
                         width: 160.0,
                         decoration: BoxDecoration(
@@ -1073,54 +1088,130 @@ class _FixedProjectDetailPageWidgetState
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 10.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: FFButtonWidget(
-                                            onPressed: () {
-                                              print('Button pressed ...');
-                                            },
-                                            text: 'Submit',
-                                            options: FFButtonOptions(
-                                              height: 40.0,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color: Color(0xFF3AC754),
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: Colors.white,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
-                                              elevation: 3.0,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(100.0),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: FFButtonWidget(
+                                          onPressed: () {
+                                            print('Button pressed ...');
+                                          },
+                                          text: 'Submit',
+                                          options: FFButtonOptions(
+                                            height: 40.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 0.0, 24.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: Color(0xFF3AC754),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily,
+                                                      color: Colors.white,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily),
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
                                             ),
+                                            borderRadius:
+                                                BorderRadius.circular(100.0),
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'If you end a project, it can not be undone and you will \nneed to begin a new one with your client to continue\nworking together.',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context).labelSmall,
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
+                      child: Container(
+                        width: 160.0,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).customColor1,
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: FFButtonWidget(
+                                          onPressed: () {
+                                            print('Button pressed ...');
+                                          },
+                                          text: 'End Project',
+                                          options: FFButtonOptions(
+                                            height: 40.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 0.0, 24.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: Color(0xFFA50000),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily,
+                                                      color: Colors.white,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily),
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(100.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),

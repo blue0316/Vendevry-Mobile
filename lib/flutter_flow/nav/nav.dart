@@ -235,6 +235,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'FixedProjectDetailPage',
           path: '/fixedProjectDetailPage',
           builder: (context, params) => FixedProjectDetailPageWidget(),
+        ),
+        FFRoute(
+          name: 'ProjectEndConfirmPage',
+          path: '/projectEndConfirmPage',
+          builder: (context, params) => ProjectEndConfirmPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

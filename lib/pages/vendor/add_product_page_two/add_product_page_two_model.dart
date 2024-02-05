@@ -10,10 +10,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'add_product_page_two_widget.dart' show AddProductPageTwoWidget;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -122,10 +124,10 @@ class AddProductPageTwoModel extends FlutterFlowModel<AddProductPageTwoWidget> {
   FocusNode? commissionFocusNode;
   TextEditingController? commissionController;
   String? Function(BuildContext, String?)? commissionControllerValidator;
-  // State field(s) for min_take widget.
-  FocusNode? minTakeFocusNode;
-  TextEditingController? minTakeController;
-  String? Function(BuildContext, String?)? minTakeControllerValidator;
+  // State field(s) for stock widget.
+  FocusNode? stockFocusNode;
+  TextEditingController? stockController;
+  String? Function(BuildContext, String?)? stockControllerValidator;
   // State field(s) for shipping_rate widget.
   FocusNode? shippingRateFocusNode;
   TextEditingController? shippingRateController;
@@ -160,8 +162,8 @@ class AddProductPageTwoModel extends FlutterFlowModel<AddProductPageTwoWidget> {
     commissionFocusNode?.dispose();
     commissionController?.dispose();
 
-    minTakeFocusNode?.dispose();
-    minTakeController?.dispose();
+    stockFocusNode?.dispose();
+    stockController?.dispose();
 
     shippingRateFocusNode?.dispose();
     shippingRateController?.dispose();
