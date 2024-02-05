@@ -213,36 +213,40 @@ class _SearchClientPageWidgetState extends State<SearchClientPageWidget> {
                         ],
                       ),
                       Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              wrapWithModel(
-                                model: _model.searchClientCardModel1,
-                                updateCallback: () => setState(() {}),
-                                child: SearchClientCardWidget(),
-                              ),
-                              wrapWithModel(
-                                model: _model.searchClientCardModel2,
-                                updateCallback: () => setState(() {}),
-                                child: SearchClientCardWidget(),
-                              ),
-                              wrapWithModel(
-                                model: _model.searchClientCardModel3,
-                                updateCallback: () => setState(() {}),
-                                child: SearchClientCardWidget(),
-                              ),
-                              wrapWithModel(
-                                model: _model.searchClientCardModel4,
-                                updateCallback: () => setState(() {}),
-                                child: SearchClientCardWidget(),
-                              ),
-                              wrapWithModel(
-                                model: _model.searchClientCardModel5,
-                                updateCallback: () => setState(() {}),
-                                child: SearchClientCardWidget(),
-                              ),
-                            ],
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 15.0, 0.0, 0.0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                wrapWithModel(
+                                  model: _model.searchClientCardModel1,
+                                  updateCallback: () => setState(() {}),
+                                  child: SearchClientCardWidget(),
+                                ),
+                                wrapWithModel(
+                                  model: _model.searchClientCardModel2,
+                                  updateCallback: () => setState(() {}),
+                                  child: SearchClientCardWidget(),
+                                ),
+                                wrapWithModel(
+                                  model: _model.searchClientCardModel3,
+                                  updateCallback: () => setState(() {}),
+                                  child: SearchClientCardWidget(),
+                                ),
+                                wrapWithModel(
+                                  model: _model.searchClientCardModel4,
+                                  updateCallback: () => setState(() {}),
+                                  child: SearchClientCardWidget(),
+                                ),
+                                wrapWithModel(
+                                  model: _model.searchClientCardModel5,
+                                  updateCallback: () => setState(() {}),
+                                  child: SearchClientCardWidget(),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
