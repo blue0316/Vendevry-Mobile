@@ -13,6 +13,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/backend/schema/structs/index.dart';
 import 'home_page_widget.dart' show HomePageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -36,8 +37,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ApiCallResponse? allProductCategoriesApiResult;
   // Stores action output result for [Backend Call - API (AllServiceCategories)] action in HomePage widget.
   ApiCallResponse? allServiceCategoriesApiResult;
-  // Stores action output result for [Backend Call - API (AllProductConditions)] action in HomePage widget.
-  ApiCallResponse? allProductConditionsApiResult;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

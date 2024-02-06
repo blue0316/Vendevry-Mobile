@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/no_content/no_content_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'add_service_page_one_model.dart';
 export 'add_service_page_one_model.dart';
@@ -171,35 +173,55 @@ class _AddServicePageOneWidgetState extends State<AddServicePageOneWidget> {
                                   Duration(milliseconds: 2000),
                                   () async {
                                     setState(() {
-                                      _model.selectedProductId = null;
+                                      _model.selectedServiceId = null;
                                       _model.searchResult = [];
                                     });
                                     if (_model.textController.text.length > 2) {
+                                      setState(() {
+                                        _model.isLoading = true;
+                                      });
                                       _model.searchApiResult =
                                           await VerifiedAPIsGroup
-                                              .searchProductsCall
+                                              .searchServicesCall
                                               .call(
                                         token: FFAppState().accessToken,
                                         name: _model.textController.text,
-                                        params: 'product_name, images',
+                                        params: 'service_name, images',
                                       );
                                       if ((_model.searchApiResult?.succeeded ??
                                           true)) {
                                         setState(() {
                                           _model.searchResult = VerifiedAPIsGroup
-                                              .searchProductsCall
+                                              .searchServicesCall
                                               .data(
                                                 (_model.searchApiResult
                                                         ?.jsonBody ??
                                                     ''),
                                               )!
                                               .map((e) =>
-                                                  SearchProductTypeStruct
+                                                  SearchServiceTypeStruct
                                                       .maybeFromMap(e))
                                               .withoutNulls
                                               .toList()
-                                              .cast<SearchProductTypeStruct>();
+                                              .cast<SearchServiceTypeStruct>();
+                                          _model.isLoading = false;
                                         });
+                                        if (VerifiedAPIsGroup.searchServicesCall
+                                                .data(
+                                                  (_model.searchApiResult
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                )!
+                                                .length <
+                                            1) {
+                                          setState(() {
+                                            _model.isEmpty = true;
+                                          });
+                                        } else {
+                                          setState(() {
+                                            _model.isEmpty = false;
+                                          });
+                                        }
                                       }
                                     }
 
@@ -273,25 +295,106 @@ class _AddServicePageOneWidgetState extends State<AddServicePageOneWidget> {
                             ),
                             Align(
                               alignment: AlignmentDirectional(1.0, -1.0),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 4.0, 26.0, 0.0),
-                                child: FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 100.0,
-                                  borderWidth: 0.0,
-                                  buttonSize: 40.0,
-                                  fillColor: Color(0xFF40A5FE),
-                                  icon: Icon(
-                                    Icons.add,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    size: 22.0,
-                                  ),
-                                  onPressed: () async {
-                                    context.pushNamed('AddServciePageTwo');
-                                  },
-                                ),
+                              child: Builder(
+                                builder: (context) {
+                                  if (_model.isLoading) {
+                                    return Align(
+                                      alignment:
+                                          AlignmentDirectional(1.0, -1.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 26.0, 0.0),
+                                        child: Container(
+                                          width: 40.0,
+                                          height: 40.0,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(4.0),
+                                            child: Lottie.network(
+                                              'https://lottie.host/2b86acb2-5f14-440c-8477-2ccd79f87a0d/bW3qgy20CA.json',
+                                              width: 32.0,
+                                              height: 32.0,
+                                              fit: BoxFit.cover,
+                                              animate: true,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 4.0, 26.0, 0.0),
+                                      child: FlutterFlowIconButton(
+                                        borderColor: Colors.transparent,
+                                        borderRadius: 100.0,
+                                        borderWidth: 0.0,
+                                        buttonSize: 40.0,
+                                        fillColor: Color(0xFF40A5FE),
+                                        icon: Icon(
+                                          Icons.add,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          size: 22.0,
+                                        ),
+                                        showLoadingIndicator: true,
+                                        onPressed: () async {
+                                          if (_model.selectedServiceId !=
+                                              null) {
+                                            _model.serviceTemplateApiResult =
+                                                await VerifiedAPIsGroup
+                                                    .singleServiceCall
+                                                    .call(
+                                              token: FFAppState().accessToken,
+                                              id: _model.selectedServiceId,
+                                            );
+
+                                            context.pushNamed(
+                                              'AddServciePageTwo',
+                                              queryParameters: {
+                                                'singleService': serializeParam(
+                                                  (_model.serviceTemplateApiResult
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  ParamType.JSON,
+                                                ),
+                                                'serviceName': serializeParam(
+                                                  VerifiedAPIsGroup
+                                                      .singleServiceCall
+                                                      .serviceName(
+                                                    (_model.serviceTemplateApiResult
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  ),
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          } else {
+                                            if (_model.textController.text
+                                                    .length >
+                                                0) {
+                                              context.pushNamed(
+                                                'AddProductPageTwo',
+                                                queryParameters: {
+                                                  'productName': serializeParam(
+                                                    _model.textController.text,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            }
+                                          }
+
+                                          setState(() {});
+                                        },
+                                      ),
+                                    );
+                                  }
+                                },
                               ),
                             ),
                             Padding(
@@ -302,9 +405,7 @@ class _AddServicePageOneWidgetState extends State<AddServicePageOneWidget> {
                                 children: [
                                   Builder(
                                     builder: (context) {
-                                      if ((_model.searchResult.length < 1) &&
-                                          (_model.textController.text.length >
-                                              2)) {
+                                      if (_model.isEmpty) {
                                         return Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -637,19 +738,70 @@ class _AddServicePageOneWidgetState extends State<AddServicePageOneWidget> {
                                       ),
                                     ),
                                   ),
+                                  Builder(
+                                    builder: (context) {
+                                      if (_model.isEmpty) {
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 12.0, 0.0, 0.0),
+                                          child: Text(
+                                            'No Existing Listings Found.',
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineLarge
+                                                .override(
+                                                  fontFamily: 'HelveticaBold',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(FlutterFlowTheme
+                                                              .of(context)
+                                                          .headlineLargeFamily),
+                                                  lineHeight: 1.4,
+                                                ),
+                                          ),
+                                        );
+                                      } else {
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 12.0, 0.0, 0.0),
+                                          child: Text(
+                                            'It’s as easy as 1,2,3',
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineLarge
+                                                .override(
+                                                  fontFamily: 'HelveticaBold',
+                                                  color: Color(0xFF606060),
+                                                  fontSize: 28.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(FlutterFlowTheme
+                                                              .of(context)
+                                                          .headlineLargeFamily),
+                                                  lineHeight: 1.0,
+                                                ),
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  ),
                                 ],
                               ),
                             ),
                             if ((_model.searchResult.length > 0) &&
-                                (_model.selectedProductId == null))
+                                (_model.selectedServiceId == null))
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     22.0, 50.0, 22.0, 0.0),
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
-                                  constraints: BoxConstraints(
-                                    maxHeight: 300.0,
-                                  ),
+                                  height: 240.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -662,47 +814,71 @@ class _AddServicePageOneWidgetState extends State<AddServicePageOneWidget> {
                                     ],
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 12.0, 0.0, 12.0),
-                                    child: Builder(
-                                      builder: (context) {
-                                        final searchProduct = _model
-                                            .searchResult
-                                            .toList()
-                                            .take(5)
-                                            .toList();
-                                        return ListView.builder(
-                                          padding: EdgeInsets.zero,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: searchProduct.length,
-                                          itemBuilder:
-                                              (context, searchProductIndex) {
-                                            final searchProductItem =
-                                                searchProduct[
-                                                    searchProductIndex];
-                                            return InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                setState(() {
-                                                  _model.selectedProductId =
-                                                      searchProductItem
-                                                          .productId;
-                                                });
-                                              },
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(12.0, 8.0,
-                                                                12.0, 8.0),
-                                                    child: Row(
+                                  child: Builder(
+                                    builder: (context) {
+                                      if (_model.searchResult.length > 0) {
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 12.0, 0.0, 12.0),
+                                          child: Builder(
+                                            builder: (context) {
+                                              final searchProduct = _model
+                                                  .searchResult
+                                                  .toList()
+                                                  .take(5)
+                                                  .toList();
+                                              if (searchProduct.isEmpty) {
+                                                return Container(
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
+                                                  height: 100.0,
+                                                  child: NoContentWidget(
+                                                    content:
+                                                        'No matched products...',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    size: 18,
+                                                  ),
+                                                );
+                                              }
+                                              return ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                primary: false,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount: searchProduct.length,
+                                                itemBuilder: (context,
+                                                    searchProductIndex) {
+                                                  final searchProductItem =
+                                                      searchProduct[
+                                                          searchProductIndex];
+                                                  return InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      setState(() {
+                                                        _model.selectedServiceId =
+                                                            searchProductItem
+                                                                .serviceId;
+                                                      });
+                                                      setState(() {
+                                                        _model.textController
+                                                                ?.text =
+                                                            _model
+                                                                .textController
+                                                                .text;
+                                                      });
+                                                    },
+                                                    child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
@@ -710,50 +886,84 @@ class _AddServicePageOneWidgetState extends State<AddServicePageOneWidget> {
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
+                                                                      12.0,
                                                                       8.0,
-                                                                      0.0),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                            child:
-                                                                Image.network(
-                                                              searchProductItem
-                                                                  .images.first,
-                                                              width: 50.0,
-                                                              height: 50.0,
-                                                              fit: BoxFit.cover,
-                                                            ),
+                                                                      12.0,
+                                                                      8.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            8.0,
+                                                                            0.0),
+                                                                child:
+                                                                    ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                  child: Image
+                                                                      .network(
+                                                                    searchProductItem.images.length >
+                                                                            0
+                                                                        ? searchProductItem
+                                                                            .images
+                                                                            .first
+                                                                        : 'https://cdn.iconscout.com/icon/free/png-512/free-product-135-781070.png?f=webp&w=256',
+                                                                    width: 50.0,
+                                                                    height:
+                                                                        50.0,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                child: Text(
+                                                                  searchProductItem
+                                                                      .serviceName,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium,
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            searchProductItem
-                                                                .productName,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium,
-                                                          ),
+                                                        Divider(
+                                                          thickness: 1.0,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate,
                                                         ),
                                                       ],
                                                     ),
-                                                  ),
-                                                  Divider(
-                                                    thickness: 1.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
+                                                  );
+                                                },
+                                              );
+                                            },
+                                          ),
                                         );
-                                      },
-                                    ),
+                                      } else {
+                                        return wrapWithModel(
+                                          model: _model.noContentModel,
+                                          updateCallback: () => setState(() {}),
+                                          child: NoContentWidget(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 18,
+                                            content: 'No result...',
+                                          ),
+                                        );
+                                      }
+                                    },
                                   ),
                                 ),
                               ),

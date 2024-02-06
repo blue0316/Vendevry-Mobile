@@ -195,7 +195,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AddServciePageTwo',
           path: '/addServciePageTwo',
-          builder: (context, params) => AddServciePageTwoWidget(),
+          builder: (context, params) => AddServciePageTwoWidget(
+            singleService: params.getParam('singleService', ParamType.JSON),
+            serviceName: params.getParam('serviceName', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'ProductBoostPage',

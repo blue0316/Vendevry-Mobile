@@ -101,13 +101,7 @@ class _AddProductPageTwoWidgetState extends State<AddProductPageTwoWidget> {
       });
     });
 
-    _model.titleController ??= TextEditingController(
-        text: widget.singleProduct != null
-            ? getJsonField(
-                widget.singleProduct,
-                r'''$.product_name''',
-              ).toString().toString()
-            : '');
+    _model.titleController ??= TextEditingController(text: widget.productName);
     _model.titleFocusNode ??= FocusNode();
 
     _model.brandController ??= TextEditingController(

@@ -194,6 +194,8 @@ class VerifiedAPIsGroup {
       AllProductParentCategoriesCall();
   static ProductSubcategoriesCall productSubcategoriesCall =
       ProductSubcategoriesCall();
+  static SearchServicesCall searchServicesCall = SearchServicesCall();
+  static SingleServiceCall singleServiceCall = SingleServiceCall();
 }
 
 class SearchProductsCall {
@@ -849,6 +851,139 @@ class ProductSubcategoriesCall {
           .map((x) => castToType<int>(x))
           .withoutNulls
           .toList();
+}
+
+class SearchServicesCall {
+  Future<ApiCallResponse> call({
+    String? name = '',
+    String? params = '',
+    String? token = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'SearchServices',
+      apiUrl: '${VerifiedAPIsGroup.baseUrl}/service/search',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {
+        'name': name,
+        'params': params,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? data(dynamic response) => getJsonField(
+        response,
+        r'''$.data''',
+        true,
+      ) as List?;
+  List<String>? names(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].service_name''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List? images(dynamic response) => getJsonField(
+        response,
+        r'''$.data[:].images''',
+        true,
+      ) as List?;
+  List<int>? ids(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].service_id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+}
+
+class SingleServiceCall {
+  Future<ApiCallResponse> call({
+    int? id,
+    String? token = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'SingleService',
+      apiUrl: '${VerifiedAPIsGroup.baseUrl}/service/getByID/${id}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  dynamic? data(dynamic response) => getJsonField(
+        response,
+        r'''$.data''',
+      );
+  int? serviceId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.data.service_id''',
+      ));
+  int? vendorId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.data.vendor_id''',
+      ));
+  String? serviceName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.data.service_name''',
+      ));
+  int? servicePrice(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.data.service_price''',
+      ));
+  List? images(dynamic response) => getJsonField(
+        response,
+        r'''$.data.images''',
+        true,
+      ) as List?;
+  int? category(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.data.category''',
+      ));
+  String? description(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.data.description''',
+      ));
+  int? commission(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.data.commission''',
+      ));
+  int? priceType(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.data.price_type''',
+      ));
+  List? serviceCustomVariants(dynamic response) => getJsonField(
+        response,
+        r'''$.data.service_custom_variants''',
+        true,
+      ) as List?;
+  List? serviceColorVariants(dynamic response) => getJsonField(
+        response,
+        r'''$.data.service_color_variants''',
+        true,
+      ) as List?;
+  String? message(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.message''',
+      ));
 }
 
 /// End VerifiedAPIs Group Code

@@ -20,9 +20,36 @@ class AddServciePageTwoModel extends FlutterFlowModel<AddServciePageTwoWidget> {
 
   Color pickedColor = Color(4281223101);
 
-  ProductDefaultStruct? productTemplate;
-  void updateProductTemplateStruct(Function(ProductDefaultStruct) updateFn) =>
-      updateFn(productTemplate ??= ProductDefaultStruct());
+  ServiceDefaultStruct? serviceTemplate;
+  void updateServiceTemplateStruct(Function(ServiceDefaultStruct) updateFn) =>
+      updateFn(serviceTemplate ??= ServiceDefaultStruct());
+
+  int? selectedServiceCategoryId;
+
+  List<ServiceCustomOptionStruct> customOptions = [];
+  void addToCustomOptions(ServiceCustomOptionStruct item) =>
+      customOptions.add(item);
+  void removeFromCustomOptions(ServiceCustomOptionStruct item) =>
+      customOptions.remove(item);
+  void removeAtIndexFromCustomOptions(int index) =>
+      customOptions.removeAt(index);
+  void insertAtIndexInCustomOptions(
+          int index, ServiceCustomOptionStruct item) =>
+      customOptions.insert(index, item);
+  void updateCustomOptionsAtIndex(
+          int index, Function(ServiceCustomOptionStruct) updateFn) =>
+      customOptions[index] = updateFn(customOptions[index]);
+
+  List<String> images = [];
+  void addToImages(String item) => images.add(item);
+  void removeFromImages(String item) => images.remove(item);
+  void removeAtIndexFromImages(int index) => images.removeAt(index);
+  void insertAtIndexInImages(int index, String item) =>
+      images.insert(index, item);
+  void updateImagesAtIndex(int index, Function(String) updateFn) =>
+      images[index] = updateFn(images[index]);
+
+  int? serviceCategoryId;
 
   ///  State fields for stateful widgets in this page.
 

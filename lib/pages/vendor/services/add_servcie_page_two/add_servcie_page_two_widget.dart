@@ -17,7 +17,14 @@ import 'add_servcie_page_two_model.dart';
 export 'add_servcie_page_two_model.dart';
 
 class AddServciePageTwoWidget extends StatefulWidget {
-  const AddServciePageTwoWidget({super.key});
+  const AddServciePageTwoWidget({
+    super.key,
+    this.singleService,
+    required this.serviceName,
+  });
+
+  final dynamic singleService;
+  final String? serviceName;
 
   @override
   State<AddServciePageTwoWidget> createState() =>
@@ -34,8 +41,7 @@ class _AddServciePageTwoWidgetState extends State<AddServciePageTwoWidget> {
     super.initState();
     _model = createModel(context, () => AddServciePageTwoModel());
 
-    _model.textController1 ??=
-        TextEditingController(text: _model.productTemplate?.productName);
+    _model.textController1 ??= TextEditingController(text: widget.serviceName);
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController();

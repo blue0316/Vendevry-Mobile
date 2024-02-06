@@ -13,6 +13,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -62,138 +63,36 @@ class _HomePageWidgetState extends State<HomePageWidget>
         token: FFAppState().accessToken,
       );
       if ((_model.allProductCategoriesApiResult?.succeeded ?? true)) {
-        while (VerifiedAPIsGroup.allProductCategoriesCall.data(
-                  (_model.allProductCategoriesApiResult?.jsonBody ?? ''),
-                ) !=
-                null &&
-            (VerifiedAPIsGroup.allProductCategoriesCall.data(
-              (_model.allProductCategoriesApiResult?.jsonBody ?? ''),
-            ))!
-                .isNotEmpty) {
-          setState(() {
-            FFAppState().addToProductCategories(ProductCategoryStruct(
-              id: VerifiedAPIsGroup.allProductCategoriesCall.ids(
-                (_model.allProductCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              parentId: VerifiedAPIsGroup.allProductCategoriesCall.parentIds(
-                (_model.allProductCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              name: VerifiedAPIsGroup.allProductCategoriesCall.names(
-                (_model.allProductCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              description:
-                  VerifiedAPIsGroup.allProductCategoriesCall.descriptions(
-                (_model.allProductCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              logo: (VerifiedAPIsGroup.allProductCategoriesCall.logo(
-                (_model.allProductCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex])
-                  ?.toString(),
-              banner: (VerifiedAPIsGroup.allProductCategoriesCall.banner(
-                (_model.allProductCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex])
-                  ?.toString(),
-              status: VerifiedAPIsGroup.allProductCategoriesCall.status(
-                (_model.allProductCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-            ));
-          });
-          setState(() {
-            _model.loopIndex = _model.loopIndex + 1;
-          });
-        }
+        setState(() {
+          FFAppState().productCategories =
+              VerifiedAPIsGroup.allProductCategoriesCall
+                  .data(
+                    (_model.allProductCategoriesApiResult?.jsonBody ?? ''),
+                  )!
+                  .map((e) => ProductCategoryStruct.maybeFromMap(e))
+                  .withoutNulls
+                  .toList()
+                  .toList()
+                  .cast<ProductCategoryStruct>();
+        });
       }
-      setState(() {
-        _model.loopIndex = 0;
-      });
       _model.allServiceCategoriesApiResult =
           await VerifiedAPIsGroup.allServiceCategoriesCall.call(
         token: FFAppState().accessToken,
       );
       if ((_model.allServiceCategoriesApiResult?.succeeded ?? true)) {
-        while (VerifiedAPIsGroup.allServiceCategoriesCall.data(
-                  (_model.allServiceCategoriesApiResult?.jsonBody ?? ''),
-                ) !=
-                null &&
-            (VerifiedAPIsGroup.allServiceCategoriesCall.data(
-              (_model.allServiceCategoriesApiResult?.jsonBody ?? ''),
-            ))!
-                .isNotEmpty) {
-          setState(() {
-            FFAppState().addToProductCategories(ProductCategoryStruct(
-              id: VerifiedAPIsGroup.allServiceCategoriesCall.ids(
-                (_model.allServiceCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              parentId: VerifiedAPIsGroup.allServiceCategoriesCall.parentIds(
-                (_model.allServiceCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              name: VerifiedAPIsGroup.allServiceCategoriesCall.names(
-                (_model.allServiceCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              description:
-                  VerifiedAPIsGroup.allServiceCategoriesCall.descriptions(
-                (_model.allServiceCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              logo: (VerifiedAPIsGroup.allServiceCategoriesCall.logo(
-                (_model.allServiceCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex])
-                  ?.toString(),
-              banner: VerifiedAPIsGroup.allServiceCategoriesCall.banner(
-                (_model.allServiceCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              status: VerifiedAPIsGroup.allServiceCategoriesCall.status(
-                (_model.allServiceCategoriesApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-            ));
-          });
-          setState(() {
-            _model.loopIndex = _model.loopIndex + 1;
-          });
-        }
-      }
-      setState(() {
-        _model.loopIndex = 0;
-      });
-      _model.allProductConditionsApiResult =
-          await VerifiedAPIsGroup.allProductConditionsCall.call(
-        token: FFAppState().accessToken,
-      );
-      if ((_model.allServiceCategoriesApiResult?.succeeded ?? true)) {
-        while (VerifiedAPIsGroup.allProductConditionsCall.data(
-                  (_model.allProductConditionsApiResult?.jsonBody ?? ''),
-                ) !=
-                null &&
-            (VerifiedAPIsGroup.allProductConditionsCall.data(
-              (_model.allProductConditionsApiResult?.jsonBody ?? ''),
-            ))!
-                .isNotEmpty) {
-          setState(() {
-            FFAppState().addToProductConditions(ProductConditionStruct(
-              id: VerifiedAPIsGroup.allProductConditionsCall.ids(
-                (_model.allProductConditionsApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              name: VerifiedAPIsGroup.allProductConditionsCall.names(
-                (_model.allProductConditionsApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              description:
-                  VerifiedAPIsGroup.allProductConditionsCall.descriptions(
-                (_model.allProductConditionsApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              status: VerifiedAPIsGroup.allProductConditionsCall.status(
-                (_model.allProductConditionsApiResult?.jsonBody ?? ''),
-              )?[_model.loopIndex],
-              color: (String hex) {
-                return Color(int.parse(hex.toUpperCase().replaceAll("#", ""),
-                    radix: 16));
-              }((VerifiedAPIsGroup.allProductConditionsCall.colors(
-                (_model.allProductConditionsApiResult?.jsonBody ?? ''),
-              )![_model.loopIndex])),
-            ));
-          });
-          setState(() {
-            _model.loopIndex = _model.loopIndex + 1;
-          });
-        }
+        setState(() {
+          FFAppState().serviceCategories =
+              VerifiedAPIsGroup.allServiceCategoriesCall
+                  .data(
+                    (_model.allServiceCategoriesApiResult?.jsonBody ?? ''),
+                  )!
+                  .map((e) => ServiceCategoryStruct.maybeFromMap(e))
+                  .withoutNulls
+                  .toList()
+                  .toList()
+                  .cast<ServiceCategoryStruct>();
+        });
       }
     });
 
